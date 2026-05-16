@@ -156,7 +156,7 @@ def score(bundle):
 
     flags = []
 
-    if top_3_review_share_pct > 60:
+    if top_3_review_share_pct is not None and top_3_review_share_pct > 60:
         flags.append("CRITICAL_RISK_MONOPOLY_REVIEW_CONCENTRATION")
         if risk_score is not None:
             risk_score = min(100.0, float(risk_score) + 15.0)
