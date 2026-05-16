@@ -1,0 +1,524 @@
+{
+  "places": [
+    {
+      "types": [
+        "bakery",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.36521,
+        "longitude": -71.0556268
+      },
+      "rating": 4.6,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_INEXPENSIVE",
+      "userRatingCount": 4455,
+      "displayName": {
+        "text": "Bova's Bakery",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "grocery_store",
+        "florist",
+        "supermarket",
+        "food_delivery",
+        "bakery",
+        "butcher_shop",
+        "deli",
+        "market",
+        "food_store",
+        "manufacturer",
+        "service",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3649898,
+        "longitude": -71.0622667
+      },
+      "rating": 4.2,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 655,
+      "displayName": {
+        "text": "Star Market",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "bakery",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.373261799999995,
+        "longitude": -71.061526
+      },
+      "rating": 4.6,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 610,
+      "displayName": {
+        "text": "Tatte Bakery & Cafe | Charlestown",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "pastry_shop",
+        "bakery",
+        "coffee_shop",
+        "dessert_shop",
+        "confectionery",
+        "food_store",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3720431,
+        "longitude": -71.0755875
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 458,
+      "displayName": {
+        "text": "Cafe Beatrice",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "bakery",
+        "coffee_shop",
+        "brunch_restaurant",
+        "breakfast_restaurant",
+        "israeli_restaurant",
+        "food_store",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.372428899999996,
+        "longitude": -71.0750896
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 328,
+      "displayName": {
+        "text": "Tatte Bakery & Cafe | Cambridge Crossing",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "pastry_shop",
+        "bakery",
+        "dessert_shop",
+        "confectionery",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3654525,
+        "longitude": -71.0616447
+      },
+      "rating": 3.9,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 187,
+      "displayName": {
+        "text": "Mike\u2019s Pastry",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "coffee_shop",
+        "cafe",
+        "pizza_restaurant",
+        "american_restaurant",
+        "food_store",
+        "bar",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.380444999999995,
+        "longitude": -71.0719328
+      },
+      "rating": 4.6,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 528,
+      "displayName": {
+        "text": "Tradesman Coffee Shop & Pizza Bar",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "pizza_restaurant",
+        "salad_shop",
+        "pastry_shop",
+        "pizza_delivery",
+        "meal_delivery",
+        "catering_service",
+        "food_delivery",
+        "bakery",
+        "coffee_shop",
+        "cafe",
+        "meal_takeaway",
+        "italian_restaurant",
+        "dessert_shop",
+        "confectionery",
+        "food_store",
+        "service",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3643874,
+        "longitude": -71.0596683
+      },
+      "rating": 4.8,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 354,
+      "displayName": {
+        "text": "Pizzeria Rustico",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "restaurant",
+        "coffee_shop",
+        "cafe",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.365879199999995,
+        "longitude": -71.0609643
+      },
+      "rating": 4.6,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 149,
+      "displayName": {
+        "text": "Blank Street",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "coffee_shop",
+        "cafe",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.366107299999996,
+        "longitude": -71.0632822
+      },
+      "rating": 4.5,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_INEXPENSIVE",
+      "userRatingCount": 172,
+      "displayName": {
+        "text": "Kicco Italian Coffee",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "coffee_shop",
+        "donut_shop",
+        "bagel_shop",
+        "bakery",
+        "cafe",
+        "fast_food_restaurant",
+        "breakfast_restaurant",
+        "meal_takeaway",
+        "food_store",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3643752,
+        "longitude": -71.0629074
+      },
+      "rating": 3.8,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_INEXPENSIVE",
+      "userRatingCount": 329,
+      "displayName": {
+        "text": "Dunkin'",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "bakery",
+        "cake_shop",
+        "sandwich_shop",
+        "coffee_shop",
+        "cafe",
+        "breakfast_restaurant",
+        "confectionery",
+        "food_store",
+        "manufacturer",
+        "restaurant",
+        "food",
+        "wholesaler",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.37654130000001,
+        "longitude": -71.06551689999999
+      },
+      "rating": 4.6,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 77,
+      "displayName": {
+        "text": "La Saison Bakery",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "bakery",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.365318599999995,
+        "longitude": -71.0557731
+      },
+      "rating": 4.8,
+      "businessStatus": "CLOSED_TEMPORARILY",
+      "priceLevel": "PRICE_LEVEL_INEXPENSIVE",
+      "userRatingCount": 375,
+      "displayName": {
+        "text": "Parziale's Bakery",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "convenience_store",
+        "coffee_shop",
+        "cafe",
+        "pizza_restaurant",
+        "food_store",
+        "liquor_store",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.364969099999996,
+        "longitude": -71.0535143
+      },
+      "rating": 3,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_INEXPENSIVE",
+      "userRatingCount": 54,
+      "displayName": {
+        "text": "7-Eleven",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "coffee_shop",
+        "internet_cafe",
+        "cafe",
+        "breakfast_restaurant",
+        "food_store",
+        "service",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.37534,
+        "longitude": -71.06384
+      },
+      "rating": 4.1,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 200,
+      "displayName": {
+        "text": "Starbucks",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "barber_shop",
+        "body_art_service",
+        "coffee_shop",
+        "cafe",
+        "hair_care",
+        "food_store",
+        "health",
+        "service",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3643408,
+        "longitude": -71.0553983
+      },
+      "rating": 4.5,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 495,
+      "displayName": {
+        "text": "Boston Barber & Tattoo Co.",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "dessert_shop",
+        "bakery",
+        "confectionery",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3649284,
+        "longitude": -71.0619504
+      },
+      "rating": 4.7,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_INEXPENSIVE",
+      "userRatingCount": 144,
+      "displayName": {
+        "text": "Chip City",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "convenience_store",
+        "coffee_shop",
+        "cafe",
+        "pizza_restaurant",
+        "food_store",
+        "liquor_store",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3647875,
+        "longitude": -71.0621045
+      },
+      "rating": 2.4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_INEXPENSIVE",
+      "userRatingCount": 59,
+      "displayName": {
+        "text": "7-Eleven",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3665565,
+        "longitude": -71.05105379999999
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 358,
+      "displayName": {
+        "text": "Cafe Amalfi",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3664428,
+        "longitude": -71.05973139999999
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 79,
+      "displayName": {
+        "text": "Koko Coffee | Causeway",
+        "languageCode": "en"
+      }
+    }
+  ]
+}

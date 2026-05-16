@@ -1,0 +1,205 @@
+{
+  "source": "google_places",
+  "confidence_level": "HIGH",
+  "confidence_score": 90,
+  "radius_used_miles": 1.0,
+  "competitors": [
+    {
+      "id": "comp_001",
+      "name": "Mike's Pastry",
+      "rating": 4.3,
+      "review_count": 6148,
+      "distance_miles": 0.67,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 16.29
+    },
+    {
+      "id": "comp_002",
+      "name": "Boston Sail Loft",
+      "rating": 4.6,
+      "review_count": 6250,
+      "distance_miles": 0.69,
+      "category_tags": [],
+      "mock_strength_index": 17.46
+    },
+    {
+      "id": "comp_003",
+      "name": "Bova's Bakery",
+      "rating": 4.6,
+      "review_count": 4455,
+      "distance_miles": 0.7,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 16.78
+    },
+    {
+      "id": "comp_004",
+      "name": "Tatte Bakery & Cafe | Back Bay",
+      "rating": 4.4,
+      "review_count": 2668,
+      "distance_miles": 0.64,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 15.08
+    },
+    {
+      "id": "comp_005",
+      "name": "Modern Pastry Shop",
+      "rating": 4.5,
+      "review_count": 2564,
+      "distance_miles": 0.6,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 15.34
+    },
+    {
+      "id": "comp_006",
+      "name": "WNDR Museum",
+      "rating": 4.6,
+      "review_count": 4922,
+      "distance_miles": 0.09,
+      "category_tags": [],
+      "mock_strength_index": 16.98
+    },
+    {
+      "id": "comp_007",
+      "name": "Tatte Bakery & Cafe | Pier 4",
+      "rating": 4.4,
+      "review_count": 1410,
+      "distance_miles": 0.94,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 13.86
+    },
+    {
+      "id": "comp_008",
+      "name": "Tatte Bakery & Cafe | Summer St",
+      "rating": 4.5,
+      "review_count": 1362,
+      "distance_miles": 0.25,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 14.1
+    },
+    {
+      "id": "comp_009",
+      "name": "Flour Bakery + Cafe",
+      "rating": 4.5,
+      "review_count": 2161,
+      "distance_miles": 0.85,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 15.01
+    },
+    {
+      "id": "comp_010",
+      "name": "Thinking Cup",
+      "rating": 4.5,
+      "review_count": 2069,
+      "distance_miles": 0.78,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 14.92
+    },
+    {
+      "id": "comp_011",
+      "name": "Ogawa Coffee",
+      "rating": 4.4,
+      "review_count": 1676,
+      "distance_miles": 0.15,
+      "category_tags": [],
+      "mock_strength_index": 14.19
+    },
+    {
+      "id": "comp_012",
+      "name": "PopUp Bagels",
+      "rating": 4.7,
+      "review_count": 503,
+      "distance_miles": 0.95,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 12.7
+    },
+    {
+      "id": "comp_013",
+      "name": "L.A. Burdick Handmade Chocolates",
+      "rating": 4.6,
+      "review_count": 1799,
+      "distance_miles": 0.83,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 14.97
+    },
+    {
+      "id": "comp_014",
+      "name": "Tatte Bakery & Cafe | Copley Square",
+      "rating": 4.0,
+      "review_count": 272,
+      "distance_miles": 0.87,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 9.74
+    },
+    {
+      "id": "comp_015",
+      "name": "Blank Street",
+      "rating": 4.4,
+      "review_count": 527,
+      "distance_miles": 0.99,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 11.98
+    },
+    {
+      "id": "comp_016",
+      "name": "Lakon Paris Patisserie Seaport",
+      "rating": 4.2,
+      "review_count": 312,
+      "distance_miles": 0.86,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 10.48
+    },
+    {
+      "id": "comp_017",
+      "name": "Caffe Vittoria",
+      "rating": 4.3,
+      "review_count": 2572,
+      "distance_miles": 0.66,
+      "category_tags": [],
+      "mock_strength_index": 14.66
+    },
+    {
+      "id": "comp_018",
+      "name": "Tatte Bakery & Cafe | Emerson",
+      "rating": 4.4,
+      "review_count": 1184,
+      "distance_miles": 0.32,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 13.52
+    }
+  ],
+  "summary": {
+    "total_count": 18,
+    "avg_rating": 4.44,
+    "avg_review_count": 2381,
+    "top_3_review_share_pct": 40.4,
+    "cluster_breakdown": {}
+  }
+}

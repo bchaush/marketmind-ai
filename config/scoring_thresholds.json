@@ -1,0 +1,116 @@
+{
+  "spec_version": "phase2_scoring_spec_v0.1",
+  "business_type": "coffee_shop",
+  "anchor_metrics": {
+    "coffee_shop": ["pop_total", "age_22_34_count"]
+  },
+  "normalization": {
+    "pop_total": {
+      "method": "sigmoid_log10",
+      "anchors": {"score_10": 200, "score_50": 1000, "score_90": 3500}
+    },
+    "age_22_34_count": {
+      "method": "sigmoid_log10",
+      "anchors": {"score_10": 30, "score_50": 120, "score_90": 400}
+    },
+    "college_student_population_pct": {
+      "method": "sigmoid_linear",
+      "anchors": {"score_10": 0.05, "score_50": 0.20, "score_90": 0.45}
+    },
+    "median_household_income": {
+      "method": "sigmoid_log10",
+      "anchors": {"score_10": 35000, "score_50": 75000, "score_90": 130000}
+    },
+    "rent_to_income_ratio": {
+      "method": "sigmoid_linear",
+      "anchors": {"score_10": 0.15, "score_50": 0.30, "score_90": 0.45},
+      "direction": "higher_is_worse"
+    },
+    "total_count": {
+      "method": "linear_minmax",
+      "min": 0,
+      "max": 40,
+      "direction": "higher_is_worse"
+    },
+    "avg_rating": {
+      "method": "linear_clamp",
+      "min": 3.0,
+      "max": 5.0,
+      "direction": "higher_is_worse"
+    },
+    "top_3_review_share_pct": {
+      "method": "linear_passthrough",
+      "min": 0,
+      "max": 100,
+      "direction": "higher_is_worse"
+    }
+  },
+  "null_handling": {
+    "confidence_penalty_per_null": 4,
+    "redistribution": "proportional"
+  },
+  "confidence_floors": {
+    "anchor_metric_warning": 35,
+    "data_desert": 40
+  },
+  "geography_fidelity": {
+    "block_group": 100,
+    "tract": 75,
+    "zcta": 55,
+    "placeholder": 25
+  },
+  "band_thresholds": {
+    "demand_score": {
+      "LOW": [0, 39],
+      "MODERATE": [40, 64],
+      "HIGH": [65, 100]
+    },
+    "competition_pressure_score": {
+      "LOW": [0, 39],
+      "MODERATE": [40, 64],
+      "HIGH": [65, 100]
+    },
+    "market_gap_score": {
+      "NARROW": [0, 39],
+      "MODERATE": [40, 64],
+      "WIDE": [65, 100]
+    },
+    "risk_score": {
+      "LOW": [0, 39],
+      "MODERATE": [40, 64],
+      "HIGH": [65, 100]
+    },
+    "opportunity_score": {
+      "LIMITED": [0, 39],
+      "MODERATE": [40, 64],
+      "STRONG": [65, 100]
+    },
+    "confidence_score": {
+      "LOW": [0, 44],
+      "MODERATE": [45, 74],
+      "HIGH": [75, 100]
+    }
+  },
+  "edge_cases": {
+    "desert": {
+      "condition": "pop_total is null or pop_total == 0",
+      "status": "REJECTED_DESERT"
+    },
+    "monopoly": {
+      "condition": "top_3_review_share_pct > 60",
+      "flag": "CRITICAL_RISK_MONOPOLY_REVIEW_CONCENTRATION",
+      "risk_score_bonus": 15
+    },
+    "goldmine": {
+      "condition": "total_count == 0 and pop_total > 2500",
+      "flag": "GOLDMINE_ZERO_COMPETITORS",
+      "opportunity_score_override": 100,
+      "market_gap_score_floor": 85
+    },
+    "data_desert": {
+      "condition": "null_count >= 3 among scored metrics",
+      "flag": "DATA_DESERT",
+      "confidence_floor": 40
+    }
+  }
+}

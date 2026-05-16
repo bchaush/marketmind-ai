@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "description": "ACS 5-year (acs5) variable metadata for MarketMind Census pulls. Use this to verify Census documentation before any live API call.",
+  "acs_dataset": "acs/acs5",
+  "geography": {
+    "summary_level": "150",
+    "summary_level_name": "Census block group"
+  },
+  "variables": {
+    "block_group": {
+      "acs_table": "N/A",
+      "label": "Census block group FIPS code (state+county+tract+block group)",
+      "composition_note": null
+    },
+    "pop_total": {
+      "acs_table": "B01003",
+      "acs_release_year": "2022",
+      "label": "Total population",
+      "composition_note": null,
+      "acs_variable": "B01003_001E"
+    },
+    "median_household_income": {
+      "acs_table": "B19013",
+      "acs_release_year": "2022",
+      "label": "Median household income in the past 12 months (inflation-adjusted dollars)",
+      "composition_note": null,
+      "acs_variable": "B19013_001E"
+    },
+    "median_age": {
+      "acs_table": "B01002",
+      "acs_release_year": "2022",
+      "label": "Median age (total population)",
+      "composition_note": null,
+      "acs_variable": "B01002_001E"
+    },
+    "college_student_population_pct": {
+      "acs_table": "B14001",
+      "acs_release_year": "2022",
+      "label": "Share of total population enrolled in college or graduate/professional school (male + female)",
+      "composition_note": "Computed as (B14001_008E + B14001_009E) / B01003_001E using only male enrollment codes available at block-group geography in ACS 2022 (female enrollment detail codes used previously are not valid at block group). Guard divide-by-zero when population is 0. Treat suppressed values as null.",
+      "acs_variables": {
+        "numerator_terms": ["B14001_008E", "B14001_009E"],
+        "denominator": "B01003_001E"
+      }
+    },
+    "age_22_34_count": {
+      "acs_table": "B01001",
+      "acs_release_year": "2022",
+      "label": "Population aged 22-34 (Young Professional proxy)",
+      "composition_note": "Sum of Male: B01001_010E (22-24), B01001_011E (25-29), B01001_012E (30-34). Sum of Female: B01001_034E (22-24), B01001_035E (25-29), B01001_036E (30-34).",
+      "acs_variables": {
+        "male_terms": ["B01001_010E", "B01001_011E", "B01001_012E"],
+        "female_terms": ["B01001_034E", "B01001_035E", "B01001_036E"]
+      }
+    },
+    "rent_to_income_ratio": {
+      "acs_table": "B25071",
+      "acs_release_year": "2022",
+      "label": "Median gross rent as a percentage of household income",
+      "composition_note": null,
+      "acs_variable": "B25071_001E"
+    }
+  }
+}

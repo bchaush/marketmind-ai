@@ -1,0 +1,533 @@
+{
+  "places": [
+    {
+      "types": [
+        "grocery_store",
+        "health_food_store",
+        "supermarket",
+        "food_delivery",
+        "bakery",
+        "deli",
+        "food_store",
+        "market",
+        "food",
+        "store",
+        "point_of_interest",
+        "health",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3891989,
+        "longitude": -71.1413238
+      },
+      "rating": 4.3,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_EXPENSIVE",
+      "userRatingCount": 1075,
+      "displayName": {
+        "text": "Whole Foods Market",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "grocery_store",
+        "supermarket",
+        "florist",
+        "food_delivery",
+        "bakery",
+        "deli",
+        "butcher_shop",
+        "food_store",
+        "market",
+        "manufacturer",
+        "food",
+        "store",
+        "point_of_interest",
+        "service",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3899555,
+        "longitude": -71.11800629999999
+      },
+      "rating": 3.9,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 1061,
+      "displayName": {
+        "text": "Star Market",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "bagel_shop",
+        "breakfast_restaurant",
+        "bakery",
+        "food_store",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.386028599999996,
+        "longitude": -71.1195879
+      },
+      "rating": 4.6,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 1712,
+      "displayName": {
+        "text": "Bagelsaurus",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "grocery_store",
+        "garden_center",
+        "gift_shop",
+        "liquor_store",
+        "bakery",
+        "deli",
+        "cafe",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "service",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.393834999999996,
+        "longitude": -71.125708
+      },
+      "rating": 4.7,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 1334,
+      "displayName": {
+        "text": "Pemberton Farms Marketplace",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "book_store",
+        "wine_bar",
+        "cafe",
+        "bar",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3738631,
+        "longitude": -71.12166479999999
+      },
+      "rating": 4.8,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 242,
+      "displayName": {
+        "text": "Lovestruck Books & Cafe",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "chocolate_shop",
+        "candy_store",
+        "pastry_shop",
+        "dessert_shop",
+        "confectionery",
+        "bakery",
+        "cafe",
+        "food_store",
+        "dessert_restaurant",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3744507,
+        "longitude": -71.1220462
+      },
+      "rating": 4.7,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_EXPENSIVE",
+      "userRatingCount": 1538,
+      "displayName": {
+        "text": "L.A. Burdick Handmade Chocolates",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "bakery",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3837571,
+        "longitude": -71.10922099999999
+      },
+      "rating": 4.9,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 1848,
+      "displayName": {
+        "text": "Yafa Bakery & Caf\u00e9",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "coffee_shop",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3957066,
+        "longitude": -71.1219679
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 1385,
+      "displayName": {
+        "text": "Diesel Cafe",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "breakfast_restaurant",
+        "bakery",
+        "coffee_shop",
+        "food_store",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.391794999999995,
+        "longitude": -71.1119001
+      },
+      "rating": 4.7,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 1084,
+      "displayName": {
+        "text": "3 Little Figs",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "grocery_store",
+        "supermarket",
+        "florist",
+        "food_delivery",
+        "bakery",
+        "deli",
+        "butcher_shop",
+        "food_store",
+        "market",
+        "manufacturer",
+        "food",
+        "store",
+        "point_of_interest",
+        "service",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.383607,
+        "longitude": -71.1117282
+      },
+      "rating": 3.9,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 588,
+      "displayName": {
+        "text": "Star Market",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "bakery",
+        "cake_shop",
+        "pastry_shop",
+        "dessert_shop",
+        "confectionery",
+        "meal_takeaway",
+        "coffee_shop",
+        "cafe",
+        "food_store",
+        "restaurant",
+        "wholesaler",
+        "manufacturer",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3859153,
+        "longitude": -71.13802679999999
+      },
+      "rating": 4.6,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 430,
+      "displayName": {
+        "text": "La Saison Bakery",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "halal_restaurant",
+        "coffee_shop",
+        "food_store",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.373955099999996,
+        "longitude": -71.1250724
+      },
+      "rating": 4.6,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 397,
+      "displayName": {
+        "text": "Luxor Cafe",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "fast_food_restaurant",
+        "breakfast_restaurant",
+        "hamburger_restaurant",
+        "coffee_shop",
+        "cafe",
+        "food_store",
+        "sandwich_shop",
+        "american_restaurant",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.390369,
+        "longitude": -71.140773
+      },
+      "rating": 3.3,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_INEXPENSIVE",
+      "userRatingCount": 1051,
+      "displayName": {
+        "text": "McDonald's",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "bakery",
+        "ice_cream_shop",
+        "dessert_shop",
+        "confectionery",
+        "coffee_shop",
+        "cafe",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3838224,
+        "longitude": -71.1108423
+      },
+      "rating": 4.5,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 796,
+      "displayName": {
+        "text": "Forge Baking Co & Ice Cream Bar",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "coffee_shop",
+        "cafe",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.381115799999996,
+        "longitude": -71.1384449
+      },
+      "rating": 4.5,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 119,
+      "displayName": {
+        "text": "Kismet",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "dessert_shop",
+        "confectionery",
+        "coffee_shop",
+        "food_store",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3882471,
+        "longitude": -71.1196435
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 182,
+      "displayName": {
+        "text": "Phinista Cafe",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "breakfast_restaurant",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3934964,
+        "longitude": -71.1204284
+      },
+      "rating": 4.5,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 371,
+      "displayName": {
+        "text": "Revival Cafe+Kitchen",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "salad_shop",
+        "soup_restaurant",
+        "breakfast_restaurant",
+        "catering_service",
+        "food_delivery",
+        "bakery",
+        "meal_takeaway",
+        "coffee_shop",
+        "food_store",
+        "sandwich_shop",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "service",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.389379999999996,
+        "longitude": -71.119467
+      },
+      "rating": 3.6,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 595,
+      "displayName": {
+        "text": "Panera Bread",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "wine_bar",
+        "bar",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.396675699999996,
+        "longitude": -71.12976859999999
+      },
+      "rating": 4.9,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 121,
+      "displayName": {
+        "text": "Tilde",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "bakery",
+        "liquor_store",
+        "grocery_store",
+        "coffee_shop",
+        "cafe",
+        "food_store",
+        "sandwich_shop",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.382494,
+        "longitude": -71.131376
+      },
+      "rating": 4.1,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_EXPENSIVE",
+      "userRatingCount": 563,
+      "displayName": {
+        "text": "Hi-Rise Bread Company",
+        "languageCode": "en"
+      }
+    }
+  ]
+}

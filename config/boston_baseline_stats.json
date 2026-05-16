@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "region_label": "Boston, MA — dense urban / university-adjacent context",
+  "coordinate_anchor": {
+    "label": "Boston centroid (matches default app anchor)",
+    "lat": 42.3601,
+    "lng": -71.0589
+  },
+  "notes": "Illustrative ranges for dashboards and normalization — replace or tighten when wired to official benchmarks.",
+  "demographics_reference": {
+    "median_household_income_typical_usd_band": [48000, 72000],
+    "median_age_typical_years_band": [28, 36],
+    "population_density_per_sqmi_dense_band": [20000, 32000],
+    "student_share_near_campus_decimal_band": [0.28, 0.42],
+    "max_median_household_income_usd": 150000,
+    "max_population_density_per_sqmi": 60000,
+    "max_student_share_decimal": 0.85
+  },
+  "mobility_and_retail_reference": {
+    "transit_stop_walk_distance_miles_typical_band": [0.08, 0.25],
+    "walkability_score_dense_core_typical_min": 85,
+    "retail_density_qualitative_expectation": "HIGH"
+  },
+  "coffee_shop_market_reference": {
+    "competitors_within_one_mile_typical_band": [5, 12],
+    "google_rating_typical_band": [4.0, 4.7],
+    "review_count_mature_location_typical_band": [200, 1100],
+    "max_competitors_within_one_mile": 45,
+    "max_review_count": 1500,
+    "max_walkability_score": 100
+  }
+}

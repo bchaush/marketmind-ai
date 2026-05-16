@@ -1,0 +1,164 @@
+{
+  "source": "google_places",
+  "confidence_level": "HIGH",
+  "confidence_score": 90,
+  "radius_used_miles": 1.0,
+  "competitors": [
+    {
+      "id": "comp_001",
+      "name": "Trident Booksellers & Cafe",
+      "rating": 4.5,
+      "review_count": 4307,
+      "distance_miles": 0.97,
+      "category_tags": [],
+      "mock_strength_index": 16.35
+    },
+    {
+      "id": "comp_002",
+      "name": "Matcha Cafe Maiko",
+      "rating": 4.6,
+      "review_count": 677,
+      "distance_miles": 0.69,
+      "category_tags": [],
+      "mock_strength_index": 13.02
+    },
+    {
+      "id": "comp_003",
+      "name": "Verveine Cafe & Bakery",
+      "rating": 4.5,
+      "review_count": 370,
+      "distance_miles": 0.88,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 11.56
+    },
+    {
+      "id": "comp_004",
+      "name": "Flour Bakery + Cafe",
+      "rating": 4.5,
+      "review_count": 1658,
+      "distance_miles": 0.85,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 14.49
+    },
+    {
+      "id": "comp_005",
+      "name": "Tatte",
+      "rating": 4.4,
+      "review_count": 992,
+      "distance_miles": 0.54,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 13.18
+    },
+    {
+      "id": "comp_006",
+      "name": "Phinista Cafe",
+      "rating": 4.4,
+      "review_count": 873,
+      "distance_miles": 0.6,
+      "category_tags": [],
+      "mock_strength_index": 12.94
+    },
+    {
+      "id": "comp_007",
+      "name": "Andala Coffee House",
+      "rating": 4.2,
+      "review_count": 1863,
+      "distance_miles": 0.99,
+      "category_tags": [],
+      "mock_strength_index": 13.73
+    },
+    {
+      "id": "comp_008",
+      "name": "Cafe Landwer",
+      "rating": 4.4,
+      "review_count": 1560,
+      "distance_miles": 0.26,
+      "category_tags": [],
+      "mock_strength_index": 14.05
+    },
+    {
+      "id": "comp_009",
+      "name": "Tatte Bakery & Cafe | Beacon St",
+      "rating": 4.4,
+      "review_count": 1120,
+      "distance_miles": 0.33,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 13.42
+    },
+    {
+      "id": "comp_010",
+      "name": "Mighty Squirrel Taproom & Kitchen",
+      "rating": 4.3,
+      "review_count": 175,
+      "distance_miles": 0.32,
+      "category_tags": [],
+      "mock_strength_index": 9.65
+    },
+    {
+      "id": "comp_011",
+      "name": "Flour Bakery + Cafe",
+      "rating": 4.6,
+      "review_count": 678,
+      "distance_miles": 0.51,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 13.02
+    },
+    {
+      "id": "comp_012",
+      "name": "Sonsie",
+      "rating": 4.2,
+      "review_count": 2052,
+      "distance_miles": 0.98,
+      "category_tags": [],
+      "mock_strength_index": 13.91
+    },
+    {
+      "id": "comp_013",
+      "name": "Tatte Bakery & Cafe | Berklee",
+      "rating": 4.4,
+      "review_count": 510,
+      "distance_miles": 0.99,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 11.91
+    },
+    {
+      "id": "comp_014",
+      "name": "Maruichi Select",
+      "rating": 4.4,
+      "review_count": 324,
+      "distance_miles": 1.0,
+      "category_tags": [],
+      "mock_strength_index": 11.05
+    },
+    {
+      "id": "comp_015",
+      "name": "Japonaise Bakery & Cafe",
+      "rating": 4.7,
+      "review_count": 726,
+      "distance_miles": 0.32,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 13.45
+    }
+  ],
+  "summary": {
+    "total_count": 15,
+    "avg_rating": 4.43,
+    "avg_review_count": 1192,
+    "top_3_review_share_pct": 46.0,
+    "cluster_breakdown": {}
+  }
+}

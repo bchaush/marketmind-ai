@@ -1,0 +1,220 @@
+{
+  "spec_version": "phase3_decision_intelligence_v0.1",
+  "phase2_spec_ref": "phase2_scoring_spec_v0.1",
+
+  "status_assignment_rules": [
+    {
+      "rule_id": "STATUS_REJECTED_DESERT",
+      "priority": 1000,
+      "flag": "REJECTED_DESERT",
+      "status": "NO-GO",
+      "output_tags": ["POPULATION_NULL", "SCORING_ABORTED"]
+    },
+    {
+      "rule_id": "STATUS_MONOPOLY_FORCE_CAUTION",
+      "priority": 900,
+      "flag": "CRITICAL_RISK_MONOPOLY_REVIEW_CONCENTRATION",
+      "status": "CAUTION",
+      "output_tags": ["MONOPOLY_CONCENTRATION", "ATTENTION_MARKET_CLOSED"]
+    },
+    {
+      "rule_id": "STATUS_GOLDMINE_GO",
+      "priority": 850,
+      "flag": "GOLDMINE_ZERO_COMPETITORS",
+      "status": "GO",
+      "output_tags": ["FIRST_MOVER_WINDOW", "ZERO_COMPETITION"]
+    },
+    {
+      "rule_id": "STATUS_DATA_DESERT_CAUTION",
+      "priority": 800,
+      "flag": "DATA_DESERT",
+      "status": "CAUTION",
+      "output_tags": ["DATA_INCOMPLETE", "CONFIDENCE_CAPPED"]
+    },
+    {
+      "rule_id": "STATUS_HIGH_RISK_NO_GO",
+      "priority": 300,
+      "condition": { "risk_score": { "gte": 85 } },
+      "status": "NO-GO",
+      "output_tags": ["EXTREME_RISK", "CAPITAL_NOT_RECOMMENDED"]
+    },
+    {
+      "rule_id": "STATUS_STRONG_GO",
+      "priority": 200,
+      "condition": {
+        "demand_score": { "gte": 75 },
+        "competition_pressure_score": { "lt": 50 },
+        "risk_score": { "lt": 40 }
+      },
+      "status": "GO",
+      "output_tags": ["STRONG_DEMAND", "LOW_PRESSURE", "LOW_RISK"]
+    },
+    {
+      "rule_id": "STATUS_DEFAULT_CAUTION",
+      "priority": 1,
+      "condition": "default",
+      "status": "CAUTION",
+      "output_tags": ["DEFAULT_CAUTION"]
+    }
+  ],
+
+  "trade_off_rules": [
+    {
+      "rule_id": "TRADEOFF_HIGH_DEMAND_HIGH_COMPETITION",
+      "priority": 80,
+      "condition": {
+        "demand_score": { "gte": 70 },
+        "competition_pressure_score": { "gte": 70 }
+      },
+      "output_tags": ["HIGH_DEMAND", "EXTREME_COMPETITION", "NICHE_POSITIONING_REQUIRED"]
+    },
+    {
+      "rule_id": "TRADEOFF_LOW_DEMAND_LOW_COMPETITION",
+      "priority": 60,
+      "condition": {
+        "demand_score": { "lt": 45 },
+        "competition_pressure_score": { "lt": 45 }
+      },
+      "output_tags": ["WEAK_DEMAND", "LOW_COMPETITION", "MARKET_UNDERSIZED"]
+    },
+    {
+      "rule_id": "TRADEOFF_HIGH_RISK_LOW_CONFIDENCE",
+      "priority": 90,
+      "condition": {
+        "risk_score": { "gte": 75 },
+        "confidence_score": { "lt": 55 }
+      },
+      "output_tags": ["HIGH_RISK", "LOW_CONFIDENCE", "RECOMMENDATION_INTEGRITY_COMPROMISED"]
+    },
+    {
+      "rule_id": "TRADEOFF_STRONG_GAP_HIGH_COMPETITION",
+      "priority": 70,
+      "condition": {
+        "market_gap_score": { "gte": 65 },
+        "competition_pressure_score": { "gte": 70 }
+      },
+      "output_tags": ["MARKET_GAP_EXISTS", "COMPETITION_ENTRENCHED", "SPEED_TO_MARKET_CRITICAL"]
+    }
+  ],
+
+  "risk_rules": [
+    {
+      "rule_id": "RISK_DATA_DESERT",
+      "priority": 100,
+      "flag": "DATA_DESERT",
+      "output_tags": ["DATA_INCOMPLETE", "ELEVATED_UNCERTAINTY"]
+    },
+    {
+      "rule_id": "RISK_MONOPOLY_CONCENTRATION",
+      "priority": 100,
+      "flag": "CRITICAL_RISK_MONOPOLY_REVIEW_CONCENTRATION",
+      "output_tags": ["MONOPOLY_CONCENTRATION", "REVIEW_MARKET_CLOSED"]
+    },
+    {
+      "rule_id": "RISK_HIGH_RENT_BURDEN",
+      "priority": 80,
+      "condition": { "risk_score": { "gte": 75 } },
+      "output_tags": ["HIGH_RENT_BURDEN", "CUSTOMER_FINANCIAL_FRAGILITY"]
+    },
+    {
+      "rule_id": "RISK_LOW_CONFIDENCE_FLOOR",
+      "priority": 60,
+      "condition": { "confidence_score": { "lt": 50 } },
+      "output_tags": ["CONFIDENCE_BELOW_THRESHOLD", "DATA_ADVISORY_REQUIRED"]
+    }
+  ],
+
+  "lever_rules": [
+    {
+      "rule_id": "LEVER_NICHE_STUDY_CAFE",
+      "priority": 80,
+      "condition": {
+        "competition_pressure_score": { "gte": 70 },
+        "demand_score": { "gte": 60 }
+      },
+      "output_tags": ["NICHE_PIVOT_REQUIRED", "STUDY_CAFE_VIABLE"],
+      "impact": "high"
+    },
+    {
+      "rule_id": "LEVER_EXTENDED_HOURS",
+      "priority": 50,
+      "condition": { "demand_score": { "gte": 60 } },
+      "output_tags": ["EXTENDED_HOURS_OPPORTUNITY", "YOUTH_COHORT_PRESENT"],
+      "impact": "medium"
+    },
+    {
+      "rule_id": "LEVER_REDUCE_FOOTPRINT",
+      "priority": 70,
+      "condition": { "risk_score": { "gte": 75 } },
+      "output_tags": ["REDUCE_FIXED_COSTS", "SMALL_FOOTPRINT_RECOMMENDED"],
+      "impact": "high"
+    },
+    {
+      "rule_id": "LEVER_FIRST_MOVER",
+      "priority": 90,
+      "flag": "GOLDMINE_ZERO_COMPETITORS",
+      "output_tags": ["FIRST_MOVER_WINDOW", "ZERO_COMPETITION"],
+      "impact": "high"
+    }
+  ],
+
+  "what_would_change_rules": [
+    {
+      "rule_id": "WWC_COMPETITOR_EXIT",
+      "priority": 70,
+      "condition": { "competition_pressure_score": { "gte": 70 } },
+      "output_tags": ["TO_GO_COMPETITOR_EXIT", "TO_NO_GO_NEW_TIER1_ENTRY"]
+    },
+    {
+      "rule_id": "WWC_RENT_RELIEF",
+      "priority": 70,
+      "condition": { "risk_score": { "gte": 75 } },
+      "output_tags": ["TO_GO_RENT_BELOW_MARKET", "TO_NO_GO_RENT_INCREASE"]
+    },
+    {
+      "rule_id": "WWC_DATA_CONFIDENCE",
+      "priority": 80,
+      "condition": { "confidence_score": { "lt": 50 } },
+      "output_tags": ["TO_GO_BLOCK_GROUP_DATA", "TO_NO_GO_PLACEHOLDER_GEOGRAPHY"]
+    }
+  ],
+
+  "scenario_rules": [
+    {
+      "rule_id": "SCENARIO_STUDY_CAFE",
+      "scenario": "study_cafe",
+      "priority": 50,
+      "weights": {
+        "demand_score": 0.30,
+        "market_gap_score": 0.25,
+        "competition_pressure_score": -0.15,
+        "confidence_score": 0.15,
+        "risk_score": -0.15
+      }
+    },
+    {
+      "rule_id": "SCENARIO_GRAB_AND_GO",
+      "scenario": "grab_and_go",
+      "priority": 50,
+      "weights": {
+        "demand_score": 0.30,
+        "competition_pressure_score": -0.30,
+        "market_gap_score": 0.20,
+        "risk_score": -0.10,
+        "confidence_score": 0.10
+      }
+    },
+    {
+      "rule_id": "SCENARIO_THIRD_WAVE_BAR",
+      "scenario": "third_wave_bar",
+      "priority": 50,
+      "weights": {
+        "demand_score": 0.20,
+        "market_gap_score": 0.30,
+        "competition_pressure_score": -0.20,
+        "risk_score": -0.15,
+        "confidence_score": 0.15
+      }
+    }
+  ]
+}

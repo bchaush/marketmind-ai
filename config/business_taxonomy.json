@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "description": "Supported business types, Places hints, and rules mapping tags to competition clusters.",
+  "business_types": {
+    "coffee_shop": {
+      "label": "Coffee shop / café",
+      "places_types_hint": ["cafe", "coffee_shop", "bakery"],
+      "keyword_query": "coffee shop with free wifi and seating",
+      "price_levels": [1, 2],
+      "default_radius_miles": 1.0,
+      "scenario_models": ["study_cafe", "grab_and_go", "third_wave_bar"],
+      "cluster_tag_rules": [
+        {
+          "cluster": "premium",
+          "match_any_category_tags": ["premium", "specialty", "third-wave"]
+        },
+        {
+          "cluster": "study_friendly",
+          "match_any_category_tags": ["study-friendly", "quiet", "wifi"]
+        },
+        {
+          "cluster": "chain",
+          "match_any_category_tags": ["chain", "grab-and-go"]
+        },
+        {
+          "cluster": "budget",
+          "match_any_category_tags": ["budget", "value"]
+        }
+      ],
+      "required_status": "OPERATIONAL",
+      "excluded_types": [
+        "gas_station",
+        "department_store",
+        "grocery_store",
+        "supermarket",
+        "convenience_store",
+        "fast_food_restaurant",
+        "donut_shop"
+      ],
+      "negative_keywords": ["cafeteria", "hospital", "university", "dining hall"],
+      "chain_name_markers": [
+        "starbucks",
+        "dunkin",
+        "peet",
+        "caffè nero",
+        "caffe nero",
+        "tim hortons"
+      ],
+      "decision_profile": {
+        "volume_dependency": "high",
+        "margin_model": "medium_margin",
+        "rent_sensitivity": "high",
+        "competition_sensitivity": "high"
+      }
+    },
+    "premium_cafe": {
+      "label": "Premium / specialty café",
+      "places_types_hint": ["cafe"],
+      "default_radius_miles": 1.0,
+      "keyword_query": "specialty coffee roaster",
+      "price_levels": [3, 4],
+      "scenario_models": ["third_wave_bar"],
+      "cluster_tag_rules": [
+        {
+          "cluster": "premium",
+          "match_any_category_tags": ["premium", "specialty", "third-wave"]
+        }
+      ],
+      "required_status": "OPERATIONAL",
+      "excluded_types": [
+        "gas_station",
+        "department_store",
+        "grocery_store",
+        "supermarket",
+        "convenience_store",
+        "fast_food_restaurant",
+        "donut_shop"
+      ],
+      "negative_keywords": ["cafeteria", "hospital", "university", "dining hall"],
+      "chain_name_markers": [
+        "starbucks",
+        "dunkin",
+        "peet",
+        "caffè nero",
+        "caffe nero",
+        "tim hortons"
+      ]
+    }
+  },
+  "shared_enums": {
+    "pricing_strategy": ["low", "mid", "premium"],
+    "peak_hours_focus": ["morning", "afternoon_evening", "late_night"],
+    "target_behavior_examples": ["long_stay", "wifi_usage", "quick_pickup"]
+  }
+}

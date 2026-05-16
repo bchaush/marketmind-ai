@@ -1,0 +1,10 @@
+{
+  "_source": "ACS 2022 5-Year Estimates, Suffolk County MA (FIPS 25025)",
+  "_note": "Used only as final cascade fallback. Not live block-group data.",
+  "pop_total": 11800,
+  "median_household_income": 87300,
+  "median_age": 32.1,
+  "college_student_population_pct": 19.2,
+  "age_22_34_count": 2100,
+  "rent_to_income_ratio": 33.8
+}

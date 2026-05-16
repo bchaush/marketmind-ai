@@ -1,0 +1,526 @@
+{
+  "places": [
+    {
+      "types": [
+        "pastry_shop",
+        "cake_shop",
+        "bakery",
+        "dessert_shop",
+        "confectionery",
+        "manufacturer",
+        "wholesaler",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3641693,
+        "longitude": -71.0542126
+      },
+      "rating": 4.3,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_INEXPENSIVE",
+      "userRatingCount": 6148,
+      "displayName": {
+        "text": "Mike's Pastry",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "grocery_store",
+        "health_food_store",
+        "supermarket",
+        "bakery",
+        "food_delivery",
+        "deli",
+        "market",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "health",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.345448999999995,
+        "longitude": -71.0627816
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_EXPENSIVE",
+      "userRatingCount": 2234,
+      "displayName": {
+        "text": "Whole Foods Market",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "seafood_restaurant",
+        "bar_and_grill",
+        "bar",
+        "cafe",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3624738,
+        "longitude": -71.050544
+      },
+      "rating": 4.6,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 6250,
+      "displayName": {
+        "text": "Boston Sail Loft",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "bakery",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.36521,
+        "longitude": -71.0556268
+      },
+      "rating": 4.6,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_INEXPENSIVE",
+      "userRatingCount": 4455,
+      "displayName": {
+        "text": "Bova's Bakery",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "brunch_restaurant",
+        "breakfast_restaurant",
+        "bakery",
+        "israeli_restaurant",
+        "coffee_shop",
+        "restaurant",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.35175830000001,
+        "longitude": -71.0719028
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 2668,
+      "displayName": {
+        "text": "Tatte Bakery & Cafe | Back Bay",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "grocery_store",
+        "health_food_store",
+        "supermarket",
+        "bakery",
+        "food_delivery",
+        "deli",
+        "market",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "health",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3620381,
+        "longitude": -71.0655752
+      },
+      "rating": 4.3,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_EXPENSIVE",
+      "userRatingCount": 1446,
+      "displayName": {
+        "text": "Whole Foods Market",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "pastry_shop",
+        "cake_shop",
+        "bakery",
+        "dessert_shop",
+        "confectionery",
+        "manufacturer",
+        "wholesaler",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.363233,
+        "longitude": -71.0547494
+      },
+      "rating": 4.5,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 2564,
+      "displayName": {
+        "text": "Modern Pastry Shop",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "tourist_attraction",
+        "lounge_bar",
+        "art_museum",
+        "night_club",
+        "museum",
+        "gift_shop",
+        "bar",
+        "cafe",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3544714,
+        "longitude": -71.0612376
+      },
+      "rating": 4.6,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 4922,
+      "displayName": {
+        "text": "WNDR Museum",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "brunch_restaurant",
+        "breakfast_restaurant",
+        "bakery",
+        "israeli_restaurant",
+        "coffee_shop",
+        "restaurant",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3518575,
+        "longitude": -71.04286069999999
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 1410,
+      "displayName": {
+        "text": "Tatte Bakery & Cafe | Pier 4",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "brunch_restaurant",
+        "breakfast_restaurant",
+        "bakery",
+        "coffee_shop",
+        "restaurant",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3531507,
+        "longitude": -71.057164
+      },
+      "rating": 4.5,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 1362,
+      "displayName": {
+        "text": "Tatte Bakery & Cafe | Summer St",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "bakery",
+        "breakfast_restaurant",
+        "coffee_shop",
+        "cafe",
+        "restaurant",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3482811,
+        "longitude": -71.073722
+      },
+      "rating": 4.5,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 2161,
+      "displayName": {
+        "text": "Flour Bakery + Cafe",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "coffee_shop",
+        "breakfast_restaurant",
+        "bakery",
+        "cafe",
+        "restaurant",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.351896499999995,
+        "longitude": -71.0749373
+      },
+      "rating": 4.5,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 2069,
+      "displayName": {
+        "text": "Thinking Cup",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "coffee_shop",
+        "cafe",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3568114,
+        "longitude": -71.058072
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 1676,
+      "displayName": {
+        "text": "Ogawa Coffee",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "bagel_shop",
+        "catering_service",
+        "bakery",
+        "food_delivery",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "service",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.350160699999996,
+        "longitude": -71.0435237
+      },
+      "rating": 4.7,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 503,
+      "displayName": {
+        "text": "PopUp Bagels",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "chocolate_shop",
+        "candy_store",
+        "pastry_shop",
+        "dessert_restaurant",
+        "bakery",
+        "dessert_shop",
+        "confectionery",
+        "cafe",
+        "restaurant",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3511072,
+        "longitude": -71.0756076
+      },
+      "rating": 4.6,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_EXPENSIVE",
+      "userRatingCount": 1799,
+      "displayName": {
+        "text": "L.A. Burdick Handmade Chocolates",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "bakery",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3489386,
+        "longitude": -71.0749859
+      },
+      "rating": 4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 272,
+      "displayName": {
+        "text": "Tatte Bakery & Cafe | Copley Square",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "pastry_shop",
+        "bakery",
+        "coffee_shop",
+        "dessert_shop",
+        "confectionery",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3500107,
+        "longitude": -71.0783713
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_INEXPENSIVE",
+      "userRatingCount": 527,
+      "displayName": {
+        "text": "Blank Street",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "bakery",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3502333,
+        "longitude": -71.0454166
+      },
+      "rating": 4.2,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 312,
+      "displayName": {
+        "text": "Lakon Paris Patisserie Seaport",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "coffee_shop",
+        "cafe",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.364185899999995,
+        "longitude": -71.054484
+      },
+      "rating": 4.3,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_INEXPENSIVE",
+      "userRatingCount": 2572,
+      "displayName": {
+        "text": "Caffe Vittoria",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "brunch_restaurant",
+        "breakfast_restaurant",
+        "bakery",
+        "israeli_restaurant",
+        "coffee_shop",
+        "restaurant",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3522459,
+        "longitude": -71.0648166
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 1184,
+      "displayName": {
+        "text": "Tatte Bakery & Cafe | Emerson",
+        "languageCode": "en"
+      }
+    }
+  ]
+}

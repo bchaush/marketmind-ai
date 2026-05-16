@@ -1,0 +1,522 @@
+{
+  "places": [
+    {
+      "types": [
+        "art_museum",
+        "gift_shop",
+        "tourist_attraction",
+        "cafe",
+        "museum",
+        "food",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3740898,
+        "longitude": -71.11435820000001
+      },
+      "rating": 4.8,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 3551,
+      "displayName": {
+        "text": "Harvard Art Museums",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "grocery_store",
+        "health_food_store",
+        "supermarket",
+        "bakery",
+        "liquor_store",
+        "market",
+        "deli",
+        "food_store",
+        "health",
+        "food",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.361007099999995,
+        "longitude": -71.1139362
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_EXPENSIVE",
+      "userRatingCount": 1263,
+      "displayName": {
+        "text": "Whole Foods Market",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "brunch_restaurant",
+        "coffee_shop",
+        "israeli_restaurant",
+        "breakfast_restaurant",
+        "bakery",
+        "food_store",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3726069,
+        "longitude": -71.1169656
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 2851,
+      "displayName": {
+        "text": "Tatte Bakery & Cafe | Harvard Square",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "grocery_store",
+        "health_food_store",
+        "supermarket",
+        "bakery",
+        "food_delivery",
+        "market",
+        "deli",
+        "food_store",
+        "health",
+        "food",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.368069299999995,
+        "longitude": -71.102383
+      },
+      "rating": 4.1,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_EXPENSIVE",
+      "userRatingCount": 970,
+      "displayName": {
+        "text": "Whole Foods Market",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "bagel_shop",
+        "breakfast_restaurant",
+        "bakery",
+        "food_store",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.386028599999996,
+        "longitude": -71.1195879
+      },
+      "rating": 4.6,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 1713,
+      "displayName": {
+        "text": "Bagelsaurus",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "brewery",
+        "coffee_shop",
+        "cafe",
+        "liquor_store",
+        "bar",
+        "food_store",
+        "service",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "manufacturer",
+        "store",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.36799,
+        "longitude": -71.09790149999999
+      },
+      "rating": 4.6,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_INEXPENSIVE",
+      "userRatingCount": 982,
+      "displayName": {
+        "text": "Lamplighter Brewing Co. - Broadway",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "coffee_shop",
+        "acai_shop",
+        "brazilian_restaurant",
+        "cafe",
+        "breakfast_restaurant",
+        "sandwich_shop",
+        "bakery",
+        "meal_takeaway",
+        "food_store",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.373584,
+        "longitude": -71.09866339999999
+      },
+      "rating": 4.5,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 769,
+      "displayName": {
+        "text": "b\u014dm dough cafe - inman square",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "bakery",
+        "food_store",
+        "food",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3622861,
+        "longitude": -71.09877879999999
+      },
+      "rating": 4.5,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 374,
+      "displayName": {
+        "text": "Verveine Cafe & Bakery",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "middle_eastern_restaurant",
+        "coffee_shop",
+        "cafe",
+        "hookah_bar",
+        "breakfast_restaurant",
+        "food_store",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3647936,
+        "longitude": -71.105797
+      },
+      "rating": 4.2,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_INEXPENSIVE",
+      "userRatingCount": 1867,
+      "displayName": {
+        "text": "Andala Coffee House",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "bakery",
+        "coffee_shop",
+        "cafe",
+        "breakfast_restaurant",
+        "food_store",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.373041799999996,
+        "longitude": -71.1224076
+      },
+      "rating": 4.5,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 1044,
+      "displayName": {
+        "text": "Flour Bakery + Cafe",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "vietnamese_restaurant",
+        "coffee_shop",
+        "cafe",
+        "wine_bar",
+        "bar",
+        "food_store",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3676927,
+        "longitude": -71.10206149999999
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 669,
+      "displayName": {
+        "text": "Cicada",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "book_store",
+        "cafe",
+        "wine_bar",
+        "bar",
+        "food",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3738631,
+        "longitude": -71.12166479999999
+      },
+      "rating": 4.8,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 247,
+      "displayName": {
+        "text": "Lovestruck Books & Cafe",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "coffee_shop",
+        "coffee_roastery",
+        "cafe",
+        "breakfast_restaurant",
+        "food_store",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.377941799999995,
+        "longitude": -71.10726799999999
+      },
+      "rating": 4.6,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 758,
+      "displayName": {
+        "text": "Broadsheet Coffee Roasters",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "bakery",
+        "coffee_shop",
+        "israeli_restaurant",
+        "cafe",
+        "food_store",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3749841,
+        "longitude": -71.10944230000001
+      },
+      "rating": 4.8,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 479,
+      "displayName": {
+        "text": "Asaro Bakery and Cafe",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "wine_bar",
+        "bar",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.371249,
+        "longitude": -71.1146863
+      },
+      "rating": 4.3,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 324,
+      "displayName": {
+        "text": "Faro Caf\u00e9",
+        "languageCode": "es"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "bagel_shop",
+        "coffee_shop",
+        "bakery",
+        "food_store",
+        "food",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3718,
+        "longitude": -71.1205636
+      },
+      "rating": 4.6,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 774,
+      "displayName": {
+        "text": "Black Sheep Bagel Cafe",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "chocolate_shop",
+        "pastry_shop",
+        "cafe",
+        "dessert_restaurant",
+        "candy_store",
+        "bakery",
+        "dessert_shop",
+        "confectionery",
+        "food_store",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3744507,
+        "longitude": -71.1220462
+      },
+      "rating": 4.7,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_EXPENSIVE",
+      "userRatingCount": 1541,
+      "displayName": {
+        "text": "L.A. Burdick Handmade Chocolates",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "bakery",
+        "food_store",
+        "food",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3837571,
+        "longitude": -71.10922099999999
+      },
+      "rating": 4.9,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 1858,
+      "displayName": {
+        "text": "Yafa Bakery & Caf\u00e9",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "coffee_shop",
+        "halal_restaurant",
+        "bakery",
+        "food_store",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.373955099999996,
+        "longitude": -71.1250724
+      },
+      "rating": 4.6,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 399,
+      "displayName": {
+        "text": "Luxor Cafe",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "bakery",
+        "pastry_shop",
+        "dessert_shop",
+        "confectionery",
+        "food_store",
+        "food",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.373008899999995,
+        "longitude": -71.11908249999999
+      },
+      "rating": 4.3,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 1124,
+      "displayName": {
+        "text": "Mike's Pastry",
+        "languageCode": "en"
+      }
+    }
+  ]
+}

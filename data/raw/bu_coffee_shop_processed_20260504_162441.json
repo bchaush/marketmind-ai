@@ -1,0 +1,171 @@
+{
+  "source": "google_places",
+  "confidence_level": "HIGH",
+  "confidence_score": 90,
+  "radius_used_miles": 1.0,
+  "competitors": [
+    {
+      "id": "comp_001",
+      "name": "Bova's Bakery",
+      "rating": 4.6,
+      "review_count": 4455,
+      "distance_miles": 0.93,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 16.78
+    },
+    {
+      "id": "comp_002",
+      "name": "Tatte Bakery & Cafe | Charlestown",
+      "rating": 4.6,
+      "review_count": 610,
+      "distance_miles": 0.35,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 12.81
+    },
+    {
+      "id": "comp_003",
+      "name": "Cafe Beatrice",
+      "rating": 4.4,
+      "review_count": 458,
+      "distance_miles": 0.89,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 11.71
+    },
+    {
+      "id": "comp_004",
+      "name": "Tatte Bakery & Cafe | Cambridge Crossing",
+      "rating": 4.4,
+      "review_count": 328,
+      "distance_miles": 0.86,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 11.07
+    },
+    {
+      "id": "comp_005",
+      "name": "Mike\u2019s Pastry",
+      "rating": 3.9,
+      "review_count": 187,
+      "distance_miles": 0.88,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 8.86
+    },
+    {
+      "id": "comp_006",
+      "name": "Tradesman Coffee Shop & Pizza Bar",
+      "rating": 4.6,
+      "review_count": 528,
+      "distance_miles": 0.62,
+      "category_tags": [],
+      "mock_strength_index": 12.52
+    },
+    {
+      "id": "comp_007",
+      "name": "Pizzeria Rustico",
+      "rating": 4.8,
+      "review_count": 354,
+      "distance_miles": 0.95,
+      "category_tags": [
+        "bakery-cafe",
+        "grab-and-go"
+      ],
+      "mock_strength_index": 12.24
+    },
+    {
+      "id": "comp_008",
+      "name": "Blank Street",
+      "rating": 4.6,
+      "review_count": 149,
+      "distance_miles": 0.85,
+      "category_tags": [],
+      "mock_strength_index": 10.0
+    },
+    {
+      "id": "comp_009",
+      "name": "Kicco Italian Coffee",
+      "rating": 4.5,
+      "review_count": 172,
+      "distance_miles": 0.85,
+      "category_tags": [],
+      "mock_strength_index": 10.06
+    },
+    {
+      "id": "comp_010",
+      "name": "La Saison Bakery",
+      "rating": 4.6,
+      "review_count": 77,
+      "distance_miles": 0.29,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 8.68
+    },
+    {
+      "id": "comp_011",
+      "name": "Starbucks",
+      "rating": 4.1,
+      "review_count": 200,
+      "distance_miles": 0.27,
+      "category_tags": [
+        "chain"
+      ],
+      "mock_strength_index": 9.43
+    },
+    {
+      "id": "comp_012",
+      "name": "Boston Barber & Tattoo Co.",
+      "rating": 4.5,
+      "review_count": 495,
+      "distance_miles": 0.99,
+      "category_tags": [],
+      "mock_strength_index": 12.13
+    },
+    {
+      "id": "comp_013",
+      "name": "Chip City",
+      "rating": 4.7,
+      "review_count": 144,
+      "distance_miles": 0.92,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 10.14
+    },
+    {
+      "id": "comp_014",
+      "name": "Cafe Amalfi",
+      "rating": 4.4,
+      "review_count": 358,
+      "distance_miles": 0.93,
+      "category_tags": [],
+      "mock_strength_index": 11.24
+    },
+    {
+      "id": "comp_015",
+      "name": "Koko Coffee | Causeway",
+      "rating": 4.4,
+      "review_count": 79,
+      "distance_miles": 0.81,
+      "category_tags": [],
+      "mock_strength_index": 8.35
+    }
+  ],
+  "summary": {
+    "total_count": 15,
+    "avg_rating": 4.47,
+    "avg_review_count": 573,
+    "top_3_review_share_pct": 65.1,
+    "cluster_breakdown": {
+      "chain": 2
+    }
+  }
+}

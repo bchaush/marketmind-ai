@@ -1,0 +1,59 @@
+{
+  "source": "google_places",
+  "confidence_level": "HIGH",
+  "confidence_score": 90,
+  "radius_used_miles": 0.3,
+  "competitors": [
+    {
+      "id": "comp_001",
+      "name": "La Saison Bakery",
+      "rating": 4.6,
+      "review_count": 77,
+      "distance_miles": 0.29,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 8.68
+    },
+    {
+      "id": "comp_002",
+      "name": "Starbucks",
+      "rating": 4.1,
+      "review_count": 200,
+      "distance_miles": 0.27,
+      "category_tags": [
+        "chain"
+      ],
+      "mock_strength_index": 9.43
+    },
+    {
+      "id": "comp_003",
+      "name": "Anna's Cafe",
+      "rating": 4.3,
+      "review_count": 135,
+      "distance_miles": 0.2,
+      "category_tags": [],
+      "mock_strength_index": 9.16
+    },
+    {
+      "id": "comp_004",
+      "name": "Monumental Cakes",
+      "rating": 4.7,
+      "review_count": 44,
+      "distance_miles": 0.19,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 7.72
+    }
+  ],
+  "summary": {
+    "total_count": 4,
+    "avg_rating": 4.42,
+    "avg_review_count": 114,
+    "top_3_review_share_pct": 90.4,
+    "cluster_breakdown": {
+      "chain": 1
+    }
+  }
+}

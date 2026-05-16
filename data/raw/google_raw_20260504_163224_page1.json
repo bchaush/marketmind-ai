@@ -1,0 +1,106 @@
+{
+  "places": [
+    {
+      "types": [
+        "bakery",
+        "cake_shop",
+        "sandwich_shop",
+        "confectionery",
+        "breakfast_restaurant",
+        "coffee_shop",
+        "cafe",
+        "wholesaler",
+        "food_store",
+        "manufacturer",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.37654130000001,
+        "longitude": -71.06551689999999
+      },
+      "rating": 4.6,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 77,
+      "displayName": {
+        "text": "La Saison Bakery",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "coffee_shop",
+        "internet_cafe",
+        "breakfast_restaurant",
+        "cafe",
+        "food_store",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "service",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.37534,
+        "longitude": -71.06384
+      },
+      "rating": 4.1,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 200,
+      "displayName": {
+        "text": "Starbucks",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.380942999999995,
+        "longitude": -71.0617087
+      },
+      "rating": 4.3,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_INEXPENSIVE",
+      "userRatingCount": 135,
+      "displayName": {
+        "text": "Anna's Cafe",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cake_shop",
+        "bakery",
+        "wholesaler",
+        "food_store",
+        "manufacturer",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.38017,
+        "longitude": -71.0628721
+      },
+      "rating": 4.7,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 44,
+      "displayName": {
+        "text": "Monumental Cakes",
+        "languageCode": "en"
+      }
+    }
+  ]
+}

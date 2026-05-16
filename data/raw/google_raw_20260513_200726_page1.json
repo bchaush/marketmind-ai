@@ -1,0 +1,35 @@
+{
+  "places": [
+    {
+      "displayName": {
+        "text": "Pavement Coffeehouse"
+      },
+      "rating": 4.6,
+      "userRatingCount": 840,
+      "priceLevel": null,
+      "location": {
+        "latitude": 42.351,
+        "longitude": -71.106
+      },
+      "types": [
+        "cafe"
+      ],
+      "businessStatus": "OPERATIONAL"
+    },
+    {
+      "displayName": {
+        "text": "Some University Cafe"
+      },
+      "rating": 4.8,
+      "userRatingCount": 10,
+      "location": {
+        "latitude": 42.351,
+        "longitude": -71.106
+      },
+      "types": [
+        "cafe"
+      ],
+      "businessStatus": "OPERATIONAL"
+    }
+  ]
+}

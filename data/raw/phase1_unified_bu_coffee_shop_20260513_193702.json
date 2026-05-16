@@ -1,0 +1,40 @@
+{
+  "query": {
+    "lat": 42.3505,
+    "lng": -71.1054,
+    "location": "Boston University, Boston MA",
+    "business_type": "coffee_shop",
+    "radius_miles": 1.0
+  },
+  "competitor_data": {
+    "source": "google_places",
+    "summary": {
+      "total_count": 15,
+      "avg_rating": 4.43,
+      "top_3_review_share_pct": 45.9
+    }
+  },
+  "demographic_data": {
+    "source": "census_acs5",
+    "pop_total": 1542,
+    "age_22_34_count": 158,
+    "median_household_income": null,
+    "college_student_population_pct": null,
+    "rent_to_income_ratio": null,
+    "geography_level": "block_group",
+    "confidence_score": 100,
+    "fallback_used": []
+  },
+  "location_signals": {},
+  "data_quality": {},
+  "phase_1_validation": {
+    "google_places_present": true,
+    "census_present": true,
+    "nulls_preserved": true,
+    "geography_level_present": true,
+    "geography_level_valid": true,
+    "expected_bu_geography_level": "block_group",
+    "raw_audit_saved": true,
+    "ready_for_phase_2": true
+  }
+}

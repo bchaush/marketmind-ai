@@ -1,0 +1,542 @@
+{
+  "places": [
+    {
+      "types": [
+        "grocery_store",
+        "health_food_store",
+        "supermarket",
+        "liquor_store",
+        "bakery",
+        "deli",
+        "market",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "health",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.361007099999995,
+        "longitude": -71.1139362
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_EXPENSIVE",
+      "userRatingCount": 1263,
+      "displayName": {
+        "text": "Whole Foods Market",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "book_store",
+        "restaurant",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.348244,
+        "longitude": -71.086623
+      },
+      "rating": 4.5,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 4313,
+      "displayName": {
+        "text": "Trident Booksellers & Cafe",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "grocery_store",
+        "butcher_shop",
+        "supermarket",
+        "bakery",
+        "florist",
+        "food_delivery",
+        "deli",
+        "market",
+        "manufacturer",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "service",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.352627,
+        "longitude": -71.12336669999999
+      },
+      "rating": 4.2,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 1705,
+      "displayName": {
+        "text": "Star Market",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "grocery_store",
+        "butcher_shop",
+        "supermarket",
+        "bakery",
+        "florist",
+        "food_delivery",
+        "deli",
+        "market",
+        "manufacturer",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "service",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3435214,
+        "longitude": -71.1004083
+      },
+      "rating": 4.1,
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 1884,
+      "displayName": {
+        "text": "Star Market",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3426687,
+        "longitude": -71.0971197
+      },
+      "rating": 4.6,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_INEXPENSIVE",
+      "userRatingCount": 682,
+      "displayName": {
+        "text": "Matcha Cafe Maiko",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "bakery",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3622861,
+        "longitude": -71.09877879999999
+      },
+      "rating": 4.5,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 374,
+      "displayName": {
+        "text": "Verveine Cafe & Bakery",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "bakery",
+        "breakfast_restaurant",
+        "coffee_shop",
+        "cafe",
+        "restaurant",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3610025,
+        "longitude": -71.0966286
+      },
+      "rating": 4.5,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 1663,
+      "displayName": {
+        "text": "Flour Bakery + Cafe",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "brunch_restaurant",
+        "breakfast_restaurant",
+        "bakery",
+        "israeli_restaurant",
+        "coffee_shop",
+        "restaurant",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.343815299999996,
+        "longitude": -71.0995456
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 993,
+      "displayName": {
+        "text": "Tatte",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "coffee_shop",
+        "brunch_restaurant",
+        "breakfast_restaurant",
+        "cafe",
+        "restaurant",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.343035,
+        "longitude": -71.099229
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 876,
+      "displayName": {
+        "text": "Phinista Cafe",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "middle_eastern_restaurant",
+        "hookah_bar",
+        "breakfast_restaurant",
+        "coffee_shop",
+        "cafe",
+        "restaurant",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3647936,
+        "longitude": -71.105797
+      },
+      "rating": 4.2,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_INEXPENSIVE",
+      "userRatingCount": 1867,
+      "displayName": {
+        "text": "Andala Coffee House",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "israeli_restaurant",
+        "brunch_restaurant",
+        "mediterranean_restaurant",
+        "breakfast_restaurant",
+        "coffee_shop",
+        "cafe",
+        "event_venue",
+        "restaurant",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.346813,
+        "longitude": -71.105705
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 1567,
+      "displayName": {
+        "text": "Cafe Landwer",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "brunch_restaurant",
+        "breakfast_restaurant",
+        "bakery",
+        "israeli_restaurant",
+        "coffee_shop",
+        "restaurant",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.345781900000006,
+        "longitude": -71.10690869999999
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 1121,
+      "displayName": {
+        "text": "Tatte Bakery & Cafe | Beacon St",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "restaurant",
+        "brewpub",
+        "pub",
+        "tapas_restaurant",
+        "brewery",
+        "coffee_shop",
+        "bar",
+        "cafe",
+        "manufacturer",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "service",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3471204,
+        "longitude": -71.1011747
+      },
+      "rating": 4.3,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 175,
+      "displayName": {
+        "text": "Mighty Squirrel Taproom & Kitchen",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "fast_food_restaurant",
+        "hamburger_restaurant",
+        "breakfast_restaurant",
+        "sandwich_shop",
+        "american_restaurant",
+        "coffee_shop",
+        "cafe",
+        "restaurant",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3485407,
+        "longitude": -71.09674199999999
+      },
+      "rating": 3.5,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_INEXPENSIVE",
+      "userRatingCount": 1515,
+      "displayName": {
+        "text": "McDonald's",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "bakery",
+        "breakfast_restaurant",
+        "coffee_shop",
+        "cafe",
+        "restaurant",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3577848,
+        "longitude": -71.1042062
+      },
+      "rating": 4.6,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 679,
+      "displayName": {
+        "text": "Flour Bakery + Cafe",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "american_restaurant",
+        "brunch_restaurant",
+        "lounge_bar",
+        "night_club",
+        "bistro",
+        "bar",
+        "cafe",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3488411,
+        "longitude": -71.0862447
+      },
+      "rating": 4.2,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 2055,
+      "displayName": {
+        "text": "Sonsie",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "cafe",
+        "brunch_restaurant",
+        "breakfast_restaurant",
+        "bakery",
+        "israeli_restaurant",
+        "coffee_shop",
+        "restaurant",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3462797,
+        "longitude": -71.0869751
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 511,
+      "displayName": {
+        "text": "Tatte Bakery & Cafe | Berklee",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "japanese_restaurant",
+        "market",
+        "coffee_shop",
+        "cafe",
+        "tea_house",
+        "restaurant",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3432264,
+        "longitude": -71.12224549999999
+      },
+      "rating": 4.4,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_MODERATE",
+      "userRatingCount": 324,
+      "displayName": {
+        "text": "Maruichi Select",
+        "languageCode": "ja"
+      }
+    },
+    {
+      "types": [
+        "bakery",
+        "cafe",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3462014,
+        "longitude": -71.10780799999999
+      },
+      "rating": 4.7,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_INEXPENSIVE",
+      "userRatingCount": 728,
+      "displayName": {
+        "text": "Japonaise Bakery & Cafe",
+        "languageCode": "en"
+      }
+    },
+    {
+      "types": [
+        "fast_food_restaurant",
+        "hamburger_restaurant",
+        "breakfast_restaurant",
+        "sandwich_shop",
+        "american_restaurant",
+        "coffee_shop",
+        "cafe",
+        "restaurant",
+        "food_store",
+        "store",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "location": {
+        "latitude": 42.3640027,
+        "longitude": -71.1008746
+      },
+      "rating": 3.8,
+      "businessStatus": "OPERATIONAL",
+      "priceLevel": "PRICE_LEVEL_INEXPENSIVE",
+      "userRatingCount": 1418,
+      "displayName": {
+        "text": "McDonald's",
+        "languageCode": "en"
+      }
+    }
+  ]
+}

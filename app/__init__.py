@@ -1,0 +1,1 @@
+# MarketMind AI — app package

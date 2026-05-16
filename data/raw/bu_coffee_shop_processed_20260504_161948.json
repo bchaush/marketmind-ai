@@ -1,0 +1,159 @@
+{
+  "source": "google_places",
+  "confidence_level": "HIGH",
+  "confidence_score": 90,
+  "radius_used_miles": 1.0,
+  "competitors": [
+    {
+      "id": "comp_001",
+      "name": "Bagelsaurus",
+      "rating": 4.6,
+      "review_count": 1712,
+      "distance_miles": 0.39,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 14.87
+    },
+    {
+      "id": "comp_002",
+      "name": "Lovestruck Books & Cafe",
+      "rating": 4.8,
+      "review_count": 242,
+      "distance_miles": 0.98,
+      "category_tags": [],
+      "mock_strength_index": 11.44
+    },
+    {
+      "id": "comp_003",
+      "name": "L.A. Burdick Handmade Chocolates",
+      "rating": 4.7,
+      "review_count": 1538,
+      "distance_miles": 0.94,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 14.98
+    },
+    {
+      "id": "comp_004",
+      "name": "Yafa Bakery & Caf\u00e9",
+      "rating": 4.9,
+      "review_count": 1848,
+      "distance_miles": 0.94,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 16.01
+    },
+    {
+      "id": "comp_005",
+      "name": "Diesel Cafe",
+      "rating": 4.4,
+      "review_count": 1385,
+      "distance_miles": 0.62,
+      "category_tags": [],
+      "mock_strength_index": 13.82
+    },
+    {
+      "id": "comp_006",
+      "name": "3 Little Figs",
+      "rating": 4.7,
+      "review_count": 1084,
+      "distance_miles": 0.83,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 14.26
+    },
+    {
+      "id": "comp_007",
+      "name": "La Saison Bakery",
+      "rating": 4.6,
+      "review_count": 430,
+      "distance_miles": 0.57,
+      "category_tags": [
+        "bakery-cafe",
+        "grab-and-go"
+      ],
+      "mock_strength_index": 12.11
+    },
+    {
+      "id": "comp_008",
+      "name": "Luxor Cafe",
+      "rating": 4.6,
+      "review_count": 397,
+      "distance_miles": 0.94,
+      "category_tags": [],
+      "mock_strength_index": 11.95
+    },
+    {
+      "id": "comp_009",
+      "name": "Forge Baking Co & Ice Cream Bar",
+      "rating": 4.5,
+      "review_count": 796,
+      "distance_miles": 0.86,
+      "category_tags": [
+        "bakery-cafe"
+      ],
+      "mock_strength_index": 13.05
+    },
+    {
+      "id": "comp_010",
+      "name": "Kismet",
+      "rating": 4.5,
+      "review_count": 119,
+      "distance_miles": 0.73,
+      "category_tags": [],
+      "mock_strength_index": 9.34
+    },
+    {
+      "id": "comp_011",
+      "name": "Phinista Cafe",
+      "rating": 4.4,
+      "review_count": 182,
+      "distance_miles": 0.38,
+      "category_tags": [],
+      "mock_strength_index": 9.94
+    },
+    {
+      "id": "comp_012",
+      "name": "Revival Cafe+Kitchen",
+      "rating": 4.5,
+      "review_count": 371,
+      "distance_miles": 0.53,
+      "category_tags": [],
+      "mock_strength_index": 11.56
+    },
+    {
+      "id": "comp_013",
+      "name": "Panera Bread",
+      "rating": 3.6,
+      "review_count": 595,
+      "distance_miles": 0.41,
+      "category_tags": [
+        "bakery-cafe",
+        "grab-and-go"
+      ],
+      "mock_strength_index": 9.99
+    },
+    {
+      "id": "comp_014",
+      "name": "Tilde",
+      "rating": 4.9,
+      "review_count": 121,
+      "distance_miles": 0.65,
+      "category_tags": [],
+      "mock_strength_index": 10.21
+    }
+  ],
+  "summary": {
+    "total_count": 14,
+    "avg_rating": 4.55,
+    "avg_review_count": 773,
+    "top_3_review_share_pct": 47.1,
+    "cluster_breakdown": {
+      "chain": 2
+    }
+  }
+}

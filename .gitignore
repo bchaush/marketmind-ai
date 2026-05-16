@@ -1,0 +1,44 @@
+# Byte-compiled / caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+.Python
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Secrets and local env
+.env
+.env.*
+
+# Streamlit local state / cache (if Streamlit writes under project dir)
+.streamlit/secrets.toml
+
+# Opt-in telemetry (JSONL append-only — never committed)
+logs/
+
+# Phase 5 live API bundle cache (keys on disk; directory tracked via .gitkeep)
+cache/live_bundles/*
+!cache/live_bundles/.gitkeep
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Type checkers / tooling
+.mypy_cache/
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Builds
+build/
+dist/
+*.egg-info/
