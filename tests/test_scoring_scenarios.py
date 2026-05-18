@@ -18,11 +18,11 @@ def _load_base_bundle():
 def test_golden_bu_snapshot():
     bundle = copy.deepcopy(_load_base_bundle())
     result = score(bundle)
-    assert result["demand_score"] == pytest.approx(65.40467266412789, rel=1e-4)
+    assert result["demand_score"] == pytest.approx(65.54386788996992, rel=1e-4)
     assert result["competition_pressure_score"] == pytest.approx(51.07999999999999, rel=1e-4)
-    assert result["market_gap_score"] == pytest.approx(60.45927086488952, rel=1e-4)
+    assert result["market_gap_score"] == pytest.approx(60.55670752297894, rel=1e-4)
     assert result["risk_score"] == pytest.approx(58.69999999999999, rel=1e-4)
-    assert result["opportunity_score"] == pytest.approx(60.37684750156889, rel=1e-4)
+    assert result["opportunity_score"] == pytest.approx(60.47358818352909, rel=1e-4)
     assert result["confidence_score"] == pytest.approx(74.0, rel=1e-4)
     assert result["null_count"] == 3
     assert result["flags"] == ["DATA_DESERT"]

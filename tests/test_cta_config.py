@@ -16,7 +16,7 @@ def test_recruiter_mode_returns_correct_keys(monkeypatch: pytest.MonkeyPatch) ->
     cfg = cc.get_cta_config()
     assert frozenset(cfg.keys()) == _EXPECTED_KEYS
     assert isinstance(cfg["headline"], str) and cfg["headline"].strip() != ""
-    assert cfg["secondary_label"] is not None
+    assert cfg["secondary_label"] is None
 
 
 def test_startup_mode_returns_correct_keys(monkeypatch: pytest.MonkeyPatch) -> None:

@@ -21,7 +21,7 @@ def normalize(value, metric_name, thresholds):
     anchors = cfg.get("anchors") or {}
 
     if method == "sigmoid_log10":
-        x = math.log10(float(value))
+        x = math.log10(1 + float(value))
         midpoint = math.log10(anchors["score_50"])
         k = math.log(9) / (math.log10(anchors["score_90"]) - math.log10(anchors["score_50"]))
         raw = 1.0 / (1.0 + math.exp(-k * (x - midpoint))) * 100.0

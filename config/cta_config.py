@@ -7,12 +7,12 @@ import os
 from typing import Any
 
 _RECRUITER_CONFIG: dict[str, Any] = {
-    "headline": "Built by [Your Name]",
+    "headline": "Built by Bora Chaush",
     "subtext": "Full-stack AI system · Real APIs · Deterministic scoring engine",
-    "link_label": "View Source on GitHub",
-    "link_url": "https://github.com/[your-handle]/[repo-name]",
-    "secondary_label": "Book a call",
-    "secondary_url": "https://cal.com/[your-handle]",
+    "link_label": "View on GitHub",
+    "link_url": "https://github.com/bchaush/marketmind-ai",
+    "secondary_label": None,
+    "secondary_url": None,
 }
 
 _STARTUP_CONFIG: dict[str, Any] = {
