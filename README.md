@@ -17,10 +17,11 @@
 
 ## Audit / Reproducibility
 
-- Install dependencies: `pip install -r requirements.txt` (use a venv; optional lock snapshot: `pip freeze > requirements-lock.txt`)
+- Install dependencies: `pip install -r requirements.txt` (pinned direct deps verified on Python 3.11)
 - Run tests: `pytest --tb=short -q` (or `.\venv\Scripts\python.exe -m pytest --tb=short -q`)
 - Security scans: `pip-audit -r requirements.txt` and `gitleaks detect --source .` (see `AUDIT_CHECKLIST.md`)
 - Secrets must come from Streamlit Cloud secrets or environment variables — never commit `.env` or `.streamlit/secrets.toml`
 - Runtime cache, logs, and raw API response dumps under `cache/`, `logs/`, and `data/raw/` are intentionally excluded from Git
-- Production/CI target Python **3.11** (`runtime.txt` + GitHub Actions). Prefer aligning installs to `requirements-lock.txt` for audit reproducibility; do not blindly replace `requirements.txt`
+- Target Python **3.11** in CI and Streamlit Community Cloud (select **3.11 in Cloud Advanced settings**; `runtime.txt` documents intent but is not the sole Streamlit Cloud version control)
+- `requirements-lock.txt` is an audit freeze artifact only — do not blindly replace `requirements.txt` with a full pip freeze
 - Privacy: entered coordinates may be sent to Google Places and Census; API responses may be cached temporarily

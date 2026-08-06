@@ -36,7 +36,7 @@ Generate a freeze snapshot for audit reproducibility:
 
 Review `requirements-lock.txt` before committing. It pins exact installed versions from the current environment.
 
-**Pinning recommendation:** keep `requirements.txt` as the install floor; use `requirements-lock.txt` for reproducible audit/CI installs. Align production with **Python 3.11** (`runtime.txt` + GitHub Actions). Do not blindly overwrite `requirements.txt` with freeze output.
+**Pinning recommendation:** `requirements.txt` holds exact **direct** dependency pins verified on Python 3.11. `requirements-lock.txt` is an audit freeze of a full 3.11 environment — do not blindly overwrite `requirements.txt` with freeze output. On Streamlit Community Cloud, **select Python 3.11 in Advanced settings** during deploy; `runtime.txt` documents intent but does not alone control the Cloud Python version.
 
 ---
 
