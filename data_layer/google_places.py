@@ -3,7 +3,6 @@ from __future__ import annotations
 import json
 import logging
 import math
-import time
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -15,6 +14,10 @@ from tenacity import Retrying, RetryError, retry_if_exception, stop_after_attemp
 
 
 BASE_URL = "https://places.googleapis.com/v1/places:searchNearby"
+
+# Places API (New) Nearby Search returns at most 20 places per request and does
+# not support nextPageToken pagination (unlike legacy Nearby Search).
+NEARBY_SEARCH_MAX_RESULTS = 20
 
 FIELD_MASK = ",".join(
     [
@@ -93,8 +96,8 @@ def search_places_nearby(
     lng: float,
     radius_miles: float,
     included_types: List[str],
-    max_pages: int = 5,
 ) -> List[Dict[str, Any]]:
+    """Single Nearby Search (New) request — max 20 results, no pagination."""
     radius_meters = int(max(0.1, radius_miles) * 1609.344)
 
     headers = {
@@ -102,9 +105,6 @@ def search_places_nearby(
         "X-Goog-Api-Key": api_key,
         "X-Goog-FieldMask": FIELD_MASK,
     }
-
-    all_places: List[Dict[str, Any]] = []
-    page_token: Optional[str] = None
 
     audit_ts = datetime.now().strftime("%Y%m%d_%H%M%S")
 
@@ -115,60 +115,50 @@ def search_places_nearby(
             return exc.response.status_code in (500, 502, 503)
         return False
 
-    for page_n in range(1, max_pages + 1):
-        body: Dict[str, Any] = {
-            "locationRestriction": {
-                "circle": {
-                    "center": {"latitude": lat, "longitude": lng},
-                    "radius": radius_meters,
-                }
+    body: Dict[str, Any] = {
+        "maxResultCount": NEARBY_SEARCH_MAX_RESULTS,
+        "locationRestriction": {
+            "circle": {
+                "center": {"latitude": lat, "longitude": lng},
+                "radius": radius_meters,
             }
-        }
+        },
+    }
 
-        if included_types:
-            body["includedTypes"] = included_types
-        if page_token:
-            body["pageToken"] = page_token
+    if included_types:
+        body["includedTypes"] = included_types
 
-        try:
-            for attempt in Retrying(
-                stop=stop_after_attempt(3),
-                wait=wait_exponential(multiplier=1, min=2, max=4),
-                retry=retry_if_exception(_should_retry),
-                reraise=True,
-            ):
-                with attempt:
-                    resp = requests.post(
-                        BASE_URL,
-                        headers=headers,
-                        json=body,
-                        timeout=(5, 15),
-                    )
-                    resp.raise_for_status()
-        except RetryError as e:
-            logger.exception("Google Places Nearby request failed after retries (page=%s)", page_n)
-            raise e.last_attempt.exception() from e
+    try:
+        for attempt in Retrying(
+            stop=stop_after_attempt(3),
+            wait=wait_exponential(multiplier=1, min=2, max=4),
+            retry=retry_if_exception(_should_retry),
+            reraise=True,
+        ):
+            with attempt:
+                resp = requests.post(
+                    BASE_URL,
+                    headers=headers,
+                    json=body,
+                    timeout=(5, 15),
+                )
+                resp.raise_for_status()
+    except RetryError as e:
+        logger.exception("Google Places Nearby request failed after retries")
+        raise e.last_attempt.exception() from e
 
-        payload = resp.json()
+    payload = resp.json()
 
-        repo_root = Path(__file__).resolve().parents[1]
-        raw_dir = repo_root / "data" / "raw"
-        raw_dir.mkdir(parents=True, exist_ok=True)
-        raw_path = raw_dir / f"google_raw_{audit_ts}_page{page_n}.json"
-        with raw_path.open("w", encoding="utf-8") as f:
-            json.dump(payload, f, indent=2)
-            f.write("\n")
+    repo_root = Path(__file__).resolve().parents[1]
+    raw_dir = repo_root / "data" / "raw"
+    raw_dir.mkdir(parents=True, exist_ok=True)
+    raw_path = raw_dir / f"google_raw_{audit_ts}_page1.json"
+    with raw_path.open("w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2)
+        f.write("\n")
 
-        all_places.extend(extract_places_list(payload))
-
-        page_token = payload.get("nextPageToken")
-        if not page_token:
-            break
-
-        # Token readiness can be slightly delayed.
-        time.sleep(2)
-
-    return all_places
+    places = extract_places_list(payload)
+    return places[:NEARBY_SEARCH_MAX_RESULTS]
 
 
 def extract_places_list(payload: Dict[str, Any]) -> List[Dict[str, Any]]:
@@ -392,7 +382,6 @@ def fetch_competitor_data(query: Dict[str, Any]) -> Dict[str, Any]:
         lng=lng,
         radius_miles=radius_miles,
         included_types=[t for t in included_types if isinstance(t, str)],
-        max_pages=5,
     )
 
     filtered_places: List[Dict[str, Any]] = []

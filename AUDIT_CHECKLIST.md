@@ -36,6 +36,8 @@ Generate a freeze snapshot for audit reproducibility:
 
 Review `requirements-lock.txt` before committing. It pins exact installed versions from the current environment.
 
+**Pinning recommendation:** keep `requirements.txt` as the install floor; use `requirements-lock.txt` for reproducible audit/CI installs. Align production with **Python 3.11** (`runtime.txt` + GitHub Actions). Do not blindly overwrite `requirements.txt` with freeze output.
+
 ---
 
 ## 3. Run pip-audit (dependency vulnerability scan)

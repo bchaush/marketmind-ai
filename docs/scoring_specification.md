@@ -1,14 +1,28 @@
 # MarketMind AI — Scoring Specification
 
 **Document ID:** `phase2_scoring_spec_v0.1`  
-**Status:** Draft constitution for Phase 2 (Scoring Engine)  
-**Scope:** Mathematical and rule definitions only. Phase 2 code must implement this document verbatim. No external APIs in Phase 2. Inputs are Phase 1 unified bundles only (see §9).
+**Status:** Historical constitution + **Phase 7 authoritative reconciliation**  
+**Scope:** Mathematical and rule definitions for the scoring engine.  
+**Authority rule (locked for audit):** Where this document disagrees with the Phase 7 tested implementation (`scoring_engine/scoring_engine.py`, `scoring_engine/normalizer.py`, `config/scoring_*.json`, and the pytest suite), **the tested engine is authoritative**. This document is updated to match that behavior rather than changing locked formulas.
+
+### Docs corrected to match Phase 7 engine (audit reconciliation)
+
+| Topic | Draft constitution said | Authoritative engine behavior |
+|-------|------------------------|-------------------------------|
+| Output numeric type | Integer scores after rounding | Float scores in **[0, 100]** (tests use float equality / approx) |
+| `sigmoid_log10` transform | Mixed `log10(1+raw)` vs `log10(max(income,1))` | **All** `sigmoid_log10` metrics use `log10(1 + value)` |
+| Market Gap construction | `1.25 * (Demand - 0.65 * N_supply)` formula | Weighted sum of `demand_proxy` (Demand score) and `supply_proxy` (`100 - competition_pressure_score`) with weights **0.70 / 0.30** |
+| Confidence composition | Weighted blend of census confidence, fidelity, completeness | `(census_confidence - 4 * null_count) * (geography_fidelity / 100)`, then desert floors/caps |
+| `null_adjustments[]` | Required Phase 2 output field | **Not emitted** by Phase 7 `score()`; nulls redistribute weights inside pillars only |
+| Narrative per-pillar schema | Drivers / narrative_tag per score | Decision/report layers handle narrative; scoring engine returns flat score dict |
+| Rent / student share units | Percent or fraction | **Decimals in [0, 1]** before scoring (ACS `%` values converted in Census layer) |
+| Risk / competition polarity | Varied narratives | Normalize with `higher_is_worse` where configured, then `_reinvert_for_pressure_or_risk` (= `100 - N`) when building pressure/risk pillars |
 
 ---
 
 ## 1. Pillar Architecture
 
-Phase 2 produces **six** scores on the closed interval **[0, 100]** (integers after rounding unless otherwise noted). Each score is computed only from the Phase 1 bundle fields listed below.
+Phase 2 produces **six** scores on the closed interval **[0, 100]** (**floats** in the Phase 7 engine). Each score is computed only from the Phase 1 bundle fields listed below.
 
 Notation:
 
@@ -19,23 +33,23 @@ Notation:
 |--------|-------|-------------------------|-------------------------|-------------------------------------------|
 | **Demand Score** | 0–100 | `demographic_data.pop_total`, `demographic_data.age_22_34_count`, `demographic_data.college_student_population_pct` | How strong local demand is for the chosen business type from population structure. | **Better** (more demand signal → higher score). |
 | **Competition Pressure Score** | 0–100 | `competitor_data.summary.total_count`, `competitor_data.summary.avg_rating`, `competitor_data.summary.top_3_review_share_pct` | How crowded and how strong nearby competitors are within the search radius. | **Worse** (more pressure → higher score). |
-| **Market Gap Score** | 0–100 | Same as Demand inputs **plus** `total_count` (used as **supply** proxy; higher count reduces gap). Gap is a **constructed** index: demand-side normalized signals minus competition-supply pressure (see §5–§6). | Whether local demand appears under-served relative to visible competitor supply. | **Better** (larger gap → higher score). |
+| **Market Gap Score** | 0–100 | Demand score plus inverted competition pressure as supply proxy (see §5.3) | Whether local demand appears under-served relative to visible competitor supply. | **Better** (larger gap → higher score). |
 | **Risk Score** | 0–100 | `demographic_data.rent_to_income_ratio`, `demographic_data.median_household_income`, `competitor_data.summary.top_3_review_share_pct` (concentration risk), `competitor_data.summary.avg_rating` (incumbent strength) | Financial and market-structure risk for a new entrant. | **Worse** (more risk → higher score). |
-| **Opportunity Score** | 0–100 | Combines **normalized** Demand, inverted Competition Pressure, and Market Gap (see §5). No extra raw fields beyond those already named in Demand, Gap, and Competition pillars. | Holistic “should I dig deeper here?” headline combining demand, gap, and ability to win share. | **Better** (more opportunity → higher score). |
-| **Confidence Score** | 0–100 | `demographic_data.geography_level`, `demographic_data.confidence_score` (Phase 1 census confidence), `demographic_data.fallback_used`, count and severity of **nulls** in scored metrics, `null_adjustments[]` length, and edge-case flags (§7). | How much to trust the five substantive scores given data completeness and geography fidelity. | **Better** (more trust in the numbers → higher score). |
+| **Opportunity Score** | 0–100 | Combines Demand, Market Gap, and inverted Competition Pressure (see §5.5) | Holistic “should I dig deeper here?” headline combining demand, gap, and ability to win share. | **Better** (more opportunity → higher score). |
+| **Confidence Score** | 0–100 | Phase 1 census confidence, geography fidelity, null count among eight scored metrics, desert floors | How much to trust the five substantive scores given data completeness and geography fidelity. | **Better** (more trust in the numbers → higher score). |
 
-**Explicit raw-metric directions** (used inside normalization, before any flip for pillar direction):
+**Explicit raw-metric directions** (used inside normalization, before pillar assembly):
 
 | Raw field | Direction for operator |
 |-----------|-------------------------|
 | `pop_total` | Higher → better (more people). |
 | `age_22_34_count` | Higher → better (core coffee-shop cohort in this strategy). |
-| `college_student_population_pct` | Higher → better (aligns with campus-adjacent coffee strategy). |
-| `median_household_income` | Higher → better (more spending power; also reduces “affordability stress” when combined with rent). |
-| `rent_to_income_ratio` | Higher → worse (housing cost burden / fragility). |
-| `total_count` | Higher → worse (more competitors). |
+| `college_student_population_pct` | Higher → better (fraction in **[0, 1]**). |
+| `median_household_income` | Higher → better (more spending power). |
+| `rent_to_income_ratio` | Higher → worse (fraction in **[0, 1]**; ACS percent values converted upstream). |
+| `total_count` | Higher → worse (more competitors; Nearby Search New capped at **20** places). |
 | `avg_rating` | Higher → worse (stronger incumbents). |
-| `top_3_review_share_pct` | Higher → worse (reviews concentrated in a few players → harder to win attention). |
+| `top_3_review_share_pct` | Higher → worse (0–100 percentage points). |
 
 ---
 
@@ -54,9 +68,9 @@ In Greater Boston block groups, moving from **~0 to ~500** residents often captu
 
 ### 2.3 Sigmoid anchor convention
 
-For each sigmoid-normalized metric **M** (higher raw = better unless noted), define **N(M)** using a **logistic** in **log₁₀(1 + raw)** space for counts, and in **raw** space for bounded ratios/percentages.
+For each sigmoid-normalized metric **M** (higher raw = better unless noted), define **N(M)** using a **logistic** in **log₁₀(1 + raw)** space for all `sigmoid_log10` metrics (population, age cohort, income), and in **raw** space for bounded ratios.
 
-Let **x = g(raw)** where **g** is `log10(1 + max(raw, 0))` for non-negative counts, and `raw` for rates already in [0, 1] or [0, 100] as documented.
+Let **x = g(raw)** where **g** is `log10(1 + value)` for `sigmoid_log10` metrics (Phase 7 engine), and `raw` for rates already in **[0, 1]**.
 
 Use the **logistic**:
 
@@ -64,7 +78,7 @@ Use the **logistic**:
 N(M) = \frac{100}{1 + \exp\left(-k \cdot (x - x_{50})\right)}
 \]
 
-Choose **k** and **x₅₀** so that the following **anchor equalities hold** (solved numerically in implementation; values below are the **constitution** the code must match):
+Choose **k** and **x₅₀** so that the following **anchor equalities hold** (solved from score_50 / score_90 anchors in `config/scoring_thresholds.json`):
 
 #### A) `pop_total` (Coffee Shop, higher better)
 
@@ -91,7 +105,7 @@ Use **x = log₁₀(1 + age_22_34_count)** and the same logistic form; solve **(
 
 #### C) `college_student_population_pct` (Coffee Shop, higher better)
 
-Treat raw **p** as a fraction in **[0, 1]** (if Phase 1 ever emits 0–100, divide by 100 first).
+Treat raw **p** as a fraction in **[0, 1]** (if Phase 1 ever emits 0–100, divide by 100 first via Census `percent_to_ratio`).
 
 | Target N | Raw **p** | Justification |
 |----------|-----------|-----------------|
@@ -103,7 +117,7 @@ Use **x = p** (linear domain is acceptable) with the logistic; solve **(k, x₅�
 
 #### D) `median_household_income` (higher better)
 
-Income exhibits diminishing returns; use **x = log₁₀(max(income, 1))** (USD).
+Income uses the same `sigmoid_log10` path as population: **x = log₁₀(1 + income)** (USD).
 
 | Target N | Raw income (USD) | Justification (Boston metro cost baseline) |
 |----------|------------------|---------------------------------------------|
@@ -113,18 +127,17 @@ Income exhibits diminishing returns; use **x = log₁₀(max(income, 1))** (USD)
 
 Logistic on **x** with anchors as above.
 
-#### E) `rent_to_income_ratio` (higher worse — invert after N)
+#### E) `rent_to_income_ratio` (higher worse)
 
-First map raw ratio **r** (dimensionless; if Phase 1 stores percent, divide by 100) with **higher = more risk**:
+Raw ratio **r** is dimensionless in **[0, 1]** (ACS B25071 percent values such as **28** or **33.8** are converted to **0.28** / **0.338** in the Census layer before scoring).
 
-| Target N_risk_component | Raw **r** | Justification |
-|-------------------------|-----------|----------------|
-| **10** (low risk contribution) | **0.15** | Moderate housing burden band. |
+| Target N after normalize | Raw **r** | Justification |
+|--------------------------|-----------|----------------|
+| **10** | **0.15** | Moderate housing burden band. |
 | **50** | **0.30** | High stress threshold commonly cited in housing literature. |
 | **90** | **0.45** | Severe burden; operator risk from customer fragility. |
 
-Use logistic where **higher r → higher internal S**. The pillar **Risk Score** uses **higher = worse**, so this internal **S** feeds Risk **without** direction flip.
-
+Config sets `direction: higher_is_worse` on this metric. The Risk pillar then applies `_reinvert_for_pressure_or_risk` so higher rent burden increases Risk.
 ### 2.4 Linear (min–max) metrics
 
 #### F) `total_count` (competition count, higher worse)
@@ -223,9 +236,7 @@ If a null metric is the **only** metric left in a pillar after others are null, 
 
 ### 3.5 Phase 2 output requirement
 
-Top-level JSON must include:
-
-`"null_adjustments": [ ... ]`
+Phase 7 `score()` returns a flat dict of pillar scores, `null_count`, `flags`, and `status`. It does **not** emit `null_adjustments[]` (historical draft field). Null redistribution still occurs inside `_calculate_weighted_score`.
 
 ---
 
@@ -287,10 +298,10 @@ Top-level JSON must include:
 
 ### 5.3 Market Gap Score
 
-Define **demand_proxy** and **supply_proxy**:
+Define **demand_proxy** and **supply_proxy** (Phase 7 engine):
 
-- **demand_proxy** = same weights and metrics as **Demand Score** (§5.1), including null redistribution rules.
-- **supply_proxy** = **only** `total_count`, normalized as **N_supply = N_pressure_from_count** from §2.4.F (higher count → higher supply pressure).
+- **demand_proxy** = Demand Score (same weighted pillar result as §5.1).
+- **supply_proxy** = **100 − CompetitionPressureScore** (higher pressure → lower supply proxy / narrower gap contribution).
 
 ```json
 {
@@ -301,15 +312,15 @@ Define **demand_proxy** and **supply_proxy**:
 }
 ```
 
-**Construction:**
+**Construction (authoritative):**
 
 \[
-\text{MarketGap} = \min\left(100,\ \max\left(0,\ 1.25 \cdot (\text{DemandScore}_{internal} - 0.65 \cdot N_{supply})\right)\right)
+\text{MarketGap} = 0.70 \cdot \text{Demand} + 0.30 \cdot (100 - \text{CompetitionPressure})
 \]
 
-Where **DemandScore_internal** is the weighted sum of demand metrics **before** the final Demand pillar rounding, on **[0,100]**. Constants **1.25** and **0.65** are **v0.1 law** (tune only via spec revision).
+(with null redistribution inside `_calculate_weighted_score` if either side is null — gap is `None` when Demand or Competition Pressure is `None`).
 
-**Justification:** Gap is mostly “**people vs shops**” (70% demand proxy) but must penalize **dense competitor fields** (30% supply).
+**Justification:** Gap is mostly “**people vs shops**” (70% demand proxy) but must penalize **dense competitor fields** (30% supply proxy from inverted pressure).
 
 ### 5.4 Risk Score
 
@@ -324,49 +335,36 @@ Where **DemandScore_internal** is the weighted sum of demand metrics **before** 
 }
 ```
 
-**Justification:** Rent burden is primary **customer financial fragility** signal (40%). Income is spending-power cushion (30%, inverted per §2.5). Concentration + incumbent strength capture **competitive risk** (30% combined).
+**Justification:** Rent burden is primary **customer financial fragility** signal (40%). Income is spending-power cushion (30%, inverted via normalize + reinvert). Concentration + incumbent strength capture **competitive risk** (30% combined).
 
 ### 5.5 Opportunity Score
 
 **No independent raw weights** beyond composed pillars:
 
 \[
-\text{Opportunity} = \min\left(100,\ \max\left(0,\ 0.45\cdot \text{Demand} + 0.35\cdot \text{MarketGap} + 0.20\cdot (100 - \text{CompetitionPressure})\right)\right)
+\text{Opportunity} = 0.45\cdot \text{Demand} + 0.35\cdot \text{MarketGap} + 0.20\cdot (100 - \text{CompetitionPressure})
 \]
 
 **Justification:** Opportunity is primarily **demand** (45%), reinforced by **structural gap** (35%), tempered by **ease vs incumbents** (20% from inverted competition).
 
 ### 5.6 Confidence Score
 
-Baseline starts from Phase 1 census confidence, then penalties.
-
-```json
-{
-  "confidence_score": {
-    "phase1_census_confidence": 0.60,
-    "geography_fidelity": 0.25,
-    "completeness_of_scored_metrics": 0.15
-  }
-}
-```
-
-**Definitions:**
-
-- **phase1_census_confidence** = `demographic_data.confidence_score` rescaled if needed: if Phase 1 emits **0–100**, use as **C_p1 ∈ [0,100]** directly; multiply weight in composition below.
-- **geography_fidelity** scoring table (v0.1):
-  - `block_group` → 100  
-  - `tract` → 75  
-  - `zcta` → 55  
-  - `placeholder` → 25  
-- **completeness_of_scored_metrics** = **100 × (1 - null_rate)** where **null_rate = (# null among the set {pop_total, age_22_34_count, college_student_population_pct, median_household_income, rent_to_income_ratio, avg_rating, total_count, top_3_review_share_pct}) / 8**).
-
-**Composition:**
+Phase 7 engine composition (authoritative):
 
 \[
-\text{Confidence} = \min\left(100,\ \max\left(0,\ 0.60\cdot C_{p1} + 0.25\cdot G_{fid} + 0.15\cdot C_{complete} - \sum P_{null}\right)\right)
+\text{Confidence} = (C_{p1} - 4 \cdot n_{\text{null}}) \cdot \frac{G_{fid}}{100}
 \]
 
-Then apply **floors** from §4 and §7 if triggered.
+then clamp to **[0, 100]**. If **n_null ≥ 3** (DATA_DESERT), apply floor **40** then cap at **74**.
+
+Geography fidelity table (`config/scoring_thresholds.json`):
+
+- `block_group` → 100  
+- `tract` → 75  
+- `zcta` → 55  
+- `placeholder` → 25  
+
+Note: `scoring_weights.json` still lists a three-way confidence weight object for historical reference; **the Phase 7 engine does not use that three-way blend**.
 
 ---
 

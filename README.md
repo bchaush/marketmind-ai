@@ -22,3 +22,5 @@
 - Security scans: `pip-audit -r requirements.txt` and `gitleaks detect --source .` (see `AUDIT_CHECKLIST.md`)
 - Secrets must come from Streamlit Cloud secrets or environment variables — never commit `.env` or `.streamlit/secrets.toml`
 - Runtime cache, logs, and raw API response dumps under `cache/`, `logs/`, and `data/raw/` are intentionally excluded from Git
+- Production/CI target Python **3.11** (`runtime.txt` + GitHub Actions). Prefer aligning installs to `requirements-lock.txt` for audit reproducibility; do not blindly replace `requirements.txt`
+- Privacy: entered coordinates may be sent to Google Places and Census; API responses may be cached temporarily

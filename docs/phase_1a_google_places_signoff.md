@@ -1,15 +1,17 @@
 # Phase 1A Sign-Off — Google Places
 **Status: Complete**
 **Date: 2026-05-04**
+**Audit update: 2026-08-05 — Nearby Search (New) single-request / max 20**
 
 ## Tests Passed
 - 6/6 offline unit tests green
 - test_6 permanently locks radius conversion math
+- test_4 verifies Nearby Search (New) uses a single request (no `pageToken` loop) and caps at 20 results
 
 ## Live Calls Validated
 - BU (42.3505, -71.1054): 15 competitors, HIGH confidence
 - Charlestown 0.3mi: 4 competitors, HIGH confidence (data desert confirmed)
-- Downtown Crossing: 18 competitors, pagination cap held
+- Downtown Crossing: up to 18 competitors within the Nearby Search (New) 20-result cap
 - Providence RI: hard geofence reject at 41.2 miles
 
 ## Architecture Decisions Locked
@@ -17,7 +19,8 @@
 - MAX_GEOFENCE_MILES=3.5 (covers Boston/Cambridge/Somerville)
 - MAX_SEARCH_RADIUS_MILES=1.5 (prevents suburban bleed)
 - Min search radius: 0.1 miles (2 city blocks)
-- Raw audit trail: data/raw/google_raw_<TS>_page<N>.json
+- **Nearby Search (New) limitation:** Places API (New) `places:searchNearby` returns **at most 20 places per request** and **does not support** `nextPageToken` pagination (unlike legacy Nearby Search). MarketMind issues **one** request with `maxResultCount=20`.
+- Raw audit trail: data/raw/google_raw_<TS>_page1.json (single response dump)
 - Processed output: data/raw/bu_coffee_shop_processed_<TS>.json
 - Retry: tenacity, 3 attempts, exponential backoff 2-4s
 - Timeout: 5s connect, 15s read

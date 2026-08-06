@@ -25,6 +25,8 @@ def test_baseline_values_are_not_none() -> None:
     for key in sorted(_EXPECTED_METRIC_KEYS):
         assert key in baseline, f"missing key {key}"
         assert baseline[key] is not None, f"{key} must not be None"
+    assert 0.0 < baseline["rent_to_income_ratio"] <= 1.0
+    assert 0.0 < baseline["college_student_population_pct"] <= 1.0
 
 
 def test_baseline_json_matches_census_data_fields() -> None:

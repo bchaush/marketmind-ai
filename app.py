@@ -420,8 +420,10 @@ st.link_button(_cta["link_label"], _cta["link_url"])
 if _cta["secondary_label"] is not None:
     st.link_button(_cta["secondary_label"], _cta["secondary_url"])
 st.caption(
-    "🔒 Search coordinates are anonymized to 3 decimal places. "
-    "No personal data is stored or transmitted."
+    "🔒 Location note: the coordinates you enter may be sent to external APIs "
+    "(Google Places and U.S. Census) to retrieve market signals for this analysis. "
+    "API responses may be cached temporarily for quota and performance. "
+    "Stored telemetry (when enabled) rounds coordinates to 3 decimal places and does not store personal identity data."
 )
 
 if os.getenv("DEV_MODE", "false").lower() == "true":

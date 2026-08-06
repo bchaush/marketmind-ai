@@ -201,25 +201,38 @@ def test_3_fetch_competitor_data_offline_end_to_end_with_mocked_api_key_and_http
     assert c0["name"] == "Pavement Coffeehouse"
 
 
-def test_4_search_places_nearby_pagination_stops_after_max_pages_even_if_token_never_ends():
+def test_4_search_places_nearby_is_single_request_no_pagination_token_loop():
+    # Nearby Search (New) does not support nextPageToken; code must not page.
+    places_payload = {
+        "places": [
+            {
+                "displayName": {"text": f"Cafe {i}"},
+                "businessStatus": "OPERATIONAL",
+                "types": ["cafe"],
+                "location": {"latitude": 42.0, "longitude": -71.0},
+            }
+            for i in range(25)
+        ],
+        "nextPageToken": "should_be_ignored",
+    }
     resp = Mock()
     resp.raise_for_status = Mock()
-    resp.json = Mock(return_value={"places": [], "nextPageToken": "always"})
+    resp.json = Mock(return_value=places_payload)
 
-    with patch.object(gp.requests, "post", return_value=resp) as post_mock, patch.object(
-        gp.time, "sleep", return_value=None
-    ):
+    with patch.object(gp.requests, "post", return_value=resp) as post_mock:
         places = gp.search_places_nearby(
             api_key="test_key",
             lat=42.0,
             lng=-71.0,
             radius_miles=1.0,
             included_types=["cafe"],
-            max_pages=5,
         )
 
-    assert places == []
-    assert post_mock.call_count == 5
+    assert post_mock.call_count == 1
+    body = post_mock.call_args.kwargs.get("json") or post_mock.call_args[1].get("json")
+    assert body["maxResultCount"] == gp.NEARBY_SEARCH_MAX_RESULTS
+    assert "pageToken" not in body
+    assert len(places) == gp.NEARBY_SEARCH_MAX_RESULTS
 
 
 def test_5_aggregation_math_against_mock_data():

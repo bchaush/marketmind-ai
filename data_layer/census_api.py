@@ -321,6 +321,19 @@ def coerce_acs_value(raw: Any) -> Optional[float]:
     return None
 
 
+def percent_to_ratio(value: Optional[float]) -> Optional[float]:
+    """Convert ACS-style percentages (e.g. 28, 33.8) to decimals in [0, 1].
+
+    Values already in [0, 1] are returned unchanged. None stays None.
+    """
+    if value is None:
+        return None
+    v = float(value)
+    if v > 1.0:
+        return v / 100.0
+    return v
+
+
 def _acs_url(dataset: str, year: int) -> str:
     return f"https://api.census.gov/data/{year}/{dataset}"
 
@@ -414,6 +427,9 @@ def _baseline_metrics_dict(baseline: Mapping[str, Any]) -> Dict[str, Any]:
         if key in int_keys:
             metrics[key] = int(raw)
             continue
+        if key in {"rent_to_income_ratio", "college_student_population_pct"}:
+            metrics[key] = percent_to_ratio(float(raw))
+            continue
         metrics[key] = float(raw)
     return metrics
 
@@ -455,7 +471,11 @@ def compute_derived_fields(values_by_code: Dict[str, Optional[float]], metadata:
         if output_key in {"median_household_income", "median_age", "rent_to_income_ratio"}:
             av = spec.get("acs_variable")
             if isinstance(av, str):
-                out[output_key] = get_code(av)
+                raw_v = get_code(av)
+                if output_key == "rent_to_income_ratio":
+                    out[output_key] = percent_to_ratio(raw_v)
+                else:
+                    out[output_key] = raw_v
             continue
 
         if output_key == "college_student_population_pct":

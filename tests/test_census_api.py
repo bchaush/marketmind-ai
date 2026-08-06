@@ -253,3 +253,51 @@ def test_geocoder_total_failure_degrades_gracefully(monkeypatch):
     assert geocoder_penalties.count("geocoder_api_failure:ConnectionError") == 1
 
     assert out.geography_level == "placeholder"
+
+
+def test_percent_to_ratio_converts_acs_percent_style_values() -> None:
+    assert ca.percent_to_ratio(28) == pytest.approx(0.28)
+    assert ca.percent_to_ratio(33.8) == pytest.approx(0.338)
+    assert ca.percent_to_ratio(0.30) == pytest.approx(0.30)
+    assert ca.percent_to_ratio(None) is None
+
+
+def test_compute_derived_fields_normalizes_rent_to_income_ratio_to_decimal() -> None:
+    metadata = {
+        "variables": {
+            "rent_to_income_ratio": {
+                "acs_table": "B25071",
+                "acs_release_year": "2022",
+                "label": "rent",
+                "composition_note": None,
+                "acs_variable": "B25071_001E",
+            },
+            "pop_total": {
+                "acs_table": "B01003",
+                "acs_variable": "B01003_001E",
+            },
+        }
+    }
+    derived = ca.compute_derived_fields({"B25071_001E": 28.0, "B01003_001E": 1000.0}, metadata)
+    assert derived["rent_to_income_ratio"] == pytest.approx(0.28)
+
+    derived_high = ca.compute_derived_fields({"B25071_001E": 33.8, "B01003_001E": 1000.0}, metadata)
+    assert derived_high["rent_to_income_ratio"] == pytest.approx(0.338)
+
+    derived_already = ca.compute_derived_fields({"B25071_001E": 0.28, "B01003_001E": 1000.0}, metadata)
+    assert derived_already["rent_to_income_ratio"] == pytest.approx(0.28)
+
+
+def test_baseline_metrics_dict_stores_rent_as_decimal() -> None:
+    metrics = ca._baseline_metrics_dict(
+        {
+            "pop_total": 100,
+            "age_22_34_count": 10,
+            "median_household_income": 50000,
+            "median_age": 30.0,
+            "college_student_population_pct": 19.2,
+            "rent_to_income_ratio": 33.8,
+        }
+    )
+    assert metrics["rent_to_income_ratio"] == pytest.approx(0.338)
+    assert metrics["college_student_population_pct"] == pytest.approx(0.192)

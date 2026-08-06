@@ -51,7 +51,9 @@ All blocks completed. The app is live, stable, and telemetry-enabled.
 - `config/cta_config.py` created with `get_cta_config()`
 - `CTA_MODE=recruiter` (default) or `CTA_MODE=startup` via env var
 - Footer renders: headline, subtext, primary link, optional secondary link
-- Privacy note hardcoded: coordinates anonymized to 3dp, no PII stored
+- Privacy note: entered coordinates may be sent to Google Places and Census;
+  API responses may be cached temporarily; telemetry (when enabled) stores
+  rounded coordinates only — no personal identity fields
 - 3 new tests in `tests/test_cta_config.py`
 
 ### Block C — Developer Trust Layer
