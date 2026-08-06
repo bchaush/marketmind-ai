@@ -1,17 +1,16 @@
 ﻿# pip-audit report
-commit_sha: 82eb76caa666b82c58db0ee536cedd75ce414d3a
-scanned_at_utc: 2026-08-06T01:23:21Z
+commit_sha: 87b2a15ea54d42e427b69b9b82ed8d785253c6e0
+scanned_at_utc: 2026-08-06T02:39:24Z
 tool: pip-audit
 tool_version: 2.10.1
-python: 3.11.9
 target: requirements.txt
 exit_code: 0
 result_summary: No known vulnerabilities found
 
 ## Raw output
 python.exe : No known vulnerabilities found
-At C:\Users\Bora\AppData\Local\Temp\ps-script-3f2da785-3efb-4bbe-a6c3-35590a610454.ps1:105 char:738
-+ ... $auditOut = & .\.venv311\Scripts\python.exe -m pip_audit -r requireme ...
+At C:\Users\Bora\AppData\Local\Temp\ps-script-9d71d3f3-010a-4f4e-870f-9e732d99a42e.ps1:105 char:720
++ ... $auditOut = & $py -m pip_audit -r requirements.txt -f columns --desc  ...
 +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     + CategoryInfo          : NotSpecified: (No known vulnerabilities found:String) [], RemoteException
     + FullyQualifiedErrorId : NativeCommandError
