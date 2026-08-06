@@ -33,6 +33,51 @@ FIELD_MASK = ",".join(
 
 logger = logging.getLogger(__name__)
 
+# Truncate error bodies for logs — never log headers or API keys.
+_RESPONSE_BODY_LOG_MAX = 500
+_NON_RETRYABLE_CLIENT_ERRORS = frozenset({400, 401, 403, 404})
+_RETRYABLE_HTTP_STATUS = frozenset({429, 500, 502, 503})
+
+
+def _truncate_response_text(text: str, max_len: int = _RESPONSE_BODY_LOG_MAX) -> str:
+    cleaned = (text or "").replace("\r", " ").replace("\n", " ").strip()
+    if len(cleaned) <= max_len:
+        return cleaned
+    return cleaned[:max_len] + "...[truncated]"
+
+
+def _safe_response_body_for_log(response: Optional[requests.Response]) -> str:
+    if response is None:
+        return ""
+    try:
+        return _truncate_response_text(response.text or "")
+    except Exception:
+        return "<unavailable>"
+
+
+def log_places_http_failure(response: Optional[requests.Response]) -> None:
+    """Log HTTP status + truncated body only (no headers, no API key)."""
+    if response is None:
+        logger.error("Google Places Nearby request failed with no HTTP response")
+        return
+    logger.error(
+        "Google Places Nearby HTTP %s — response body (truncated): %s",
+        response.status_code,
+        _safe_response_body_for_log(response),
+    )
+
+
+def should_retry_places_exception(exc: BaseException) -> bool:
+    """Retry network/timeouts, 429, and selected 5xx. Never retry permanent 4xx."""
+    if isinstance(exc, (requests.exceptions.Timeout, requests.exceptions.ConnectionError)):
+        return True
+    if isinstance(exc, requests.HTTPError) and exc.response is not None:
+        code = int(exc.response.status_code)
+        if code in _NON_RETRYABLE_CLIENT_ERRORS:
+            return False
+        return code in _RETRYABLE_HTTP_STATUS
+    return False
+
 
 def load_dotenv_if_present() -> None:
     repo_root = Path(__file__).resolve().parents[1]
@@ -108,13 +153,6 @@ def search_places_nearby(
 
     audit_ts = datetime.now().strftime("%Y%m%d_%H%M%S")
 
-    def _should_retry(exc: BaseException) -> bool:
-        if isinstance(exc, (requests.exceptions.Timeout, requests.exceptions.ConnectionError)):
-            return True
-        if isinstance(exc, requests.HTTPError) and exc.response is not None:
-            return exc.response.status_code in (500, 502, 503)
-        return False
-
     body: Dict[str, Any] = {
         "maxResultCount": NEARBY_SEARCH_MAX_RESULTS,
         "locationRestriction": {
@@ -132,7 +170,7 @@ def search_places_nearby(
         for attempt in Retrying(
             stop=stop_after_attempt(3),
             wait=wait_exponential(multiplier=1, min=2, max=4),
-            retry=retry_if_exception(_should_retry),
+            retry=retry_if_exception(should_retry_places_exception),
             reraise=True,
         ):
             with attempt:
@@ -144,8 +182,15 @@ def search_places_nearby(
                 )
                 resp.raise_for_status()
     except RetryError as e:
-        logger.exception("Google Places Nearby request failed after retries")
-        raise e.last_attempt.exception() from e
+        last_exc = e.last_attempt.exception()
+        if isinstance(last_exc, requests.HTTPError):
+            log_places_http_failure(last_exc.response)
+        else:
+            logger.exception("Google Places Nearby request failed after retries")
+        raise last_exc from e
+    except requests.HTTPError as e:
+        log_places_http_failure(e.response)
+        raise
 
     payload = resp.json()
 

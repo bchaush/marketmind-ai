@@ -5,6 +5,8 @@ from pathlib import Path
 from unittest.mock import Mock, patch
 
 import pytest
+import requests
+from tenacity import wait_none
 
 from data_layer import google_places as gp
 
@@ -265,4 +267,89 @@ def test_6_radius_conversion_respects_small_values():
 
     m005 = radius_meters_from_miles(0.05)
     assert m005 >= 160
+
+
+def _http_error(status: int, body: str = "error") -> requests.HTTPError:
+    resp = Mock()
+    resp.status_code = status
+    resp.text = body
+    resp.raise_for_status = Mock(
+        side_effect=requests.HTTPError(f"{status} Client Error", response=resp)
+    )
+    err = requests.HTTPError(f"{status} Client Error", response=resp)
+    return err
+
+
+def test_should_retry_places_exception_policy() -> None:
+    assert gp.should_retry_places_exception(requests.exceptions.Timeout()) is True
+    assert gp.should_retry_places_exception(requests.exceptions.ConnectionError()) is True
+
+    for code in (429, 500, 502, 503):
+        assert gp.should_retry_places_exception(_http_error(code)) is True
+
+    for code in (400, 401, 403, 404):
+        assert gp.should_retry_places_exception(_http_error(code)) is False
+
+    assert gp.should_retry_places_exception(ValueError("nope")) is False
+
+
+def test_403_does_not_retry_and_logs_truncated_body_without_secrets(caplog) -> None:
+    secret_key = "SECRET_API_KEY_SHOULD_NEVER_APPEAR"
+    long_body = "PERMISSION_DENIED " + ("x" * 600)
+    resp = Mock()
+    resp.status_code = 403
+    resp.text = long_body
+    resp.raise_for_status = Mock(
+        side_effect=requests.HTTPError("403 Forbidden", response=resp)
+    )
+
+    with caplog.at_level("ERROR", logger="data_layer.google_places"), patch.object(
+        gp.requests, "post", return_value=resp
+    ) as post_mock:
+        with pytest.raises(requests.HTTPError):
+            gp.search_places_nearby(
+                api_key=secret_key,
+                lat=42.0,
+                lng=-71.0,
+                radius_miles=1.0,
+                included_types=["cafe"],
+            )
+
+    assert post_mock.call_count == 1
+    joined = " ".join(r.getMessage() for r in caplog.records)
+    assert "HTTP 403" in joined
+    assert "PERMISSION_DENIED" in joined
+    assert "...[truncated]" in joined
+    assert secret_key not in joined
+    assert "X-Goog-Api-Key" not in joined
+    assert "headers" not in joined.lower()
+
+
+def test_503_is_retried_then_logs_final_failure(caplog) -> None:
+    resp = Mock()
+    resp.status_code = 503
+    resp.text = '{"error":"unavailable"}'
+    resp.raise_for_status = Mock(
+        side_effect=requests.HTTPError("503 Server Error", response=resp)
+    )
+
+    with caplog.at_level("ERROR", logger="data_layer.google_places"):
+        with patch.object(gp.requests, "post", return_value=resp) as post_mock:
+            with patch(
+                "data_layer.google_places.wait_exponential",
+                return_value=wait_none(),
+            ):
+                with pytest.raises(requests.HTTPError):
+                    gp.search_places_nearby(
+                        api_key="test_key",
+                        lat=42.0,
+                        lng=-71.0,
+                        radius_miles=1.0,
+                        included_types=["cafe"],
+                    )
+
+    assert post_mock.call_count == 3
+    joined = " ".join(r.getMessage() for r in caplog.records)
+    assert "HTTP 503" in joined
+    assert "unavailable" in joined
 
