@@ -201,8 +201,8 @@ def generate_report(ui_payload: dict) -> tuple[AnalystReport, bool]:
             except anthropic.RateLimitError as e:
                 raise LLMQuotaExceededError(
                     "AI report generation is temporarily unavailable "
-                    "due to high demand. Scores and recommendation "
-                    "are still accurate."
+                    "due to high demand. Deterministic scores remain "
+                    "available; AI explanation unavailable."
                 ) from e
             except (anthropic.APITimeoutError, anthropic.InternalServerError) as e:
                 logger.warning(

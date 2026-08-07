@@ -47,7 +47,16 @@ WRITING RULES:
 - Do not add caveats about training data or knowledge cutoff.
 - Your recommendation field must match final_status exactly.
   If final_status is CAUTION, recommendation must be "CAUTION".
-
+- Do not invent causal claims. Treat scores, flags, and levers as
+  model screening signals, not proof of real-world outcomes.
+- Never claim that youth, students, or demographics "enable",
+  "guarantee", or "prove" extended hours, profitability, or success.
+- If a lever is labeled Extended Hours or Demand Threshold Met,
+  describe it only as a demand-threshold screening signal
+  (demand score met the configured threshold), not as a youth-driven
+  operating-hours conclusion.
+- Do not describe deterministic scores as fully accurate, guaranteed,
+  or proven real-world truth.
 OUTPUT FORMAT RULES:
 - Return valid JSON only.
 - Your response must begin with the { character and end with the }

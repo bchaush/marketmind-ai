@@ -135,12 +135,13 @@ st.set_page_config(page_title="MarketMind AI", page_icon="🧠", layout="wide")
 with st.sidebar:
     st.markdown("**🧠 MarketMind AI**")
     st.caption("Boston Market Intelligence")
-    st.markdown("📍 Default area: Inman Square (42.3736, -71.1097) — stable Census coverage")
+    st.markdown("📍 Default analysis area: Inman Square vicinity (42.3736, -71.1097)")
     st.markdown("☕ Coffee Shop (default)")
     lat = st.number_input("Latitude", value=42.3736, format="%.4f")
     lng = st.number_input("Longitude", value=-71.1097, format="%.4f")
     radius_miles = st.number_input("Radius (miles)", value=1.0, min_value=0.01, format="%.2f")
     business_type = st.text_input("Business type", value="coffee_shop")
+    st.caption("Competition metrics use up to 20 nearby Places results per analysis.")
 
     if st.button("Run Analysis", type="primary"):
         last_run = st.session_state.get("last_run_at", 0)
@@ -215,6 +216,20 @@ with st.sidebar:
             st.sidebar.success(f"📦 Cached data\n\nWritten: {_written_at}")
         else:
             st.sidebar.success("🟢 Live data")
+        _demo_sb = (
+            _live_bundle_sb.get("demographic_data")
+            if isinstance(_live_bundle_sb.get("demographic_data"), dict)
+            else {}
+        )
+        _geo_level = str(_demo_sb.get("geography_level") or "").strip()
+        _geo_labels = {
+            "block_group": "Census coverage: block group",
+            "tract": "Census coverage: tract",
+            "zcta": "Census coverage: ZCTA",
+            "placeholder": "Census coverage: county baseline / placeholder fallback",
+        }
+        if _geo_level:
+            st.sidebar.caption(_geo_labels.get(_geo_level, f"Census coverage: {_geo_level}"))
         if DEV_MODE:
             st.sidebar.caption(f"Cache key: {_cache_meta_sb.get('key', 'unknown')}")
 
@@ -242,9 +257,9 @@ if "analyst_report" not in st.session_state:
             st.warning(
                 "⚠️ AI narrative report temporarily unavailable — "
                 "high demand on the analysis service. "
-                "Your market scores and GO / CAUTION / NO-GO "
-                "recommendation above are fully accurate and "
-                "based on live data. Try refreshing in a few minutes."
+                "Deterministic scores and GO / CAUTION / NO-GO status "
+                "remain available above; AI explanation unavailable. "
+                "Try refreshing in a few minutes."
             )
         except Exception as e:
             st.session_state["analyst_report"] = None
@@ -378,9 +393,8 @@ st.subheader("🧠 AI Analyst Report")
 
 if st.session_state.get("report_llm_fallback"):
     st.info(
-        "AI report generated from deterministic analysis — "
-        "live AI narrative temporarily unavailable. "
-        "All scores and recommendations are accurate."
+        "Core scoring completed successfully; analyst narrative unavailable. "
+        "Showing a deterministic summary built from the scored payload."
     )
 
 if st.session_state.get("analyst_report"):

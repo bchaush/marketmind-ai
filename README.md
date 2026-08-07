@@ -22,9 +22,9 @@ The live URL above is the public Streamlit URL recorded in `docs/phase7_signoff.
 
 ## What the MVP does
 
-1. Enter **latitude**, **longitude**, and **radius (miles)** in the Streamlit sidebar (defaults to Inman Square and 1.0 mile). Business type defaults to `coffee_shop`.
+1. Enter **latitude**, **longitude**, and **radius (miles)** in the Streamlit sidebar (defaults to the Inman Square vicinity analysis center and 1.0 mile). Business type defaults to `coffee_shop`.
 2. Click **Run Analysis** (subject to a 30-second per-session cooldown and a local daily analysis counter).
-3. The app validates the point against a **3.5-mile geofence** centered on Inman Square, then retrieves **Google Places Nearby Search** competitor signals and **Census ACS** demographic signals (with circuit-breaker stubs / cascade fallbacks when sources fail).
+3. The app validates the point against a **3.5-mile geofence** centered on the Inman Square vicinity anchor, then retrieves **Google Places Nearby Search** competitor signals and **Census ACS** demographic signals (with circuit-breaker stubs / cascade fallbacks when sources fail).
 4. A deterministic scoring engine produces six 0–100 scores: Demand, Competition Pressure, Market Gap, Risk, Opportunity, and Confidence.
 5. Decision rules assign a headline status of **GO**, **CAUTION**, or **NO-GO**, plus risks, levers, trade-offs, and threshold-change (“what would change”) conditions.
 6. Three coffee-shop **scenarios** are scored as relative viability indices: `study_cafe`, `grab_and_go`, and `third_wave_bar`.
@@ -36,10 +36,10 @@ The live URL above is the public Streamlit URL recorded in `docs/phase7_signoff.
 | Item | Current MVP |
 |------|-------------|
 | Business type | `coffee_shop` (fully supported). `premium_cafe` exists in taxonomy config only — do not treat it as a completed pipeline. |
-| Default location | Inman Square (`42.3736`, `-71.1097`) |
-| Geography | Coordinates within **3.5 miles** of Inman Square |
+| Default location | Inman Square vicinity (`42.3736`, `-71.1097`) — analysis center / geofence anchor, not claimed as the exact neighborhood centroid |
+| Geography | Coordinates within **3.5 miles** of that Inman Square vicinity anchor |
 | Default radius | **1.0 mile** (sidebar editable; minimum 0.01) |
-| Competitor result limit | **Maximum 20** places per Google Places Nearby Search (New) request |
+| Competitor result limit | **Maximum 20** places per Google Places Nearby Search (New) request — not exhaustive competitor coverage |
 | Data sources | Google Places Nearby Search; U.S. Census ACS (with documented fallbacks including a Suffolk County baseline) |
 | Interface | Streamlit (coordinate inputs — **no address search**) |
 | Python | **3.11** (CI + intended Streamlit Cloud setting; `runtime.txt` documents intent) |
@@ -64,7 +64,7 @@ Missing metrics can yield **N/A** scores, **DATA_DESERT**-style caution, or othe
 ```text
 User coordinates and radius
         ↓
-Input validation and 3.5-mile Inman Square geofence
+Input validation and 3.5-mile Inman Square vicinity geofence
         ↓
 Google Places Nearby Search + Census ACS retrieval
   (retries / stubs / cascade fallbacks on failure)
@@ -204,7 +204,7 @@ Also:
 ## Known boundaries and limitations
 
 - **`coffee_shop` is the only fully supported business type**
-- Geography is limited to the **Inman Square–centered 3.5-mile geofence**
+- Geography is limited to the **Inman Square vicinity–centered 3.5-mile geofence**
 - The public UI accepts **coordinates**, not street addresses
 - Google Places Nearby Search (New) returns **at most 20** places per request — not an exhaustive competitor census
 - Places data is filtered by taxonomy rules and still incomplete relative to the real streetscape
@@ -223,7 +223,7 @@ Also:
 | Symptom | What to check |
 |---------|----------------|
 | Missing API keys / auth errors | Streamlit secrets or `.env` / `.streamlit/secrets.toml`; never commit real keys |
-| Location outside geofence | Point must be within 3.5 miles of Inman Square (`42.3736`, `-71.1097`) |
+| Location outside geofence | Point must be within 3.5 miles of the Inman Square vicinity anchor (`42.3736`, `-71.1097`) |
 | Data Desert / many N/A scores | Sparse Census coverage, null metrics, or degraded stubs — confidence will drop |
 | Google Places **403** | Key restrictions, billing, or Places API (New) enablement in GCP; logs include status + truncated body only (no key/headers) |
 | Daily limit reached | Local limiter (`DAILY_LIMIT` in `pipeline/rate_limiter.py`) or GCP quota |

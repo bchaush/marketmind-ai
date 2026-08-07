@@ -139,7 +139,7 @@
       "rule_id": "LEVER_EXTENDED_HOURS",
       "priority": 50,
       "condition": { "demand_score": { "gte": 60 } },
-      "output_tags": ["EXTENDED_HOURS_OPPORTUNITY", "YOUTH_COHORT_PRESENT"],
+      "output_tags": ["DEMAND_THRESHOLD_MET"],
       "impact": "medium"
     },
     {

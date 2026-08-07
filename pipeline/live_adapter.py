@@ -104,7 +104,7 @@ def fetch_live_bundle(
             dist,
         )
         raise ValueError(
-            "Location is outside the supported Boston area (max 3.5 miles from Inman Square)"
+            "Location is outside the supported Boston area (max 3.5 miles from the Inman Square vicinity anchor)"
         )
 
     with ThreadPoolExecutor(max_workers=2) as executor:
