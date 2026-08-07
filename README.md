@@ -14,7 +14,7 @@ Verified locally at the time of this README rewrite: **175 passed** (`pytest`). 
 
 | Link | URL |
 |------|-----|
-| Live application | https://marketmind-ai-graersee39mjsxx57h7fed.streamlit.app |
+| Live application |(https://marketmind-ai-z47gznxwymayw5nyaegfvu.streamlit.app/) |
 | GitHub repository | https://github.com/bchaush/marketmind-ai |
 | Current audited commit (scan reports) | [`87b2a15`](https://github.com/bchaush/marketmind-ai/commit/87b2a15ea54d42e427b69b9b82ed8d785253c6e0) |
 
