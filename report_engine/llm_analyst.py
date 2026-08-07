@@ -48,8 +48,14 @@ def _confidence_band_note(confidence_score: Any) -> str:
     if c >= 75:
         return "High input confidence — suitable for preliminary market screening."
     if c >= 45:
-        return "Moderate confidence — directional insight, verify before committing"
-    return "Low confidence — suitable for initial screening only, not investment decisions"
+        return (
+            "Moderate input confidence — directional screening signal; "
+            "verify independently."
+        )
+    return (
+        "Low input confidence — preliminary screening only; "
+        "requires independent validation."
+    )
 
 
 def _truncate(text: str, max_len: int) -> str:
@@ -99,13 +105,17 @@ def build_fallback_report(ui_payload: dict) -> dict[str, Any]:
 
     confidence_score = scores.get("confidence_score")
     cs_disp = _fmt_score_val(confidence_score)
-    conf_clause = f"Confidence: {cs_disp}/100." if cs_disp is not None else "Confidence: N/A."
+    conf_clause = (
+        f"Input confidence: {cs_disp}/100."
+        if cs_disp is not None
+        else "Input confidence: N/A."
+    )
 
     rule_id = str(status.get("status_rule_id") or "")
     plain_reason = _FLAG_LABELS.get(rule_id, rule_id or "Refer to status context.")
 
     executive_summary = (
-        f"Market analysis complete. Recommendation: {recommendation}. "
+        f"Preliminary market screening complete. Status: {recommendation}. "
         f"{conf_clause} {plain_reason}"
     )
     executive_summary = _truncate(executive_summary, 400)

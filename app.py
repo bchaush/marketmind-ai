@@ -134,7 +134,7 @@ st.set_page_config(page_title="MarketMind AI", page_icon="🧠", layout="wide")
 
 with st.sidebar:
     st.markdown("**🧠 MarketMind AI**")
-    st.caption("Boston Market Intelligence")
+    st.caption("Coffee-shop preliminary market-screening prototype")
     st.markdown("📍 Default analysis area: Inman Square vicinity (42.3736, -71.1097)")
     st.markdown("☕ Coffee Shop (default)")
     lat = st.number_input("Latitude", value=42.3736, format="%.4f")
@@ -142,6 +142,7 @@ with st.sidebar:
     radius_miles = st.number_input("Radius (miles)", value=1.0, min_value=0.01, format="%.2f")
     business_type = st.text_input("Business type", value="coffee_shop")
     st.caption("Competition metrics use up to 20 nearby Places results per analysis.")
+    st.caption("Census coverage may use geographic fallbacks when block-group data is unavailable.")
 
     if st.button("Run Analysis", type="primary"):
         last_run = st.session_state.get("last_run_at", 0)
@@ -167,9 +168,9 @@ with st.sidebar:
             # MVP: all three status lines render before fetch_live_bundle() blocks; they appear
             # together, not as a timed sequence — acceptable UX limitation (do not split adapter).
             with st.status("Analysis in progress", expanded=True) as status:
-                status.write("Scanning competitor landscape...")
-                status.write("Pulling demographic data...")
-                status.write("Building market profile...")
+                status.write("Retrieving nearby Places sample (up to 20)...")
+                status.write("Pulling Census demographic signals...")
+                status.write("Running deterministic scoring...")
                 bundle = fetch_live_bundle(
                     lat,
                     lng,
@@ -242,7 +243,7 @@ if "ui_payload" not in st.session_state:
 ui_payload = st.session_state["ui_payload"]
 
 if "analyst_report" not in st.session_state:
-    with st.spinner("Synthesizing market intelligence — generating analyst report..."):
+    with st.spinner("Generating AI explanation of deterministic screening results..."):
         try:
             report, used_fallback = generate_report(st.session_state["ui_payload"])
             st.session_state["analyst_report"] = report.model_dump()
@@ -299,6 +300,11 @@ st.markdown(
 )
 
 st.caption(_FLAG_LABELS.get(status_rule_id, status_rule_id))
+st.caption(
+    "Preliminary coffee-shop market screening — configured deterministic "
+    "heuristics for decision support, not an investment recommendation or "
+    "prediction of business success. Requires independent business validation."
+)
 
 tab_macro, tab_scenarios, tab_risk = st.tabs(
     ["📊 Pillars", "🧩 Scenarios", "⚠️ Risks"]
@@ -321,10 +327,20 @@ with tab_macro:
         if _conf >= 75:
             _conf_label = "High input confidence — suitable for preliminary market screening."
         elif _conf >= 45:
-            _conf_label = "Moderate confidence — directional insight, verify before committing"
+            _conf_label = (
+                "Moderate input confidence — directional screening signal; "
+                "verify independently."
+            )
         else:
-            _conf_label = "Low confidence — suitable for initial screening only, not investment decisions"
+            _conf_label = (
+                "Low input confidence — preliminary screening only; "
+                "requires independent validation."
+            )
         st.caption(_conf_label)
+        st.caption(
+            "Confidence Score reflects input/data completeness, source coverage, "
+            "and geographic fidelity — not predictive or investment certainty."
+        )
 
     if "DATA_DESERT" in flags:
         st.warning(
@@ -337,7 +353,10 @@ with tab_macro:
 
 with tab_scenarios:
     st.subheader("Scenarios")
-    st.caption("Relative Viability Index — higher score = stronger strategic fit for this location")
+    st.caption(
+        "Coffee-shop Relative Viability Index — higher = stronger relative "
+        "concept fit for this location (screening heuristic, not a success forecast)."
+    )
     if scenarios:
         scenario_cols = st.columns(len(scenarios))
         for col, scenario in zip(scenario_cols, scenarios):
@@ -390,6 +409,11 @@ with tab_risk:
 
 st.divider()
 st.subheader("🧠 AI Analyst Report")
+st.caption(
+    "The AI layer explains and summarizes deterministic outputs. "
+    "It cannot alter official scores, thresholds, status, or scenario calculations, "
+    "and does not validate the underlying market model."
+)
 
 if st.session_state.get("report_llm_fallback"):
     st.info(

@@ -1,12 +1,14 @@
 # MarketMind AI
 
-MarketMind AI is a Streamlit web app that screens coffee-shop market opportunities for locations inside a limited Greater Boston geofence. You enter coordinates and a search radius; the app pulls Google Places Nearby Search and U.S. Census signals, runs a deterministic scoring and decision engine, and then generates an explanatory AI report that describes those results. It does not invent official scores, forecast profit, or recommend leases.
+MarketMind AI is a preliminary market-screening prototype for coffee shops. It combines nearby-place and Census signals with deterministic, configuration-driven scoring to support structured market comparison. The scores are heuristics for screening and are not empirically validated predictors of business success.
+
+It is **not** a validated predictor of business success, a profitability forecast, an investment recommendation engine, a lease recommendation tool, a complete competitor census, or a general-purpose business-location platform.
 
 ## Project status
 
-This repository is a **deployed and tested coffee-shop market-screening MVP**.
+This repository is a **deployed and tested coffee-shop preliminary market-screening MVP / research prototype**.
 
-The complete scoring, decision, and scenario pipeline is calibrated for **`coffee_shop`**. Wider geography and other business types are **future work**, not current product claims.
+The complete scoring, decision, and scenario pipeline is calibrated for **`coffee_shop`**. Scenarios are coffee-shop-specific. Wider geography and other business types are **future work**, not current product claims.
 
 Verified locally at the time of this README rewrite: **175 passed** (`pytest`). Latest GitHub Actions run on `main` concluded **success**.
 
@@ -25,11 +27,11 @@ The live URL above is the public Streamlit URL recorded in `docs/phase7_signoff.
 1. Enter **latitude**, **longitude**, and **radius (miles)** in the Streamlit sidebar (defaults to the Inman Square vicinity analysis center and 1.0 mile). Business type defaults to `coffee_shop`.
 2. Click **Run Analysis** (subject to a 30-second per-session cooldown and a local daily analysis counter).
 3. The app validates the point against a **3.5-mile geofence** centered on the Inman Square vicinity anchor, then retrieves **Google Places Nearby Search** competitor signals and **Census ACS** demographic signals (with circuit-breaker stubs / cascade fallbacks when sources fail).
-4. A deterministic scoring engine produces six 0–100 scores: Demand, Competition Pressure, Market Gap, Risk, Opportunity, and Confidence.
-5. Decision rules assign a headline status of **GO**, **CAUTION**, or **NO-GO**, plus risks, levers, trade-offs, and threshold-change (“what would change”) conditions.
+4. A deterministic, configuration-driven scoring engine produces six 0–100 **decision-support** scores: Demand, Competition Pressure, Market Gap, Risk, Opportunity, and Confidence. Weights and thresholds are configured heuristics for screening — not empirically validated predictors of real-world business outcomes.
+5. Decision rules assign a headline screening status of **GO**, **CAUTION**, or **NO-GO**, plus risks, levers, trade-offs, and threshold-change (“what would change”) conditions.
 6. Three coffee-shop **scenarios** are scored as relative viability indices: `study_cafe`, `grab_and_go`, and `third_wave_bar`.
-7. An Anthropic-backed analyst report **explains** the deterministic payload. It does not calculate or replace the official scores.
-8. The UI shows Live vs Cached data badges, confidence, and N/A or degraded results when inputs or APIs are incomplete.
+7. An Anthropic-backed analyst report **explains and summarizes** the deterministic payload. It cannot alter official scores, thresholds, status, or scenario calculations, and it does not validate the underlying market model.
+8. The UI shows Live vs Cached data badges, input confidence, and N/A or degraded results when inputs or APIs are incomplete.
 
 ## Current supported scope
 
@@ -48,16 +50,16 @@ The live URL above is the public Streamlit URL recorded in `docs/phase7_signoff.
 
 | Output | Meaning | Direction |
 |--------|---------|-----------|
-| **Demand Score** | Local population / cohort demand signal for coffee-shop strategy | Higher is more favorable |
-| **Competition Pressure** | Crowding and incumbent strength nearby | Higher is less favorable |
-| **Market Gap** | Demand relative to competitive pressure | Higher is more favorable |
-| **Risk Score** | Financial / concentration / incumbent risk signal | Higher is less favorable |
-| **Opportunity Score** | Combined screening headline from demand, gap, and inverted pressure | Higher is more favorable |
-| **Confidence Score** | How complete and geographically faithful the inputs appear | Higher is more favorable |
-| **Status** | `GO` / `CAUTION` / `NO-GO` from decision rules | Screening label only |
+| **Demand Score** | Configured heuristic from local population / cohort demand signals for coffee-shop screening | Higher is more favorable as a screening signal |
+| **Competition Pressure** | Crowding and incumbent strength in the nearby Places sample (up to 20) | Higher is less favorable as a screening signal |
+| **Market Gap** | Demand relative to competitive pressure (configured heuristic) | Higher is more favorable as a screening signal |
+| **Risk Score** | Financial / concentration / incumbent risk signal from configured rules | Higher is less favorable as a screening signal |
+| **Opportunity Score** | Combined screening headline from demand, gap, and inverted pressure | Higher is more favorable as a screening signal |
+| **Confidence Score** | Input/data completeness, source coverage, and geographic fidelity only — **not** predictive certainty or probability of success | Higher means stronger input coverage for screening |
+| **Status** | `GO` / `CAUTION` / `NO-GO` from configured decision rules | Screening label only — not investment advice |
 | **Scenarios** | Relative viability indices for three coffee-shop concepts | Higher = stronger relative fit — **not** percentages, letter grades, or success probabilities |
 
-Missing metrics can yield **N/A** scores, **DATA_DESERT**-style caution, or other degraded outcomes. Treat every result as an **initial screen**, not a business plan.
+Missing metrics can yield **N/A** scores, **DATA_DESERT**-style caution, or other degraded outcomes. Treat every result as **preliminary market screening** that requires independent business validation — not a business plan, profitability forecast, or investment recommendation.
 
 ## How the system works
 
@@ -71,16 +73,16 @@ Google Places Nearby Search + Census ACS retrieval
         ↓
 Bundle assembly + optional local file cache
         ↓
-Deterministic scoring engine (weights + thresholds)
+Deterministic scoring engine (configured weights + thresholds)
         ↓
 Decision rules, scenarios, risks, levers, trade-offs, WWC
         ↓
-Validated payload → AI explanatory report
+Schema-checked payload → AI explanatory report (does not alter scores)
         ↓
 Streamlit display
 ```
 
-**The LLM does not create or alter official scores.** Scores and status come from `scoring_engine/` and `decision_engine/` before the report is generated.
+**The LLM does not create, alter, or validate official scores.** Scores and status come from `scoring_engine/` and `decision_engine/` before the report is generated. If the analyst layer is unavailable, deterministic scoring can still remain available.
 
 ## Repository guide
 
@@ -201,22 +203,26 @@ Also:
 - The project does not intentionally collect personal identity data
 - Telemetry is opt-in via `TELEMETRY_ENABLED` and writes rounded coordinates plus outcome fields when enabled
 
-## Known boundaries and limitations
+## Limitations / What this project does not claim
 
-- **`coffee_shop` is the only fully supported business type**
-- Geography is limited to the **Inman Square vicinity–centered 3.5-mile geofence**
+- **`coffee_shop` is the only fully supported and tested business type**
+- Scenarios are **coffee-shop-specific** (`study_cafe`, `grab_and_go`, `third_wave_bar`)
+- Geography is intentionally limited to the **Inman Square vicinity–centered 3.5-mile geofence**
 - The public UI accepts **coordinates**, not street addresses
-- Google Places Nearby Search (New) returns **at most 20** places per request — not an exhaustive competitor census
-- Places data is filtered by taxonomy rules and still incomplete relative to the real streetscape
-- Census retrieval may use tract / ZCTA / Suffolk baseline fallbacks with lower confidence
-- External API outages can produce **degraded stubs**, missing scores, and lower confidence
-- Scenarios are **coffee-shop-specific**
+- Google Places Nearby Search (New) returns **at most 20** places per analysis — not an exhaustive competitor census or complete market census
+- Places data is filtered by taxonomy rules and remains incomplete relative to the real streetscape
+- Census retrieval may use tract / ZCTA / county baseline (placeholder) fallbacks depending on availability, with lower input confidence
+- Scoring uses **configured heuristic weights and thresholds** — not empirically validated predictors of real-world business outcomes
+- External API outages can produce **degraded stubs**, missing scores, and lower input confidence
+- No profitability prediction or financial forecast
+- No lease recommendation, lease-cost model, or rent-roll model
+- No financial or investment advice; GO / CAUTION / NO-GO are screening labels only
+- No guarantee that a location or coffee-shop format will succeed
+- The LLM / Claude layer explains deterministic outputs only; it **does not alter** official scores, thresholds, status, or scenario calculations and does not validate the market model
+- Real-world decisions require **independent business validation and due diligence**
 - No user accounts
 - No persistent production database
-- No profitability prediction
-- No lease-cost or rent-roll model
-- No financial or investment advice
-- Outputs require real-world validation before any business decision
+- Wider business-type and geography support is future work
 
 ## Troubleshooting
 
@@ -232,4 +238,4 @@ Also:
 
 ## Final verified summary
 
-MarketMind AI is a deployed coffee-shop market-screening MVP for a limited Greater Boston area. It combines live external data, deterministic scoring, decision rules, and a validated explanatory report. It is intended for initial screening and engineering demonstration, not as a substitute for professional market research or investment due diligence.
+MarketMind AI is a preliminary market-screening prototype for coffee shops in a limited Greater Boston geofence. It combines live nearby-place and Census signals with deterministic, configuration-driven scoring and an optional AI explanation layer. Scores are decision-support heuristics for structured comparison — not empirically validated predictors of business success, profitability, or investment outcomes. Real-world decisions require independent validation and due diligence.

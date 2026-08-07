@@ -8,7 +8,7 @@ from typing import Any
 
 _RECRUITER_CONFIG: dict[str, Any] = {
     "headline": "Built by Bora Chaush",
-    "subtext": "Full-stack AI system · Real APIs · Deterministic scoring engine",
+    "subtext": "Coffee-shop market-screening prototype · Live APIs · Deterministic scoring",
     "link_label": "View on GitHub",
     "link_url": "https://github.com/bchaush/marketmind-ai",
     "secondary_label": None,
@@ -17,7 +17,7 @@ _RECRUITER_CONFIG: dict[str, Any] = {
 
 _STARTUP_CONFIG: dict[str, Any] = {
     "headline": "MarketMind AI",
-    "subtext": "Market entry intelligence for Boston-area operators and investors.",
+    "subtext": "Preliminary coffee-shop market screening for a limited Greater Boston area.",
     "link_label": "Request Early Access",
     "link_url": "mailto:[your-email]",
     "secondary_label": None,

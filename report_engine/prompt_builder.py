@@ -4,24 +4,25 @@ from typing import Any
 
 _FLAG_LABELS: dict[str, str] = {
     "DATA_DESERT": "Incomplete local data coverage",
-    "STATUS_DATA_DESERT_CAUTION": "Caution: limited data confidence in this area",
-    "CRITICAL_RISK_MONOPOLY_REVIEW_CONCENTRATION": "High market consolidation risk",
-    "STATUS_MONOPOLY_FORCE_CAUTION": "Caution: dominant incumbents detected",
-    "GOLDMINE_ZERO_COMPETITORS": "Untapped market opportunity detected",
-    "STATUS_GOLDMINE_GO": "Strong market opportunity confirmed",
-    "STATUS_HIGH_RISK_NO_GO": "High risk — market entry not recommended",
-    "STATUS_DEFAULT_CAUTION": "Proceed with caution — mixed market signals",
+    "STATUS_DATA_DESERT_CAUTION": "Caution: limited input confidence in this area",
+    "CRITICAL_RISK_MONOPOLY_REVIEW_CONCENTRATION": "High market consolidation risk signal",
+    "STATUS_MONOPOLY_FORCE_CAUTION": "Caution: dominant incumbents in Places sample",
+    "GOLDMINE_ZERO_COMPETITORS": "Zero nearby Places competitors in this sample",
+    "STATUS_GOLDMINE_GO": "GO screening status: low-competition / elevated-gap signal",
+    "STATUS_HIGH_RISK_NO_GO": "High-risk screening status from configured decision rules",
+    "STATUS_DEFAULT_CAUTION": "Proceed with caution — mixed screening signals",
     "STATUS_REJECTED_DESERT": "No-Go: insufficient demographic data at this location",
     "REJECTED_DESERT": "Insufficient demographic data at this location",
-    "TO_GO_BLOCK_GROUP_DATA": "Analysis would upgrade to GO if block-group level data becomes available",
-    "TO_NO_GO_PLACEHOLDER_GEOGRAPHY": "Analysis would downgrade to NO-GO if only placeholder geography is available",
+    "TO_GO_BLOCK_GROUP_DATA": "Screening status would upgrade to GO if block-group level data becomes available",
+    "TO_NO_GO_PLACEHOLDER_GEOGRAPHY": "Screening status would downgrade to NO-GO if only placeholder geography is available",
 }
 
 
 def _translate_flags(flags: list[str]) -> list[str]:
     return [_FLAG_LABELS.get(f, f) for f in flags]
 
-SYSTEM_PROMPT = """You are a senior market analyst writing a structured investment briefing.
+SYSTEM_PROMPT = """You are a senior market analyst writing a structured
+preliminary market-screening brief for a coffee-shop research prototype.
 Follow these rules without exception:
 
 DATA RULES:
@@ -41,14 +42,17 @@ DATA RULES:
   <risks> and <levers> XML sections respectively.
 
 WRITING RULES:
-- Write in confident, professional, third-person analyst prose.
+- Write in professional, third-person analyst prose.
 - No bullet points in executive_summary or pillar_analysis.
 - Do not use "I don't know" or "as an AI".
 - Do not add caveats about training data or knowledge cutoff.
 - Your recommendation field must match final_status exactly.
   If final_status is CAUTION, recommendation must be "CAUTION".
+- Treat GO / CAUTION / NO-GO as screening status labels from configured
+  decision rules, not investment advice or predictions of success.
 - Do not invent causal claims. Treat scores, flags, and levers as
-  model screening signals, not proof of real-world outcomes.
+  configured deterministic screening signals / decision-support outputs,
+  not proof of real-world outcomes.
 - Never claim that youth, students, or demographics "enable",
   "guarantee", or "prove" extended hours, profitability, or success.
 - If a lever is labeled Extended Hours or Demand Threshold Met,
@@ -56,7 +60,13 @@ WRITING RULES:
   (demand score met the configured threshold), not as a youth-driven
   operating-hours conclusion.
 - Do not describe deterministic scores as fully accurate, guaranteed,
-  or proven real-world truth.
+  empirically validated, or proven real-world truth.
+- Confidence Score means input/data completeness, source coverage, and
+  geographic fidelity only — never predictive certainty, model certainty,
+  probability of success, or investment certainty.
+- You explain and summarize deterministic outputs only. You cannot alter
+  official scores, thresholds, status, or scenario calculations, and you
+  do not validate the correctness of the underlying market model.
 OUTPUT FORMAT RULES:
 - Return valid JSON only.
 - Your response must begin with the { character and end with the }
