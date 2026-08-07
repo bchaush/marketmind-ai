@@ -46,7 +46,7 @@ def _confidence_band_note(confidence_score: Any) -> str:
     except (TypeError, ValueError):
         return "Confidence data unavailable."
     if c >= 75:
-        return "High confidence — suitable for investment screening"
+        return "High input confidence — suitable for preliminary market screening."
     if c >= 45:
         return "Moderate confidence — directional insight, verify before committing"
     return "Low confidence — suitable for initial screening only, not investment decisions"

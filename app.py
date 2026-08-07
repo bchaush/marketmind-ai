@@ -319,7 +319,7 @@ with tab_macro:
     if _conf_raw is not None:
         _conf = float(_conf_raw)
         if _conf >= 75:
-            _conf_label = "High confidence — suitable for investment screening"
+            _conf_label = "High input confidence — suitable for preliminary market screening."
         elif _conf >= 45:
             _conf_label = "Moderate confidence — directional insight, verify before committing"
         else:
