@@ -23,7 +23,9 @@ from report_engine.llm_analyst import LLMQuotaExceededError, generate_report
 from report_engine.prompt_builder import _FLAG_LABELS
 from scoring_engine.scoring_engine import score
 from ui.dev_payload import build_dev_payload
+from ui.live_scope import get_live_business_type
 from ui.payload_adapter import adapt
+from ui.scenario_fit_labels import relative_scenario_fit_labels
 
 REPO_ROOT = Path(__file__).resolve().parent
 
@@ -136,11 +138,11 @@ with st.sidebar:
     st.markdown("**🧠 MarketMind AI**")
     st.caption("Coffee-shop preliminary market-screening prototype")
     st.markdown("📍 Default analysis area: Inman Square vicinity (42.3736, -71.1097)")
-    st.markdown("☕ Coffee Shop (default)")
     lat = st.number_input("Latitude", value=42.3736, format="%.4f")
     lng = st.number_input("Longitude", value=-71.1097, format="%.4f")
     radius_miles = st.number_input("Radius (miles)", value=1.0, min_value=0.01, format="%.2f")
-    business_type = st.text_input("Business type", value="coffee_shop")
+    st.markdown("**Business type:** Coffee shop")
+    business_type = get_live_business_type()
     st.caption("Competition metrics use up to 20 nearby Places results per analysis.")
     st.caption("Census coverage may use geographic fallbacks when block-group data is unavailable.")
 
@@ -174,7 +176,7 @@ with st.sidebar:
                 bundle = fetch_live_bundle(
                     lat,
                     lng,
-                    business_type.strip() or "coffee_shop",
+                    business_type,
                     radius_miles=radius_miles,
                 )
             status.update(label="Analysis complete", state="complete", expanded=False)
@@ -354,23 +356,18 @@ with tab_macro:
 with tab_scenarios:
     st.subheader("Scenarios")
     st.caption(
-        "Coffee-shop Relative Viability Index — higher = stronger relative "
-        "concept fit for this location (screening heuristic, not a success forecast)."
+        "Coffee-shop scenario values are configured weighted relative indices "
+        "for comparison only — not probabilities, letter grades, or empirically "
+        "validated absolute fit scores. Labels reflect numeric ordering among "
+        "the scenarios shown."
     )
     if scenarios:
         scenario_cols = st.columns(len(scenarios))
-        for col, scenario in zip(scenario_cols, scenarios):
+        fit_labels = relative_scenario_fit_labels(scenarios)
+        for col, scenario, band in zip(scenario_cols, scenarios, fit_labels):
             label = str(scenario.get("label") or scenario.get("scenario_id") or "Scenario")
             opp = scenario.get("opportunity_score")
             value = "N/A" if opp is None else f"{round(float(opp), 1)}"
-            if opp is None:
-                band = "Insufficient data"
-            elif float(opp) >= 20:
-                band = "Strong fit"
-            elif float(opp) >= 10:
-                band = "Moderate fit"
-            else:
-                band = "Insufficient data"
             col.metric(label, value)
             col.caption(band)
     else:
@@ -474,7 +471,7 @@ if os.getenv("DEV_MODE", "false").lower() == "true":
                 make_cache_key(
                     lat,
                     lng,
-                    business_type.strip() or "coffee_shop",
+                    business_type,
                     radius_miles,
                 ),
             )

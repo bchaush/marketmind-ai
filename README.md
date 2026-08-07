@@ -8,7 +8,7 @@ It is **not** a validated predictor of business success, a profitability forecas
 
 This repository is a **deployed and tested coffee-shop preliminary market-screening MVP / research prototype**.
 
-The complete scoring, decision, and scenario pipeline is calibrated for **`coffee_shop`**. Scenarios are coffee-shop-specific. Wider geography and other business types are **future work**, not current product claims.
+The complete scoring, decision, and scenario pipeline is configured and tested for **`coffee_shop`**. Scenarios are coffee-shop-specific. Wider geography and other business types are **future work**, not current product claims.
 
 Verified locally at the time of this README rewrite: **175 passed** (`pytest`). Latest GitHub Actions run on `main` concluded **success**.
 
@@ -24,7 +24,7 @@ The live URL above is the public Streamlit URL recorded in `docs/phase7_signoff.
 
 ## What the MVP does
 
-1. Enter **latitude**, **longitude**, and **radius (miles)** in the Streamlit sidebar (defaults to the Inman Square vicinity analysis center and 1.0 mile). Business type defaults to `coffee_shop`.
+1. Enter **latitude**, **longitude**, and **radius (miles)** in the Streamlit sidebar (defaults to the Inman Square vicinity analysis center and 1.0 mile). Business type is fixed to **Coffee shop** (`coffee_shop`) — the only fully supported type.
 2. Click **Run Analysis** (subject to a 30-second per-session cooldown and a local daily analysis counter).
 3. The app validates the point against a **3.5-mile geofence** centered on the Inman Square vicinity anchor, then retrieves **Google Places Nearby Search** competitor signals and **Census ACS** demographic signals (with circuit-breaker stubs / cascade fallbacks when sources fail).
 4. A deterministic, configuration-driven scoring engine produces six 0–100 **decision-support** scores: Demand, Competition Pressure, Market Gap, Risk, Opportunity, and Confidence. Weights and thresholds are configured heuristics for screening — not empirically validated predictors of real-world business outcomes.
@@ -37,7 +37,7 @@ The live URL above is the public Streamlit URL recorded in `docs/phase7_signoff.
 
 | Item | Current MVP |
 |------|-------------|
-| Business type | `coffee_shop` (fully supported). `premium_cafe` exists in taxonomy config only — do not treat it as a completed pipeline. |
+| Business type | `coffee_shop` only in the live UI (fully supported and tested). `premium_cafe` exists in taxonomy config only — do not treat it as a completed pipeline. |
 | Default location | Inman Square vicinity (`42.3736`, `-71.1097`) — analysis center / geofence anchor, not claimed as the exact neighborhood centroid |
 | Geography | Coordinates within **3.5 miles** of that Inman Square vicinity anchor |
 | Default radius | **1.0 mile** (sidebar editable; minimum 0.01) |
