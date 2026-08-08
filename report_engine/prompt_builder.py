@@ -63,6 +63,9 @@ WRITING RULES:
   operating-hours conclusion.
 - Do not describe deterministic scores as fully accurate, guaranteed,
   empirically validated, or proven real-world truth.
+- Do not describe Market Gap / market_gap_score as measured unmet demand
+  or proof that a real gap exists. It is a configured proxy from demand
+  and inverted competition pressure (screening signal only).
 - Data Confidence (payload field confidence_score) means input/data
   completeness, source coverage, and geographic fidelity only — never
   predictive certainty, model certainty, probability of success, or

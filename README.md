@@ -27,7 +27,7 @@ The live URL above is the public Streamlit URL recorded in `docs/phase7_signoff.
 1. Enter **latitude**, **longitude**, and **radius (miles)** in the Streamlit sidebar (defaults to the Inman Square vicinity analysis center and 1.0 mile). Business type is fixed to **Coffee shop** (`coffee_shop`) — the only fully supported type.
 2. Click **Run Analysis** (subject to a 30-second per-session cooldown and a local daily analysis counter).
 3. The app validates the point against a **3.5-mile geofence** centered on the Inman Square vicinity anchor, then retrieves **Google Places Nearby Search** competitor signals and **Census ACS** demographic signals (with circuit-breaker stubs / cascade fallbacks when sources fail).
-4. A deterministic, configuration-driven scoring engine produces six 0–100 **decision-support** scores: Demand, Competition Pressure, Market Gap, Risk, Opportunity, and **Data Confidence**. Weights and thresholds are configured heuristics for screening — not empirically validated predictors of real-world business outcomes.
+4. A deterministic, configuration-driven scoring engine produces six 0–100 **decision-support** scores: Demand, Competition Pressure, **Market Gap Proxy**, Risk, Opportunity, and **Data Confidence**. Weights and thresholds are configured heuristics for screening — not empirically validated predictors of real-world business outcomes.
 5. Decision rules assign a headline screening status of **GO**, **CAUTION**, or **NO-GO**, plus risks, levers, trade-offs, and threshold-change (“what would change”) conditions.
 6. Three coffee-shop **scenarios** are scored as relative viability indices: `study_cafe`, `grab_and_go`, and `third_wave_bar`.
 7. An Anthropic-backed analyst report **explains and summarizes** the deterministic payload. It cannot alter official scores, thresholds, status, or scenario calculations, and it does not validate the underlying market model.
@@ -52,7 +52,7 @@ The live URL above is the public Streamlit URL recorded in `docs/phase7_signoff.
 |--------|---------|-----------|
 | **Demand Score** | Configured demographic / local-market **demand proxy** (population and cohort signals) for coffee-shop screening — not measured store demand | Higher is more favorable as a screening signal |
 | **Competition Pressure** | Crowding and incumbent strength among **observed** Places matches (up to 20 per analysis — not exhaustive) | Higher is less favorable as a screening signal |
-| **Market Gap** | Demand relative to competitive pressure (configured heuristic) | Higher is more favorable as a screening signal |
+| **Market Gap Proxy** | Configured proxy from demand and inverted competition pressure — **not** a measured unmet-demand census | Higher is more favorable as a screening signal |
 | **Risk Score** | Financial / concentration / incumbent risk signal from configured rules | Higher is less favorable as a screening signal |
 | **Opportunity Score** | Combined screening headline from demand, gap, and inverted pressure | Higher is more favorable as a screening signal |
 | **Data Confidence** | Input/data completeness, source coverage, and geographic fidelity only — **not** predictive certainty or probability of success | Higher means stronger input coverage for screening |

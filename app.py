@@ -306,9 +306,9 @@ st.markdown(
 
 st.caption(_FLAG_LABELS.get(status_rule_id, status_rule_id))
 st.caption(
-    "Preliminary coffee-shop market screening — configured deterministic "
-    "heuristics for decision support, not an investment recommendation or "
-    "prediction of business success. Requires independent business validation."
+    "Preliminary screening status from configured decision rules — "
+    "not an investment recommendation or prediction of business success. "
+    "Configured deterministic heuristics; requires independent business validation."
 )
 
 tab_macro, tab_scenarios, tab_risk = st.tabs(
@@ -316,12 +316,20 @@ tab_macro, tab_scenarios, tab_risk = st.tabs(
 )
 
 with tab_macro:
+    st.caption(
+        "Pillar values are 0–100 configured screening indices — "
+        "not probabilities of business success."
+    )
     row1 = st.columns(3)
     row1[0].metric("Demand Score", _fmt_score(scores.get("demand_score")))
     row1[0].caption("Demographic / local-market demand proxy (screening signal)")
     row1[1].metric("Competition Pressure", _fmt_score(scores.get("competition_pressure_score")))
     row1[1].caption("Based on observed Places matches (not an exhaustive census)")
-    row1[2].metric("Market Gap", _fmt_score(scores.get("market_gap_score")))
+    row1[2].metric("Market Gap Proxy", _fmt_score(scores.get("market_gap_score")))
+    row1[2].caption(
+        "Configured proxy from demand and inverted competition — "
+        "not measured unmet demand."
+    )
 
     row2 = st.columns(3)
     row2[0].metric("Risk Score", _fmt_score(scores.get("risk_score")))
@@ -352,8 +360,9 @@ with tab_macro:
 
     if "DATA_DESERT" in flags:
         st.warning(
-            "⚠️ Data Desert active — confidence capped at 74. "
-            "Three or more metrics are missing."
+            "⚠️ Data Desert active — Data Confidence capped at 74 by configured "
+            "deterministic rules (three or more scored metrics missing). "
+            "This is a screening-data floor, not an empirical validation threshold."
         )
 
     for adjustment in null_adjustments:

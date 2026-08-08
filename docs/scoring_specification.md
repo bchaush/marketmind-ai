@@ -33,7 +33,7 @@ Notation:
 |--------|-------|-------------------------|-------------------------|-------------------------------------------|
 | **Demand Score** | 0–100 | `demographic_data.pop_total`, `demographic_data.age_22_34_count`, `demographic_data.college_student_population_pct` | Configured **demographic demand proxy / local screening signal** for the chosen business type from population structure — **not** measured store demand or proven purchasing demand. | **Better** (more demand-proxy signal → higher score). |
 | **Competition Pressure Score** | 0–100 | `competitor_data.summary.total_count`, `competitor_data.summary.avg_rating`, `competitor_data.summary.top_3_review_share_pct` | How crowded and how strong nearby competitors are within the search radius. | **Worse** (more pressure → higher score). |
-| **Market Gap Score** | 0–100 | Demand score plus inverted competition pressure as supply proxy (see §5.3) | Whether local demand appears under-served relative to visible competitor supply. | **Better** (larger gap → higher score). |
+| **Market Gap Proxy** (internal: `market_gap_score`) | 0–100 | Demand score plus inverted competition pressure as supply proxy (see §5.3) | Configured screening proxy for whether demand appears high relative to visible competition — **not** direct measurement of unmet demand. | **Better** (larger proxy gap → higher score). |
 | **Risk Score** | 0–100 | `demographic_data.rent_to_income_ratio`, `demographic_data.median_household_income`, `competitor_data.summary.top_3_review_share_pct` (concentration risk), `competitor_data.summary.avg_rating` (incumbent strength) | Financial and market-structure risk for a new entrant. | **Worse** (more risk → higher score). |
 | **Opportunity Score** | 0–100 | Combines Demand, Market Gap, and inverted Competition Pressure (see §5.5) | Holistic “should I dig deeper here?” headline combining demand, gap, and ability to win share. | **Better** (more opportunity → higher score). |
 | **Data Confidence** (internal field: `confidence_score`) | 0–100 | Phase 1 census confidence, geography fidelity, null count among eight scored metrics, desert floors | How complete and geographically faithful the inputs appear — **not** predictive certainty or probability of success. | **Better** (more input coverage → higher score). |
@@ -298,7 +298,9 @@ Phase 7 `score()` returns a flat dict of pillar scores, `null_count`, `flags`, a
 
 **Justification:** Competitor **quantity** is the dominant crowding signal (45%). **Quality** (avg rating) captures how hard it is to win on product (35%). **Concentration** of reviews in top 3 captures oligopoly-style attention markets (20%).
 
-### 5.3 Market Gap Score
+### 5.3 Market Gap Proxy (`market_gap_score`)
+
+Public UI label: **Market Gap Proxy**. Internal field remains `market_gap_score`.
 
 Define **demand_proxy** and **supply_proxy** (Phase 7 engine):
 

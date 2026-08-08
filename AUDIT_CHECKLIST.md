@@ -141,7 +141,7 @@ Capture:
 
 Capture:
 
-1. Repo visibility (Private)
+1. Repository visibility setting (capture current state: Public or Private)
 2. Actions run for `.github/workflows/tests.yml` (green check)
 3. Branch protection / PR checks if enabled (optional but recommended)
 

@@ -27,3 +27,5 @@ def test_app_uses_data_confidence_label() -> None:
     assert 'metric("Data Confidence"' in src
     assert 'metric("Confidence Score"' not in src
     assert "not predictive certainty" in src
+    assert 'metric("Market Gap Proxy"' in src
+    assert "configured screening indices" in src
