@@ -444,7 +444,7 @@ if st.session_state.get("analyst_report"):
                 st.warning(_translate_wwc_display(str(item)))
         else:
             st.caption("No threshold flip conditions in current data.")
-    with st.expander("Confidence Note"):
+    with st.expander("Data Confidence Note"):
         st.write(report["confidence_note"])
 elif st.session_state.get("report_error"):
     st.error(f"Report generation failed: {st.session_state['report_error']}")

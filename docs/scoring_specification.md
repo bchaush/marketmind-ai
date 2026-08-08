@@ -220,7 +220,7 @@ Repeat for each null metric sequentially in **ascending alphabetical order by me
 
 For **each** null metric encountered in **any** of the five substantive pillars (Demand, Competition, Market Gap, Risk, Opportunity), apply:
 
-- **P_null = 4** points deducted from **Confidence Score** (floor at **§4** or **§7** hard floors if triggered).
+- **P_null = 4** points deducted from **Data Confidence** (`confidence_score`) (floor at **§4** or **§7** hard floors if triggered).
 
 Penalties **stack** additively across null metrics (multiple pillars can reference the same null; **penalize once per distinct metric name per bundle execution**, not once per pillar reference).
 
@@ -262,7 +262,7 @@ Phase 7 `score()` returns a flat dict of pillar scores, `null_count`, `flags`, a
 
 - Emit **`hard_confidence_warning: true`** in Phase 2 output.
 - Still compute all scores **unless** a **Desert hard reject** (§7) applies.
-- Apply **Confidence Score floor** **F_anchor = 35** after all other confidence adjustments (penalties cannot reduce Confidence below **35** when this trigger fires; other floors in §7 take **precedence** if higher).
+- Apply **Data Confidence** floor **F_anchor = 35** after all other confidence adjustments (penalties cannot reduce Data Confidence below **35** when this trigger fires; other floors in §7 take **precedence** if higher).
 
 ---
 
@@ -349,12 +349,12 @@ Define **demand_proxy** and **supply_proxy** (Phase 7 engine):
 
 **Justification:** Opportunity is primarily **demand** (45%), reinforced by **structural gap** (35%), tempered by **ease vs incumbents** (20% from inverted competition).
 
-### 5.6 Confidence Score
+### 5.6 Data Confidence (`confidence_score`)
 
-Phase 7 engine composition (authoritative):
+Phase 7 engine composition (authoritative). Public UI label: **Data Confidence**.
 
 \[
-\text{Confidence} = (C_{p1} - 4 \cdot n_{\text{null}}) \cdot \frac{G_{fid}}{100}
+\text{DataConfidence} = (C_{p1} - 4 \cdot n_{\text{null}}) \cdot \frac{G_{fid}}{100}
 \]
 
 then clamp to **[0, 100]**. If **n_null ≥ 3** (DATA_DESERT), apply floor **40** then cap at **74**.
@@ -412,15 +412,15 @@ Each pillar’s `narrative_tag` must be assembled by selecting the bracketed slo
 
 `Overall opportunity is [LIMITED|MODERATE|STRONG], reflecting [demand band] demand and [gap band] market gap.`
 
-**Confidence**
+**Data Confidence**
 
-`Data confidence is [LOW|MODERATE|HIGH] based on [geography_level] resolution and [null count] missing metric(s).`
+`Data Confidence is [LOW|MODERATE|HIGH] based on [geography_level] resolution and [null count] missing metric(s).`
 
 ### 6.2 Band thresholds for template slots
 
 - **Demand, Competition Pressure, Market Gap, Risk:** **0–39 → LOW / NARROW** (Market Gap uses **NARROW** in this band), **40–64 → MODERATE**, **65–100 → HIGH** (Market Gap uses **WIDE** in this band; use **MODERATE** for the middle band).
 - **Opportunity:** **0–39 → LIMITED**, **40–64 → MODERATE**, **65–100 → STRONG**.
-- **Confidence:** **0–44 → LOW**, **45–74 → MODERATE**, **75–100 → HIGH**.
+- **Data Confidence:** **0–44 → LOW**, **45–74 → MODERATE**, **75–100 → HIGH**.
 
 For Opportunity template slots: **[demand band]** and **[gap band]** use the same LOW/MODERATE/HIGH wording as Demand and Market Gap pillar scores respectively (LOW/MODERATE/HIGH, with Market Gap mapped: NARROW→LOW wording “narrow”, MODERATE→“moderate”, WIDE→“wide” in prose — implementation must emit the words **“low”, “moderate”, “high”** for demand band, and **“narrow”, “moderate”, “wide”** for gap band to match Market Gap bands).
 
@@ -430,10 +430,10 @@ For Opportunity template slots: **[demand band]** and **[gap band]** use the sam
 
 | Case | Condition | Behavior |
 |------|-----------|----------|
-| **Desert (hard reject)** | `pop_total` is **null** **OR** `pop_total == 0` | **Do not emit pillar scores** (or emit all five substantive scores as **`null`** with reason code `DESERT_POP`); **Confidence** may still be computed for transparency. Implementation must **abort scoring** flag `scoring_status: "REJECTED_DESERT"`. |
+| **Desert (hard reject)** | `pop_total` is **null** **OR** `pop_total == 0` | **Do not emit pillar scores** (or emit all five substantive scores as **`null`** with reason code `DESERT_POP`); **Data Confidence** may still be computed for transparency. Implementation must **abort scoring** flag `scoring_status: "REJECTED_DESERT"`. |
 | **Monopoly (Critical Risk flag)** | `top_3_review_share_pct > 60` | Set `flags: ["CRITICAL_RISK_MONOPOLY_REVIEW_CONCENTRATION"]`. Add **+15** to **Risk Score** **before** capping at 100 (spec revision required to change). |
 | **No matching competitors observed** | `total_count == 0` **and** `pop_total > 2500` | Set informational flag `NO_MATCHING_COMPETITORS_OBSERVED` only. **Do not** override Opportunity Score or floor `market_gap_score`. Zero matching Places results means no matching businesses were **returned** by the configured search — **not** proof of real-world zero competition, a goldmine, or a first-mover guarantee. Ordinary competition / opportunity formulas continue to apply. |
-| **Data Desert** | **≥ 3** null metrics among the **eight** listed in §5.6 | Set `flags: ["DATA_DESERT"]`; apply **Confidence floor** **F_data = 40** (does not stack with **F_anchor**; use **max(F_anchor, F_data)**). |
+| **Data Desert** | **≥ 3** null metrics among the **eight** listed in §5.6 | Set `flags: ["DATA_DESERT"]`; apply **Data Confidence** floor **F_data = 40** (does not stack with **F_anchor**; use **max(F_anchor, F_data)**). |
 
 **Null never equals zero:** Desert uses explicit **`pop_total == 0`** OR **`pop_total is null`** only.
 

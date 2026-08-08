@@ -40,21 +40,22 @@ def _fmt_score_val(value: Any) -> float | None:
 
 def _confidence_band_note(confidence_score: Any) -> str:
     if confidence_score is None:
-        return "Confidence data unavailable."
+        return "Data Confidence unavailable."
     try:
         c = float(confidence_score)
     except (TypeError, ValueError):
-        return "Confidence data unavailable."
+        return "Data Confidence unavailable."
+    disp = round(c, 1)
     if c >= 75:
-        return "High input confidence — suitable for preliminary market screening."
-    if c >= 45:
-        return (
-            "Moderate input confidence — directional screening signal; "
-            "verify independently."
-        )
+        level = "high"
+    elif c >= 45:
+        level = "moderate"
+    else:
+        level = "low"
     return (
-        "Low input confidence — preliminary screening only; "
-        "requires independent validation."
+        f"Data Confidence of {disp} indicates {level} input data completeness "
+        f"and source coverage for this location. This reflects data availability "
+        f"and geographic fidelity, not certainty in outcomes or model accuracy."
     )
 
 
@@ -81,7 +82,7 @@ def _pillar_analysis_from_scores(scores: dict[str, Any]) -> str:
         base = (
             "Insufficient data to complete pillar analysis. "
             "Macro pillar scores were unavailable for one or more inputs; "
-            "refer to the status banner and confidence guidance."
+            "refer to the status banner and Data Confidence guidance."
         )
     else:
         base = " ".join(lines)
@@ -106,9 +107,9 @@ def build_fallback_report(ui_payload: dict) -> dict[str, Any]:
     confidence_score = scores.get("confidence_score")
     cs_disp = _fmt_score_val(confidence_score)
     conf_clause = (
-        f"Input confidence: {cs_disp}/100."
+        f"Data Confidence: {cs_disp}/100."
         if cs_disp is not None
-        else "Input confidence: N/A."
+        else "Data Confidence: N/A."
     )
 
     rule_id = str(status.get("status_rule_id") or "")
