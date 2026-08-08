@@ -28,6 +28,27 @@ _RULE_PREFIXES = (
     "STATUS_",
 )
 
+# Presentation-only labels: keep internal rule_ids stable when triggers are
+# aggregate risk_score but legacy names imply a more specific observed cause.
+_RULE_LABEL_OVERRIDES: dict[str, str] = {
+    "RISK_HIGH_RENT_BURDEN": "Elevated Aggregate Risk Signal",
+    "LEVER_REDUCE_FOOTPRINT": "Fixed-Cost Reduction Hypothesis",
+}
+
+_TAG_DISPLAY_OVERRIDES: dict[str, str] = {
+    # Legacy tags kept in decision_logic_rules.json; translate for UI/AI only.
+    "HIGH_RENT_BURDEN": "Elevated aggregate risk screening signal",
+    "CUSTOMER_FINANCIAL_FRAGILITY": "Additional business-risk validation warranted",
+    "REDUCE_FIXED_COSTS": "Potential fixed-cost reduction hypothesis",
+    "SMALL_FOOTPRINT_RECOMMENDED": "Smaller-footprint concept may be worth evaluating",
+    "TO_GO_RENT_BELOW_MARKET": (
+        "Hypothetical: lower fixed-cost burden could improve screening status toward GO"
+    ),
+    "TO_NO_GO_RENT_INCREASE": (
+        "Hypothetical: higher fixed-cost burden could worsen screening status toward NO-GO"
+    ),
+}
+
 
 def _as_str_list(value: Any) -> list[str]:
     if value is None:
@@ -55,6 +76,8 @@ def _humanize_token(token: str) -> str:
 def _humanize_rule_id(rule_id: str) -> str:
     if not rule_id:
         return ""
+    if rule_id in _RULE_LABEL_OVERRIDES:
+        return _RULE_LABEL_OVERRIDES[rule_id]
     text = str(rule_id)
     for prefix in _RULE_PREFIXES:
         if text.startswith(prefix):
@@ -63,11 +86,17 @@ def _humanize_rule_id(rule_id: str) -> str:
     return _humanize_token(text)
 
 
+def _display_tag(tag: str) -> str:
+    if tag in _TAG_DISPLAY_OVERRIDES:
+        return _TAG_DISPLAY_OVERRIDES[tag]
+    return _humanize_token(tag)
+
+
 def _tags_text(tags: Any) -> str:
     items = _as_str_list(tags)
     if not items:
         return ""
-    return "; ".join(_humanize_token(tag) for tag in items)
+    return "; ".join(_display_tag(tag) for tag in items)
 
 
 def _get_evidence_field(payload: AnalystPayload, field: str) -> Any:
@@ -133,7 +162,7 @@ def adapt(payload: AnalystPayload) -> dict:
             {
                 "rule_id": rule_id,
                 "label": _humanize_rule_id(rule_id),
-                "severity": _humanize_token(tag_list[0]) if tag_list else "",
+                "severity": _display_tag(tag_list[0]) if tag_list else "",
             }
         )
 

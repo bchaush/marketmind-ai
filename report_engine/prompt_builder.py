@@ -17,6 +17,14 @@ _FLAG_LABELS: dict[str, str] = {
     "REJECTED_DESERT": "Insufficient demographic data at this location",
     "TO_GO_BLOCK_GROUP_DATA": "Screening status would upgrade to GO if block-group level data becomes available",
     "TO_NO_GO_PLACEHOLDER_GEOGRAPHY": "Screening status would downgrade to NO-GO if only placeholder geography is available",
+    "TO_GO_RENT_BELOW_MARKET": (
+        "Hypothetical: lower fixed-cost burden could improve screening status toward GO "
+        "(aggregate-risk sensitivity scenario — not observed rent data)"
+    ),
+    "TO_NO_GO_RENT_INCREASE": (
+        "Hypothetical: higher fixed-cost burden could worsen screening status toward NO-GO "
+        "(aggregate-risk sensitivity scenario — not observed rent data)"
+    ),
 }
 
 
@@ -55,6 +63,14 @@ WRITING RULES:
 - Do not invent causal claims. Treat scores, flags, and levers as
   configured deterministic screening signals / decision-support outputs,
   not proof of real-world outcomes.
+- Rule IDs and tags are configured screening signals. Do not infer a
+  specific causal driver unless the underlying payload contains the
+  corresponding metric or observed condition. If a risk/lever/WWC item
+  is based only on aggregate risk_score, describe it as an elevated
+  aggregate-risk screening signal or a hypothetical fixed-cost
+  sensitivity scenario — never as detected high rent burden, proven
+  customer financial fragility, observed below-market rent, a rent
+  increase, or a validated footprint recommendation.
 - Never claim that youth, students, or demographics "enable",
   "guarantee", or "prove" extended hours, profitability, or success.
 - If a lever is labeled Extended Hours or Demand Threshold Met,
