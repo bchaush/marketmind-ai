@@ -31,12 +31,12 @@ Notation:
 
 | Pillar | Range | Primary Phase 1 inputs | What it tells the user | Score direction (higher pillar value =) |
 |--------|-------|-------------------------|-------------------------|-------------------------------------------|
-| **Demand Score** | 0–100 | `demographic_data.pop_total`, `demographic_data.age_22_34_count`, `demographic_data.college_student_population_pct` | How strong local demand is for the chosen business type from population structure. | **Better** (more demand signal → higher score). |
+| **Demand Score** | 0–100 | `demographic_data.pop_total`, `demographic_data.age_22_34_count`, `demographic_data.college_student_population_pct` | Configured **demographic demand proxy / local screening signal** for the chosen business type from population structure — **not** measured store demand or proven purchasing demand. | **Better** (more demand-proxy signal → higher score). |
 | **Competition Pressure Score** | 0–100 | `competitor_data.summary.total_count`, `competitor_data.summary.avg_rating`, `competitor_data.summary.top_3_review_share_pct` | How crowded and how strong nearby competitors are within the search radius. | **Worse** (more pressure → higher score). |
 | **Market Gap Score** | 0–100 | Demand score plus inverted competition pressure as supply proxy (see §5.3) | Whether local demand appears under-served relative to visible competitor supply. | **Better** (larger gap → higher score). |
 | **Risk Score** | 0–100 | `demographic_data.rent_to_income_ratio`, `demographic_data.median_household_income`, `competitor_data.summary.top_3_review_share_pct` (concentration risk), `competitor_data.summary.avg_rating` (incumbent strength) | Financial and market-structure risk for a new entrant. | **Worse** (more risk → higher score). |
 | **Opportunity Score** | 0–100 | Combines Demand, Market Gap, and inverted Competition Pressure (see §5.5) | Holistic “should I dig deeper here?” headline combining demand, gap, and ability to win share. | **Better** (more opportunity → higher score). |
-| **Confidence Score** | 0–100 | Phase 1 census confidence, geography fidelity, null count among eight scored metrics, desert floors | How much to trust the five substantive scores given data completeness and geography fidelity. | **Better** (more trust in the numbers → higher score). |
+| **Data Confidence** (internal field: `confidence_score`) | 0–100 | Phase 1 census confidence, geography fidelity, null count among eight scored metrics, desert floors | How complete and geographically faithful the inputs appear — **not** predictive certainty or probability of success. | **Better** (more input coverage → higher score). |
 
 **Explicit raw-metric directions** (used inside normalization, before pillar assembly):
 
@@ -151,7 +151,9 @@ S_{count} = \min(\max(\text{total\_count}, 0), C_{max})
 N_{pressure\_from\_count} = 100 \cdot \frac{S_{count}}{C_{max}}
 \]
 
-**Rationale:** Competitor counts within 1 mi in Boston rarely exceed ~40 for coffee taxonomy after filtering; the distribution is **broad and roughly linear** in perceived crowding per added competitor up to the cap.
+**Rationale (configured heuristic, not empirical proof):** Competitor counts within 1 mi in Boston were treated as rarely exceeding ~40 for coffee taxonomy after filtering; the distribution is modeled as **broad and roughly linear** in perceived crowding per added competitor up to the cap.
+
+**Live data note:** Google Places Nearby Search (New) currently returns **at most 20** places per request with **no pagination** in this codebase (`NEARBY_SEARCH_MAX_RESULTS = 20`). Therefore **live** `total_count` cannot exceed 20 and **does not span** the full configured **0–40** normalization range. The **0–40** ceiling is retained as the configured screening scale (including historical / mock fixtures that may use higher counts). Do not interpret live scores as if 40 competitors were observable through the current Places pipeline.
 
 #### G) `avg_rating` (higher worse)
 
@@ -430,7 +432,7 @@ For Opportunity template slots: **[demand band]** and **[gap band]** use the sam
 |------|-----------|----------|
 | **Desert (hard reject)** | `pop_total` is **null** **OR** `pop_total == 0` | **Do not emit pillar scores** (or emit all five substantive scores as **`null`** with reason code `DESERT_POP`); **Confidence** may still be computed for transparency. Implementation must **abort scoring** flag `scoring_status: "REJECTED_DESERT"`. |
 | **Monopoly (Critical Risk flag)** | `top_3_review_share_pct > 60` | Set `flags: ["CRITICAL_RISK_MONOPOLY_REVIEW_CONCENTRATION"]`. Add **+15** to **Risk Score** **before** capping at 100 (spec revision required to change). |
-| **Goldmine** | `total_count == 0` **and** `pop_total > 2500` | Set `flags: ["GOLDMINE_ZERO_COMPETITORS"]`. Set **Opportunity Score = 100** and `market_gap_score` **≥ 85** after composition (if conflict, **Opportunity wins** at 100, Gap capped at 100). |
+| **No matching competitors observed** | `total_count == 0` **and** `pop_total > 2500` | Set informational flag `NO_MATCHING_COMPETITORS_OBSERVED` only. **Do not** override Opportunity Score or floor `market_gap_score`. Zero matching Places results means no matching businesses were **returned** by the configured search — **not** proof of real-world zero competition, a goldmine, or a first-mover guarantee. Ordinary competition / opportunity formulas continue to apply. |
 | **Data Desert** | **≥ 3** null metrics among the **eight** listed in §5.6 | Set `flags: ["DATA_DESERT"]`; apply **Confidence floor** **F_data = 40** (does not stack with **F_anchor**; use **max(F_anchor, F_data)**). |
 
 **Null never equals zero:** Desert uses explicit **`pop_total == 0`** OR **`pop_total is null`** only.

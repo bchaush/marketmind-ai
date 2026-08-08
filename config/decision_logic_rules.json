@@ -15,14 +15,7 @@
       "priority": 900,
       "flag": "CRITICAL_RISK_MONOPOLY_REVIEW_CONCENTRATION",
       "status": "CAUTION",
-      "output_tags": ["MONOPOLY_CONCENTRATION", "ATTENTION_MARKET_CLOSED"]
-    },
-    {
-      "rule_id": "STATUS_GOLDMINE_GO",
-      "priority": 850,
-      "flag": "GOLDMINE_ZERO_COMPETITORS",
-      "status": "GO",
-      "output_tags": ["FIRST_MOVER_WINDOW", "ZERO_COMPETITION"]
+      "output_tags": ["MONOPOLY_CONCENTRATION", "ATTENTION_HIGH_CONCENTRATION"]
     },
     {
       "rule_id": "STATUS_DATA_DESERT_CAUTION",
@@ -36,7 +29,7 @@
       "priority": 300,
       "condition": { "risk_score": { "gte": 85 } },
       "status": "NO-GO",
-      "output_tags": ["EXTREME_RISK", "CAPITAL_NOT_RECOMMENDED"]
+      "output_tags": ["EXTREME_RISK", "HIGH_RISK_SCREENING_SIGNAL"]
     },
     {
       "rule_id": "STATUS_STRONG_GO",
@@ -84,7 +77,7 @@
         "risk_score": { "gte": 75 },
         "confidence_score": { "lt": 55 }
       },
-      "output_tags": ["HIGH_RISK", "LOW_CONFIDENCE", "RECOMMENDATION_INTEGRITY_COMPROMISED"]
+      "output_tags": ["HIGH_RISK", "LOW_CONFIDENCE", "DECISION_SUPPORT_CONFIDENCE_LIMITED"]
     },
     {
       "rule_id": "TRADEOFF_STRONG_GAP_HIGH_COMPETITION",
@@ -93,7 +86,7 @@
         "market_gap_score": { "gte": 65 },
         "competition_pressure_score": { "gte": 70 }
       },
-      "output_tags": ["MARKET_GAP_EXISTS", "COMPETITION_ENTRENCHED", "SPEED_TO_MARKET_CRITICAL"]
+      "output_tags": ["MARKET_GAP_EXISTS", "COMPETITION_ENTRENCHED", "TIMING_SENSITIVITY"]
     }
   ],
 
@@ -108,7 +101,7 @@
       "rule_id": "RISK_MONOPOLY_CONCENTRATION",
       "priority": 100,
       "flag": "CRITICAL_RISK_MONOPOLY_REVIEW_CONCENTRATION",
-      "output_tags": ["MONOPOLY_CONCENTRATION", "REVIEW_MARKET_CLOSED"]
+      "output_tags": ["MONOPOLY_CONCENTRATION", "HIGH_REVIEW_CONCENTRATION"]
     },
     {
       "rule_id": "RISK_HIGH_RENT_BURDEN",
@@ -132,7 +125,7 @@
         "competition_pressure_score": { "gte": 70 },
         "demand_score": { "gte": 60 }
       },
-      "output_tags": ["NICHE_PIVOT_REQUIRED", "STUDY_CAFE_VIABLE"],
+      "output_tags": ["NICHE_PIVOT_REQUIRED", "STUDY_CAFE_RELATIVE_FIT"],
       "impact": "high"
     },
     {
@@ -150,11 +143,11 @@
       "impact": "high"
     },
     {
-      "rule_id": "LEVER_FIRST_MOVER",
+      "rule_id": "LEVER_LOW_VISIBLE_COMPETITION",
       "priority": 90,
-      "flag": "GOLDMINE_ZERO_COMPETITORS",
-      "output_tags": ["FIRST_MOVER_WINDOW", "ZERO_COMPETITION"],
-      "impact": "high"
+      "flag": "NO_MATCHING_COMPETITORS_OBSERVED",
+      "output_tags": ["LOW_VISIBLE_COMPETITION", "PLACES_SAMPLE_EMPTY"],
+      "impact": "medium"
     }
   ],
 

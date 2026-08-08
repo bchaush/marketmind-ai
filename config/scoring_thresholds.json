@@ -101,11 +101,10 @@
       "flag": "CRITICAL_RISK_MONOPOLY_REVIEW_CONCENTRATION",
       "risk_score_bonus": 15
     },
-    "goldmine": {
+    "low_visible_competition": {
       "condition": "total_count == 0 and pop_total > 2500",
-      "flag": "GOLDMINE_ZERO_COMPETITORS",
-      "opportunity_score_override": 100,
-      "market_gap_score_floor": 85
+      "flag": "NO_MATCHING_COMPETITORS_OBSERVED",
+      "note": "Observational flag only — does not override opportunity or market_gap scores. Zero Places matches does not prove real-world zero competition."
     },
     "data_desert": {
       "condition": "null_count >= 3 among scored metrics",

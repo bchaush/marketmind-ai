@@ -79,11 +79,15 @@ def test_monopoly_flag_forces_caution():
     assert result["status_rule_id"] == "STATUS_MONOPOLY_FORCE_CAUTION"
 
 
-def test_goldmine_flag_forces_go():
+def test_zero_competitors_flag_does_not_force_go_status():
+    """Observational flag alone must not assign GO; ordinary status rules apply."""
     scores = _base_scores()
-    result = evaluate(scores, ["GOLDMINE_ZERO_COMPETITORS"], rules_path=RULES_PATH)
-    assert result["final_status"] == "GO"
-    assert result["status_rule_id"] == "STATUS_GOLDMINE_GO"
+    result = evaluate(scores, ["NO_MATCHING_COMPETITORS_OBSERVED"], rules_path=RULES_PATH)
+    assert result["status_rule_id"] != "STATUS_GOLDMINE_GO"
+    assert result["final_status"] != "GO" or result["status_rule_id"] != "STATUS_GOLDMINE_GO"
+    # Mid scores → default caution path (no goldmine override).
+    assert result["final_status"] == "CAUTION"
+    assert result["status_rule_id"] == "STATUS_DEFAULT_CAUTION"
 
 
 def test_data_desert_flag_forces_caution():
@@ -148,11 +152,11 @@ def test_triggered_tags_no_duplicates():
     assert len(tags) == len(set(tags))
 
 
-def test_rejected_desert_beats_goldmine():
+def test_rejected_desert_beats_zero_competitor_flag():
     scores = _base_scores()
     result = evaluate(
         scores,
-        ["REJECTED_DESERT", "GOLDMINE_ZERO_COMPETITORS"],
+        ["REJECTED_DESERT", "NO_MATCHING_COMPETITORS_OBSERVED"],
         rules_path=RULES_PATH,
     )
     assert result["final_status"] == "NO-GO"

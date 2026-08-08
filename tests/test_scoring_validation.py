@@ -51,20 +51,22 @@ def test_direction_top3_increases_pressure():
     assert score(high_share)["competition_pressure_score"] > score(low_share)["competition_pressure_score"]
 
 
-def test_boundary_goldmine_does_not_fire_at_2500():
+def test_boundary_no_matching_competitors_does_not_fire_at_2500():
     bundle = _clean_bundle()
     bundle["demographic_data"]["pop_total"] = 2500
     bundle["competitor_data"]["summary"]["total_count"] = 0
     result = score(bundle)
+    assert "NO_MATCHING_COMPETITORS_OBSERVED" not in result["flags"]
     assert "GOLDMINE_ZERO_COMPETITORS" not in result["flags"]
 
 
-def test_boundary_goldmine_fires_at_2501():
+def test_boundary_no_matching_competitors_fires_at_2501():
     bundle = _clean_bundle()
     bundle["demographic_data"]["pop_total"] = 2501
     bundle["competitor_data"]["summary"]["total_count"] = 0
     result = score(bundle)
-    assert "GOLDMINE_ZERO_COMPETITORS" in result["flags"]
+    assert "NO_MATCHING_COMPETITORS_OBSERVED" in result["flags"]
+    assert "GOLDMINE_ZERO_COMPETITORS" not in result["flags"]
 
 
 def test_boundary_monopoly_does_not_fire_at_60():

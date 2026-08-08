@@ -7,8 +7,10 @@ _FLAG_LABELS: dict[str, str] = {
     "STATUS_DATA_DESERT_CAUTION": "Caution: limited input confidence in this area",
     "CRITICAL_RISK_MONOPOLY_REVIEW_CONCENTRATION": "High market consolidation risk signal",
     "STATUS_MONOPOLY_FORCE_CAUTION": "Caution: dominant incumbents in Places sample",
-    "GOLDMINE_ZERO_COMPETITORS": "Zero nearby Places competitors in this sample",
-    "STATUS_GOLDMINE_GO": "GO screening status: low-competition / elevated-gap signal",
+    "NO_MATCHING_COMPETITORS_OBSERVED": (
+        "No matching nearby competitors were returned by the configured Places search. "
+        "This does not establish the absence of real-world competition."
+    ),
     "STATUS_HIGH_RISK_NO_GO": "High-risk screening status from configured decision rules",
     "STATUS_DEFAULT_CAUTION": "Proceed with caution — mixed screening signals",
     "STATUS_REJECTED_DESERT": "No-Go: insufficient demographic data at this location",
@@ -61,9 +63,11 @@ WRITING RULES:
   operating-hours conclusion.
 - Do not describe deterministic scores as fully accurate, guaranteed,
   empirically validated, or proven real-world truth.
-- Confidence Score means input/data completeness, source coverage, and
+- Confidence / Data Confidence means input/data completeness, source coverage, and
   geographic fidelity only — never predictive certainty, model certainty,
   probability of success, or investment certainty.
+- Do not claim zero returned Places competitors means zero real-world competition,
+  a goldmine, or a guaranteed first-mover opportunity.
 - You explain and summarize deterministic outputs only. You cannot alter
   official scores, thresholds, status, or scenario calculations, and you
   do not validate the correctness of the underlying market model.

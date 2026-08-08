@@ -162,9 +162,9 @@ def score(bundle):
             risk_score = min(100.0, float(risk_score) + 15.0)
 
     if total_count == 0 and pop_total > 2500:
-        flags.append("GOLDMINE_ZERO_COMPETITORS")
-        opportunity_score = 100.0
-        market_gap_score = max(float(market_gap_score or 0.0), 85.0)
+        # Observational only: zero matching Places results returned — not proof of
+        # real-world zero competition, and not an opportunity/gap score override.
+        flags.append("NO_MATCHING_COMPETITORS_OBSERVED")
 
     if null_count >= 3:
         flags.append("DATA_DESERT")

@@ -21,11 +21,12 @@ def _scores(**kwargs: float) -> dict:
     return base
 
 
-def test_goldmine_fires_first_mover_lever():
+def test_low_visible_competition_lever_fires():
     scores = _scores()
-    result = get_levers(scores, ["GOLDMINE_ZERO_COMPETITORS"], rules_path=RULES_PATH)
-    row = next(r for r in result if r["rule_id"] == "LEVER_FIRST_MOVER")
-    assert row["impact"] == "high"
+    result = get_levers(scores, ["NO_MATCHING_COMPETITORS_OBSERVED"], rules_path=RULES_PATH)
+    row = next(r for r in result if r["rule_id"] == "LEVER_LOW_VISIBLE_COMPETITION")
+    assert row["impact"] == "medium"
+    assert "LOW_VISIBLE_COMPETITION" in row["output_tags"]
 
 
 def test_high_competition_fires_niche_lever():

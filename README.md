@@ -10,7 +10,7 @@ This repository is a **deployed and tested coffee-shop preliminary market-screen
 
 The complete scoring, decision, and scenario pipeline is configured and tested for **`coffee_shop`**. Scenarios are coffee-shop-specific. Wider geography and other business types are **future work**, not current product claims.
 
-Verified locally at the time of this README rewrite: **175 passed** (`pytest`). Latest GitHub Actions run on `main` concluded **success**.
+Verified locally: run **`pytest`** — the full suite must pass. Latest GitHub Actions run on `main` should conclude **success**.
 
 ## Quick links
 
@@ -50,12 +50,12 @@ The live URL above is the public Streamlit URL recorded in `docs/phase7_signoff.
 
 | Output | Meaning | Direction |
 |--------|---------|-----------|
-| **Demand Score** | Configured heuristic from local population / cohort demand signals for coffee-shop screening | Higher is more favorable as a screening signal |
-| **Competition Pressure** | Crowding and incumbent strength in the nearby Places sample (up to 20) | Higher is less favorable as a screening signal |
+| **Demand Score** | Configured demographic / local-market **demand proxy** (population and cohort signals) for coffee-shop screening — not measured store demand | Higher is more favorable as a screening signal |
+| **Competition Pressure** | Crowding and incumbent strength among **observed** Places matches (up to 20 per analysis — not exhaustive) | Higher is less favorable as a screening signal |
 | **Market Gap** | Demand relative to competitive pressure (configured heuristic) | Higher is more favorable as a screening signal |
 | **Risk Score** | Financial / concentration / incumbent risk signal from configured rules | Higher is less favorable as a screening signal |
 | **Opportunity Score** | Combined screening headline from demand, gap, and inverted pressure | Higher is more favorable as a screening signal |
-| **Confidence Score** | Input/data completeness, source coverage, and geographic fidelity only — **not** predictive certainty or probability of success | Higher means stronger input coverage for screening |
+| **Data Confidence** | Input/data completeness, source coverage, and geographic fidelity only — **not** predictive certainty or probability of success | Higher means stronger input coverage for screening |
 | **Status** | `GO` / `CAUTION` / `NO-GO` from configured decision rules | Screening label only — not investment advice |
 | **Scenarios** | Relative viability indices for three coffee-shop concepts | Higher = stronger relative fit — **not** percentages, letter grades, or success probabilities |
 
@@ -168,7 +168,7 @@ Facts verified from this repository at README rewrite time:
 
 | Check | Verified value |
 |-------|----------------|
-| Local pytest | **175 passed** |
+| Local pytest | Full suite must pass (`pytest`) |
 | GitHub Actions (`Tests` on `main`) | Latest run **success** ([example](https://github.com/bchaush/marketmind-ai/actions/runs/31066450508) on `a87876b`) |
 | Python target | **3.11** (`.github/workflows/tests.yml`, `runtime.txt`; select 3.11 in Streamlit Cloud Advanced settings) |
 | Direct dependency pins | `requirements.txt` (exact `==` pins verified on Python 3.11.9) |
@@ -210,9 +210,12 @@ Also:
 - Geography is intentionally limited to the **Inman Square vicinity–centered 3.5-mile geofence**
 - The public UI accepts **coordinates**, not street addresses
 - Google Places Nearby Search (New) returns **at most 20** places per analysis — not an exhaustive competitor census or complete market census
+- Competition metrics reflect **observed / returned** matching places from the configured search (taxonomy filters, ranking, and the 20-result cap may omit businesses; indirect competitors may not be captured)
+- The competitor-count normalizer is configured on a **0–40** scale for historical / screening range reasons; **live** Nearby Search currently cannot exceed **20** results, so live counts do not span the full configured normalization range
 - Places data is filtered by taxonomy rules and remains incomplete relative to the real streetscape
 - Census retrieval may use tract / ZCTA / county baseline (placeholder) fallbacks depending on availability, with lower input confidence
 - Scoring uses **configured heuristic weights and thresholds** — not empirically validated predictors of real-world business outcomes
+- Zero matching Places competitors is an **observational** signal only; it does **not** prove real-world zero competition and does **not** force Opportunity Score to 100
 - External API outages can produce **degraded stubs**, missing scores, and lower input confidence
 - No profitability prediction or financial forecast
 - No lease recommendation, lease-cost model, or rent-roll model

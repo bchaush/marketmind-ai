@@ -135,10 +135,10 @@ def test_all_golden_cases_validate():
                 competition_pressure_score=0.0,
                 market_gap_score=95.0,
                 risk_score=35.0,
-                opportunity_score=100.0,
+                opportunity_score=72.0,
                 confidence_score=85.0,
             ),
-            ["GOLDMINE_ZERO_COMPETITORS"],
+            ["NO_MATCHING_COMPETITORS_OBSERVED"],
         ),
         (
             _scores(

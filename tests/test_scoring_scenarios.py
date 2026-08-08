@@ -95,11 +95,12 @@ def test_scenario_data_desert_still_scores():
     assert result["demand_score"] is not None
 
 
-def test_scenario_goldmine_triggers_go():
+def test_scenario_zero_competitors_observational_not_goldmine_override():
     bundle = copy.deepcopy(_load_base_bundle())
     bundle["competitor_data"]["summary"]["total_count"] = 0
     bundle["demographic_data"]["pop_total"] = 3000
     result = score(bundle)
-    assert "GOLDMINE_ZERO_COMPETITORS" in result["flags"]
-    assert result["opportunity_score"] == 100.0
-    assert result["status"] == "GO"
+    assert "NO_MATCHING_COMPETITORS_OBSERVED" in result["flags"]
+    assert "GOLDMINE_ZERO_COMPETITORS" not in result["flags"]
+    assert result["opportunity_score"] is not None
+    assert result["market_gap_score"] is not None

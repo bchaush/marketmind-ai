@@ -2,7 +2,13 @@ import copy
 import json
 from pathlib import Path
 
-from scoring_engine.scoring_engine import score
+import pytest
+
+from scoring_engine.scoring_engine import (
+    _calculate_weighted_score,
+    _load_weights,
+    score,
+)
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -71,14 +77,38 @@ def test_5_monopoly_flag_fires():
     assert "CRITICAL_RISK_MONOPOLY_REVIEW_CONCENTRATION" in result["flags"]
 
 
-def test_6_goldmine_flag_fires():
+def test_6_zero_matching_competitors_flag_no_opportunity_override():
+    """Zero Places matches: observational flag only; ordinary weighted opp/gap apply."""
     bundle = copy.deepcopy(_load_mock_bundle())
     bundle["competitor_data"]["summary"]["total_count"] = 0
     bundle["demographic_data"]["pop_total"] = 3000
     result = score(bundle)
-    assert "GOLDMINE_ZERO_COMPETITORS" in result["flags"]
-    assert result["opportunity_score"] == 100.0
-    assert result["status"] == "GO"
+
+    assert "NO_MATCHING_COMPETITORS_OBSERVED" in result["flags"]
+    assert "GOLDMINE_ZERO_COMPETITORS" not in result["flags"]
+
+    demand = result["demand_score"]
+    pressure = result["competition_pressure_score"]
+    assert demand is not None and pressure is not None
+
+    weights = _load_weights()
+    supply_proxy = 100.0 - float(pressure)
+    expected_gap = _calculate_weighted_score(
+        {"demand_proxy": demand, "supply_proxy": supply_proxy},
+        weights["market_gap_score"],
+    )
+    expected_opp = _calculate_weighted_score(
+        {
+            "demand": demand,
+            "market_gap": expected_gap,
+            "competition_pressure_inverted": 100.0 - float(pressure),
+        },
+        weights["opportunity_score"],
+    )
+    assert expected_gap is not None and expected_opp is not None
+    # Ordinary composition is authoritative — no Opportunity=100 / Gap≥85 override.
+    assert result["market_gap_score"] == pytest.approx(expected_gap)
+    assert result["opportunity_score"] == pytest.approx(expected_opp)
 
 
 def test_7_data_desert_flag_fires():

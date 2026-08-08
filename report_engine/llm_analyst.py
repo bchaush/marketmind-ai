@@ -254,11 +254,14 @@ def generate_report(ui_payload: dict) -> tuple[AnalystReport, bool]:
                 "STATUS_REJECTED_DESERT",
                 "CRITICAL_RISK_MONOPOLY_REVIEW_CONCENTRATION",
                 "STATUS_MONOPOLY_FORCE_CAUTION",
+                "NO_MATCHING_COMPETITORS_OBSERVED",
                 "GOLDMINE_ZERO_COMPETITORS",
                 "STATUS_GOLDMINE_GO",
                 "STATUS_HIGH_RISK_NO_GO",
                 "STATUS_DEFAULT_CAUTION",
                 "REJECTED_DESERT",
+                "FIRST_MOVER_WINDOW",
+                "ZERO_COMPETITION",
             }
             _report_text = " ".join(str(v) for v in parsed.values() if isinstance(v, str)) + " " + " ".join(
                 str(item)

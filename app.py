@@ -143,7 +143,10 @@ with st.sidebar:
     radius_miles = st.number_input("Radius (miles)", value=1.0, min_value=0.01, format="%.2f")
     st.markdown("**Business type:** Coffee shop")
     business_type = get_live_business_type()
-    st.caption("Competition metrics use up to 20 nearby Places results per analysis.")
+    st.caption(
+        "Competition metrics use up to 20 nearby Places results per analysis "
+        "(observed matches from the configured search — not an exhaustive competitor census)."
+    )
     st.caption("Census coverage may use geographic fallbacks when block-group data is unavailable.")
 
     if st.button("Run Analysis", type="primary"):
@@ -315,13 +318,15 @@ tab_macro, tab_scenarios, tab_risk = st.tabs(
 with tab_macro:
     row1 = st.columns(3)
     row1[0].metric("Demand Score", _fmt_score(scores.get("demand_score")))
+    row1[0].caption("Demographic / local-market demand proxy (screening signal)")
     row1[1].metric("Competition Pressure", _fmt_score(scores.get("competition_pressure_score")))
+    row1[1].caption("Based on observed Places matches (not an exhaustive census)")
     row1[2].metric("Market Gap", _fmt_score(scores.get("market_gap_score")))
 
     row2 = st.columns(3)
     row2[0].metric("Risk Score", _fmt_score(scores.get("risk_score")))
     row2[1].metric("Opportunity Score", _fmt_score(scores.get("opportunity_score")))
-    row2[2].metric("Confidence Score", _fmt_score(scores.get("confidence_score")))
+    row2[2].metric("Data Confidence", _fmt_score(scores.get("confidence_score")))
 
     _conf_raw = scores.get("confidence_score")
     if _conf_raw is not None:
@@ -340,8 +345,9 @@ with tab_macro:
             )
         st.caption(_conf_label)
         st.caption(
-            "Confidence Score reflects input/data completeness, source coverage, "
-            "and geographic fidelity — not predictive or investment certainty."
+            "Data Confidence reflects input/data completeness, source coverage, "
+            "and geographic fidelity — not predictive certainty, probability of "
+            "success, or investment confidence."
         )
 
     if "DATA_DESERT" in flags:

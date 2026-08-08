@@ -21,7 +21,7 @@ Or with pytest on PATH after activating the venv:
 pytest -v
 ```
 
-Expected: **169 passed** (current signed-off suite size).
+Expected: the **full pytest suite must pass** (do not treat a fixed historical count as a release invariant).
 
 ---
 

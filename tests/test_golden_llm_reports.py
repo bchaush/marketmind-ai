@@ -13,11 +13,14 @@ _RAW_FLAGS: frozenset[str] = frozenset(
         "STATUS_REJECTED_DESERT",
         "CRITICAL_RISK_MONOPOLY_REVIEW_CONCENTRATION",
         "STATUS_MONOPOLY_FORCE_CAUTION",
+        "NO_MATCHING_COMPETITORS_OBSERVED",
         "GOLDMINE_ZERO_COMPETITORS",
         "STATUS_GOLDMINE_GO",
         "STATUS_HIGH_RISK_NO_GO",
         "STATUS_DEFAULT_CAUTION",
         "REJECTED_DESERT",
+        "FIRST_MOVER_WINDOW",
+        "ZERO_COMPETITION",
     }
 )
 
@@ -63,16 +66,16 @@ def test_golden_llm_prompt_monopoly_market():
     _assert_prompt_quality(prompt, ui, expected_final_status="CAUTION")
 
 
-def test_golden_llm_prompt_goldmine():
+def test_golden_llm_prompt_low_visible_competition():
     scores = _scores(
         demand_score=78.0,
         competition_pressure_score=0.0,
         market_gap_score=95.0,
         risk_score=35.0,
-        opportunity_score=100.0,
+        opportunity_score=72.0,
         confidence_score=85.0,
     )
-    flags = ["GOLDMINE_ZERO_COMPETITORS"]
+    flags = ["NO_MATCHING_COMPETITORS_OBSERVED"]
     prompt, ui = _prompt_and_ui(scores, flags)
     _assert_prompt_quality(prompt, ui, expected_final_status="GO")
 

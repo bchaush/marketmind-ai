@@ -31,20 +31,22 @@ def test_golden_monopoly_market():
     assert any(r["rule_id"] == "TRADEOFF_HIGH_DEMAND_HIGH_COMPETITION" for r in payload["trade_offs"])
 
 
-def test_golden_goldmine_market():
+def test_golden_low_visible_competition_market():
+    """Populated area with empty Places sample: lever fires; GO only via ordinary rules."""
     scores = _scores(
         demand_score=78.0,
         competition_pressure_score=0.0,
         market_gap_score=95.0,
         risk_score=35.0,
-        opportunity_score=100.0,
+        opportunity_score=72.0,
         confidence_score=85.0,
     )
-    flags = ["GOLDMINE_ZERO_COMPETITORS"]
+    flags = ["NO_MATCHING_COMPETITORS_OBSERVED"]
     payload = build_analyst_payload(scores, flags)
     assert payload["executive_decision"]["final_status"] == "GO"
-    assert payload["executive_decision"]["status_rule_id"] == "STATUS_GOLDMINE_GO"
-    assert any(r["rule_id"] == "LEVER_FIRST_MOVER" for r in payload["levers"])
+    assert payload["executive_decision"]["status_rule_id"] == "STATUS_STRONG_GO"
+    assert any(r["rule_id"] == "LEVER_LOW_VISIBLE_COMPETITION" for r in payload["levers"])
+    assert not any(r["rule_id"] == "LEVER_FIRST_MOVER" for r in payload["levers"])
 
 
 def test_golden_seaport_paradox():
